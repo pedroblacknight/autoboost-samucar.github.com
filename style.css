@@ -63,10 +63,16 @@ body {
     font-size: 20px;
     color: #000;
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 #menu a:last-child {
     margin-right: 0;
+}
+
+#menu img {
+    height: 20px;
 }
 
 #welcome {
