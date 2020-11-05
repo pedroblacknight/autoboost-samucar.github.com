@@ -13,6 +13,19 @@
   font-weight: normal;
   font-style: normal; }
 
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+* {
+  --main-color: #cc0000;
+}
+
 body {
   background: #fff;
   margin: 0px;
@@ -157,7 +170,7 @@ blockquote {
     box-shadow: none !important; }
 
 .btn-primary {
-  background-color: #ee5624;
+  background-color: var(--main-color);
   border-color: #ee5624;
   color: #fff !important; }
   .btn-primary:hover, .btn-primary:active {
@@ -360,7 +373,7 @@ textarea.form-control {
   color: #555555; }
 
 .main-header .navbar .navbar-nav .nav-link.active {
-  color: #ee5624; }
+  color: var(--main-color); }
 
 .main-header .navbar .navbar-nav li.dropdown:last-child .dropdown-menu {
   right: 0px;
