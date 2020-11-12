@@ -422,7 +422,7 @@ textarea.form-control {
     top: 5px; }
 
 .main-header.active {
-  position: fixed;
+  position: sticky;
   left: 0;
   right: 0;
   width: 100%;
@@ -445,7 +445,8 @@ section {
 
 /*==== Home Slider Css ====*/
 #owl-demo .item {
-  height: 650px; }
+  height: 450px;/*650px;*/
+}
 
 #owl-demo .owl-controls {
   bottom: 50px;
