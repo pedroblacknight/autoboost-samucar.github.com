@@ -26,6 +26,29 @@ body {
     background-color: rgba(0, 0, 0, 0.05);
 }
 
+.details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.link_square{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 300px;
+    width: 300px;
+}
+
+.link_square:hover {
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    background-color: aliceblue;
+}
+
 #header {
     display: flex;
     align-items: center;
@@ -81,4 +104,5 @@ body {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    background-color: aliceblue;
 }
