@@ -109,7 +109,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #555555; }
 
 .c-bg-dark {
-  background-color: #191f23; }
+  background-color: #191f23 !important; }
 
 .c-bg-green {
   background-color: #39b54a; }
@@ -440,12 +440,21 @@ textarea.form-control {
   color: #fff; }
 
 section {
-  padding: 100px 0px;
-  position: relative; }
+  padding: 50px 0px;
+  position: relative;
+}
+
+section:nth-child(2n) {
+  background-color: #eee 
+}
+section:nth-child(2n+1) {
+background-color: #fff 
+} 
+
 
 /*==== Home Slider Css ====*/
 #owl-demo .item {
-  height: 450px;/*650px;*/
+  height: 700px;/*650px;*/
 }
 
 #owl-demo .owl-controls {
@@ -469,24 +478,28 @@ section {
     color: #555555;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    padding: 15px 0px; }
+    padding: 15px 0px;}
   .owl-text-overlay .nav-pills .nav-link.active {
     color: #000000;
     background-color: #fff;
     z-index: 9;
-    position: relative; }
+    position: relative;}
   .owl-text-overlay .nav-tabs .nav-link.active {
     border-color: #555555;
-    background-color: #555555; }
-    .owl-text-overlay .nav-tabs .nav-link.active:after {
-      border-top: 8px solid #555555; }
+    background-color: #555555;}
+  .owl-text-overlay .nav-tabs .nav-link.active:after {
+    border-top: 8px solid #555555;}
 
 .nav-tabs .nav-link {
   border-color: #dadada;
   padding: 6px 25px;
-  position: relative; }
+  position: relative;}
   .nav-tabs .nav-link:hover {
     color: #757575; }
+
+header .nav-item .nav-link {
+    font-weight: bold;
+}
 
 .nav-tabs .nav-link.active {
   border-color: #ee5624;
