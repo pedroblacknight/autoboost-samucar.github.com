@@ -23,7 +23,7 @@
 }
 
 * {
-  --main-color: #cc0000;
+  --main-color: #3491ce;
 }
 
 body {
@@ -170,8 +170,8 @@ blockquote {
     box-shadow: none !important; }
 
 .btn-primary {
-  background-color: var(--main-color);
-  border-color: #ee5624;
+  background-color: #3491ce;
+  border-color: #3491ce;
   color: #fff !important; }
   .btn-primary:hover, .btn-primary:active {
     background-color: #ee5624 !important;
@@ -375,7 +375,7 @@ textarea.form-control {
   color: #555555; }
 
 .main-header .navbar .navbar-nav .nav-link.active {
-  color: var(--main-color); }
+  color: #000000; }
 
 .main-header .navbar .navbar-nav li.dropdown:last-child .dropdown-menu {
   right: 0px;
