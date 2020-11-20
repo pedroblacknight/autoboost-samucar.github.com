@@ -49,7 +49,7 @@ a {
 /*======================== Font Style Css ===============================*/
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
-  margin: 0 0 18px;
+  margin: 1 0 18px;
   line-height: 1;
   font-weight: 500;
   font-family: "Montserrat", sans-serif; }
@@ -211,7 +211,9 @@ blockquote {
   height: 43px;
   color: #8f8f8f;
   border-color: #dadada;
-  font-size: 0.875rem; }
+  font-size: 0.875rem;
+  margin-bottom: -2px;
+}
   .form-control:focus {
     box-shadow: none;
     border-color: #dadada; }
@@ -454,7 +456,7 @@ background-color: #fff
 
 /*==== Home Slider Css ====*/
 #owl-demo .item {
-  height: 700px;/*650px;*/
+  height: 550px;/*650px;*/
 }
 
 #owl-demo .owl-controls {
