@@ -133,25 +133,15 @@
                                                             </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1">
+                                                        <select class="form-control ml-sm-0 rounded-1" id="brandSel" onchange="changeModels()">
                                                             <option disabled selected>Selecionar Marca</option>
-                                                            <option value="Audi">Audi</option>
-                                                            <option value="BMW">BMW</option>
-                                                            <option value="Mercedes">Mercedes</option>
-                                                            <option value="Ford">Ford</option>
-                                                            <option value="Fiat">Fiat</option>
-                                                            <option value="Peugeot">Peugeot</option>
+                                                            
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1">
+                                                        <select class="form-control ml-sm-0 rounded-1" id = "modelSel">
                                                             <option disabled selected>Selecionar Modelo</option>
-                                                            <!--<option value="1-lakh-5-lakh">1 Lakh - 5 Lakh</option>
-                                                            <option value="5-lakh-10-lakh">5 Lakh - 10 Lakh</option>
-                                                            <option value="10-lakh-20-lakh">10 Lakh - 20 Lakh</option>
-                                                            <option value="20-lakh-50-lakh">20 Lakh - 50 Lakh</option>
-                                                            <option value="50-lakh-1-crore">50 Lakh - 1 Crore</option>
-                                                            <option value="above-1-crore">Above 1 Crore</option>-->
+                                                        
                                                         </select>
                                                     </div>
                                                     <!--                                                            <div class="form-group">-->
@@ -438,7 +428,7 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-    
+  var map;  
     function printCars(vList){
         var brand, model, price, km, fuel, cv, img, version;
         for (let i = 0; i<4; i++) {
@@ -473,7 +463,7 @@
     }
     
     function fillFilter(vehicles){
-        let map = new Map();
+        map = new Map();
         for(let i=0;i<vehicles.length;i++) {
             let vehicle = vehicles[i];
             let brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
@@ -495,9 +485,24 @@
         
         
         
+       
+        
+        
+        let keys = [...map.keys()];
+        keys.sort();
+        let brandSelector = document.getElementById("brandSel");
+        for (let i =0; i< keys.length;i++) {
+            let brand = keys[i];
+            let option = document.createElement("option");
+            option.textContent = brand;
+            brandSelector.appendChild(option);
+            let modelsMap = map.get(keys[i]);
+        }
+        
+        
         console.log(map);
         
-        
+        /*
         map = new Map();
         for(let i=0;i<vehicles.length;i++) {
             let vehicle = vehicles[i];
@@ -515,8 +520,32 @@
                 map.set(brand, newModels);
             }
         }
+        */
         
-        console.log(map);
+        
+    }
+    
+    function changeModels() {
+        let brand = document.getElementById("brandSel").value;
+        let modelsSelector = document.getElementById("modelSel");
+        modelsSelector.innerHTML = "";
+        console.log("Option selected: " + brand);
+        let models = map.get(brand);
+        let keys = [...models.keys()];
+        keys.sort();
+        console.log(keys);
+        let modelSelector = document.getElementById("modelSel");
+        let defaultVal = document.createElement("option");
+        defaultVal.textContent=(" - ");
+        modelSelector.appendChild(defaultVal);
+        for (let i =0; i< keys.length;i++) {
+            let model = keys[i];
+            let option = document.createElement("option");
+            option.textContent = model + " (" + models.get(model) + ")";
+            modelSelector.appendChild(option);
+            let modelsMap = map.get(keys[i]);
+        }
+        
     }
     
     document.addEventListener('DOMContentLoaded', ()=>{
