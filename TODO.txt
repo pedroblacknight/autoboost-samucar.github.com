@@ -1,6 +1,18 @@
 MAIN PAGE
     Logo samucar - funciona mal em mobile
     Marcas - colocar as marcas certas
+        -BMW
+        -AUDI
+        -MERCEDES
+        -VW
+        -PEUGEOT
+        -SEAT
+        -OPEL
+        -RENAULT
+        -CITROEN
+        -FORD
+        -MINI
+        -FIAT
     Botao para ver todas as listings
     Search a funcionar
     Botões no topo a direcionarem
