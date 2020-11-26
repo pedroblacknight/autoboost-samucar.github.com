@@ -39,7 +39,11 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s; }
+  transition: all 0.3s; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   a:hover, a:focus {
     text-decoration: none;
     outline: none; }
