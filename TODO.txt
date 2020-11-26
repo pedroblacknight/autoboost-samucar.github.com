@@ -18,6 +18,7 @@ MAIN PAGE
     Search a funcionar
     Botões no topo a direcionarem
     Mapa no mobile não está bem
+    Adicionar ponto no preço e km
 ALL LISTINGS
     FAZER
 SINGLE LISTING
