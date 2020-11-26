@@ -1,0 +1,11 @@
+MAIN PAGE
+    Logo samucar - funciona mal em mobile
+    Marcas - colocar as marcas certas
+    Botao para ver todas as listings
+    Search a funcionar
+    Botões no topo a direcionarem
+    Mapa no mobile não está bem
+ALL LISTINGS
+    FAZER
+SINGLE LISTING
+    FAZER
