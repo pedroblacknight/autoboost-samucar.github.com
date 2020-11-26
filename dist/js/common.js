@@ -9,10 +9,10 @@
     // Header Fixed Scroll Js
     $(window).on("scroll", function () {
         if ($(window).scrollTop() > 0) {
-            $("#header-fix").addClass("active");
+            $("#includedContent").addClass("active");
         } else {
             //remove the background property so it comes transparent again (defined in your css)
-            $("#header-fix").removeClass("active");
+            $("#includedContent").removeClass("active");
         }
     });
 
