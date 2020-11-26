@@ -440,7 +440,7 @@
 <script type="text/javascript">
     
     function printCars(vList){
-        var brand, model, price, km, fuel, cv, img;
+        var brand, model, price, km, fuel, cv, img, version;
         for (let i = 0; i<4; i++) {
             
             let carID = document.getElementById("car"+i);
@@ -453,15 +453,16 @@
             
             brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
             model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
-            price = vehicle.getElementsByTagName('Price')[0].firstChild.nodeValue + " €";;
-            km = vehicle.getElementsByTagName('Kms')[0].firstChild.nodeValue + " km";
+            version = vehicle.getElementsByTagName('Version')[0].firstChild.nodeValue;
+            price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
+            km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
             fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
             cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
             img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
             
             
             
-            carID.innerHTML=brand +" "+ model;
+            carID.innerHTML=brand +" "+ model + " " + version;
             priceID.innerHTML=price;
             kmID.innerHTML=km;
             fuelID.innerHTML=fuel;
@@ -469,8 +470,53 @@
             imgID.src=img;
             
         }
-           
+    }
+    
+    function fillFilter(vehicles){
+        let map = new Map();
+        for(let i=0;i<vehicles.length;i++) {
+            let vehicle = vehicles[i];
+            let brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
+            let model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
+            let models = map.get(brand);
+            if (models) {
+                let modelNumber = models.get(model);
+                if(modelNumber)
+                    models.set(model, modelNumber + 1);
+                else {
+                    models.set(model, 1);
+                } 
+            } else {
+                let newModels = new Map();
+                newModels.set(model, 1);
+                map.set(brand, newModels);
+            }
+        }
         
+        
+        
+        console.log(map);
+        
+        
+        map = new Map();
+        for(let i=0;i<vehicles.length;i++) {
+            let vehicle = vehicles[i];
+            let brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
+            let model1 = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
+            let version = vehicle.getElementsByTagName('Version')[0].textContent;
+            let model = model1 + " " + version;
+            let models = map.get(brand);
+            if (models) {
+                models[models.length] = model;
+                
+            } else {
+                let newModels = [];
+                newModels[0] = model;
+                map.set(brand, newModels);
+            }
+        }
+        
+        console.log(map);
     }
     
     document.addEventListener('DOMContentLoaded', ()=>{
@@ -482,6 +528,7 @@
             let xml = parser.parseFromString(data, "application/xml");
             let vehicles = xml.getElementsByTagName('Vehicle');
             printCars(vehicles);
+            fillFilter(vehicles);
         })
     });   
 </script>
