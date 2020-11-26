@@ -20,75 +20,13 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-<!-- Header-->
-<header id="header-fix" class="main-header">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light py-lg-0 py-3 px-0">
-            <!--<a class="navbar-brand" href="index.html"><img src="./img/mainlogo.png" alt="" class="img-fluid" /></a>-->
-            <a class="navbar-brand" href="index.html"><img src="./main-logo.png" alt="" class="img-fluid" style="padding-left: 24px;"/></a>
-            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mr-lg-4 mt-4 mt-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Viaturas</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Comparar Viaturas</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="./index.html">Contactos</a></li>
-                    <!--<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"  aria-expanded="false">Car listing</a>
-                        <ul class="dropdown-menu rounded-0 border-0 py-0">
-                            <li class="dropdown-submenu"><a tabindex="-1" href="#">Grid</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="grid-left-sidebar.html">Left Sidebar</a></li>
-                                    <li><a href="grid-right-sidebar.html">Right Sidebar</a></li>
-                                    <li><a href="grid-without-sidebar.html">Fullwidth</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu"><a tabindex="-1" href="#">List</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="list-left-sidebar.html">Left Sidebar</a></li>
-                                    <li><a href="list-right-sidebar.html">Right Sidebar</a></li>
-                                    <li><a href="list-without-sidebar.html">Fullwidth</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-submenu"><a tabindex="-1" href="#">Single</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="listing-details.html">Single List</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"  aria-expanded="false">Pages</a>
-                        <ul class="dropdown-menu rounded-0 border-0 py-0">
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="coming-soon.html">Coming Sonn</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="error-404.html">Error 404</a></li>
-                            <li><a href="faq.html">FAQ</a></li>
-                            <li><a href="services.html">Services</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="car-compare.html">Compare</a></li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"  aria-expanded="false">Blog</a>
-                        <ul class="dropdown-menu rounded-0 border-0 py-0">
-                            <li><a href="blog-grid.html">Blog Grid</a></li>
-                            <li><a href="single-blog.html">Single Blog</a></li>
-                        </ul>
-                    </li>-->
-                </ul>
-                
-                
-            </div>
-        </nav>
-    </div>
-</header>
-<!-- End Header-->
+  <script> 
+        $(function(){
+          $("#includedContent").load("menu.html"); 
+        });   
+  </script> 
+
+<div id="includedContent" class="main-header"></div>
 
 <!-- Slider-->
 <section  class="py-0">
