@@ -17,81 +17,18 @@
         <!-- CDN Font Awesome-->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         
+        <!-- CDN Jquery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     </head>
     <body style="">
+       
+        <script> 
+        $(function(){
+          $("#includedContent").load("menu.html"); 
+        });
+        </script> 
 
-        <!-- Header-->
-        <header id="header-fix" class="main-header">
-      
-            <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light py-lg-0 py-3 px-0">
-                    <a class="navbar-brand" href="index.html"><img src="https://samucar.pt/dist/images/logo-v1.png" alt="" class="img-fluid"></a>
-                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        <span class="navbar-toggler-icon"></span>
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                      <ul class="navbar-nav ml-auto mr-lg-4 mt-4 mt-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" data-toggle="dropdown" aria-expanded="false">Car listing</a>
-                            <ul class="dropdown-menu rounded-0 border-0 py-0">
-                                <li class="dropdown-submenu"><a tabindex="-1" href="#">Grid</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="grid-left-sidebar.html">Left Sidebar</a></li>
-                                        <li><a href="grid-right-sidebar.html">Right Sidebar</a></li>
-                                        <li><a href="grid-without-sidebar.html">Fullwidth</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu"><a tabindex="-1" href="#">List</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="list-left-sidebar.html">Left Sidebar</a></li>
-                                        <li><a href="list-right-sidebar.html">Right Sidebar</a></li>
-                                        <li><a href="list-without-sidebar.html">Fullwidth</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu"><a tabindex="-1" href="#">Single</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="listing-details.html">Single List</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu rounded-0 border-0 py-0">
-                                <li><a href="about-us.html">About Us</a></li>
-                                <li><a href="coming-soon.html">Coming Sonn</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="error-404.html">Error 404</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="services.html">Services</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item"><a class="nav-link" href="car-compare.html">Compare</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">Blog</a>
-                            <ul class="dropdown-menu rounded-0 border-0 py-0">
-                                <li><a href="blog-grid.html">Blog Grid</a></li>
-                                <li><a href="single-blog.html">Single Blog</a></li>
-                            </ul>
-                        </li>
-                      </ul>
-                      <form class="form-inline my-2 my-lg-0">
-                            <a href="sell-car.html" class="btn btn-primary my-2 my-sm-0 btn-sm">Sell Car</a>
-                            <div class="form-group position-relative mb-0">
-                                <input class="form-control ml-sm-2 rounded-0" type="search" placeholder="Search">
-                                <div class="search position-absolute">
-                                    <a href="#"><i class="fa fa-search"></i></a>
-                                </div>
-                            </div>
-                      </form>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <!-- End Header-->
+        <div id="includedContent"></div>
 
         <!-- Page Inner-->
    <!--     <section>
