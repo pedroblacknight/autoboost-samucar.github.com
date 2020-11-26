@@ -1066,9 +1066,9 @@ header .nav-item .nav-link {
   .multiple-items3 .carvs {
     top: -68px;
     left: 50%; }
-  .car-listing .img-fluid.rounded-left {
+  .car-listing .img-fluid .rounded-left {
     border-bottom-left-radius: 0rem !important;
-    border-top-right-radius: .25rem !important; } }
+    border-top-right-radius: .25rem !important; }
 
 @media (max-width: 991px) {
     #myTabContent3
