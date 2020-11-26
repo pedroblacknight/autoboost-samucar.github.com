@@ -1,4 +1,5 @@
 MAIN PAGE
+    favicon do separador - remover background preto do R
     Logo samucar - funciona mal em mobile
     Marcas - colocar as marcas certas
         -BMW
