@@ -15,7 +15,10 @@
             $("#includedContent").removeClass("active");
         }
     });
-
+    //include menu in page
+     $(function(){
+          $("#includedContent").load("menu.html"); 
+     });
     // Background Image Maker Js
     $('.background-image-maker').each(function () {
         var imgURL = $(this).next('.holder-image').find('img').attr('src');
