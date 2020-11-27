@@ -25,6 +25,195 @@
           $("#includedContent").load("https://samucar.pt/menu.html");
       });
   </script>
+  <script type="text/javascript">
+      let searchBrand, searchModel;
+      function fillFilter(){
+          let map = getBrandsAndModels();
+          let keys = [...map.keys()];
+          keys.sort();
+          let brandSelector = document.getElementById("brandSel");
+          let allOption = document.createElement("option");
+          allOption.textContent = "Selecionar Marca";
+          if (searchBrand == -1)
+              allOption.setAttribute("selected", "selected");
+          allOption.setAttribute("disabled", "disabled");
+          allOption.setAttribute("value", "-1");
+          brandSelector.appendChild(allOption);
+          for (let i =0; i< keys.length;i++) {
+              let brand = keys[i];
+              let option = document.createElement("option");
+              option.textContent = brand;
+              if (searchBrand == brand)
+                  option.setAttribute("selected", "selected");
+              brandSelector.appendChild(option);
+              let modelsMap = map.get(keys[i]);
+          }
+
+          if (searchModel != -1)
+              changeModels();
+      }
+
+      function changeModels() {
+          let map = getBrandsAndModels();
+          console.log(map);
+          let brand = document.getElementById("brandSel").value;
+          let modelsSelector = document.getElementById("modelSel");
+          modelsSelector.innerHTML = "";
+          console.log("Option selected: " + brand);
+          let models = map.get(brand);
+          let keys = [...models.keys()];
+          keys.sort();
+          console.log(keys);
+          let modelSelector = document.getElementById("modelSel");
+          let allOption = document.createElement("option");
+          allOption.textContent = "Todos";
+          if (searchModel == "Todos")
+              allOption.setAttribute("selected", "selected");
+          modelSelector.appendChild(allOption);
+          for (let i =0; i< keys.length;i++) {
+              let model = keys[i];
+              let option = document.createElement("option");
+              option.textContent = model + " (" + models.get(model) + ")";
+              if (searchModel == model)
+                  option.setAttribute("selected", "selected");
+              modelSelector.appendChild(option);
+              let modelsMap = map.get(keys[i]);
+          }
+
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+          let url = "https://feeds.standvirtual.com/feeds-carspt/feed_user_business_43a2348027cdb8d216f4fb15fd9e1e4f.xml";
+          fetch(url)
+              .then(response=>response.text())
+              .then(data=>{
+                  let parser = new DOMParser();
+                  let xml = parser.parseFromString(data, "application/xml");
+                  let searchParams = new URL(document.location).searchParams;
+                  searchBrand = searchParams.get("brand");
+                  if (searchBrand == null)
+                      searchBrand = -1;
+                  searchModel = searchParams.get("model");
+                  if (searchModel == null)
+                      searchModel = -1;
+                  else
+                      searchModel = searchModel.substring(0, searchModel.indexOf(" ("));
+                  fillFilter();
+                  saveXML(data);
+                  getSearchResults();
+              })
+      });
+
+      function getSearchResults() {
+          let xml = getXML();
+          let vehicles = xml.getElementsByTagName('Vehicle');
+          let searchResults = "";
+          for (let idx = 0; idx < vehicles.length; idx++) {
+              let vehicle = convertToDict(vehicles[idx]);
+              let vehicleHTML = searchResultToHTML(vehicle);
+              if (searchBrand == -1)
+                  searchResults += vehicleHTML;
+              else if (searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Todos"))
+                  searchResults += vehicleHTML;
+              else if (searchBrand == vehicle.brand && searchModel == vehicle.model)
+                  searchResults += vehicleHTML;
+          }
+
+          document.getElementById("searchResults").innerHTML = searchResults;
+      }
+
+      function convertToDict(vehicle) {
+          let res = {};
+          res.section = vehicle.getElementsByTagName("Section")[0].textContent;
+          res.brand = vehicle.getElementsByTagName("Brand")[0].textContent;
+          res.model = vehicle.getElementsByTagName("Model")[0].textContent;
+          res.version = vehicle.getElementsByTagName("Version")[0].textContent;
+          res.photos = [];
+          let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
+          for (let idx = 0; idx < photosList.length; idx++)
+              res.photos.push(photosList[idx].textContent);
+          return res;
+      }
+
+      function searchResultToHTML(vehicle) {
+          return "<article class=\"card clearfix\">\n" +
+              "        <div class=\"card__img\">\n" +
+              "        <img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\">\n" +
+              "        </div>\n" +
+              "        <div class=\"card__inner\">\n" +
+              "        <h2 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h2>\n" +
+              "    <div class=\"decor-1\"></div>\n" +
+              "        <div class=\"card__description\">\n" +
+              "        <p>In a pickup market gone fancy, the Silverado sticks to its basic-truck recipe. The steering is accurate and the Silverado ...</p>\n" +
+              "    </div>\n" +
+              "    <ul class=\"card__list list-unstyled\">\n" +
+              "        <li class=\"card-list__row\">\n" +
+              "        <span class=\"card-list__title\">Body Style:</span>\n" +
+              "    <span class=\"card-list__info\">Sedan</span>\n" +
+              "        </li>\n" +
+              "        <li class=\"card-list__row\">\n" +
+              "        <span class=\"card-list__title\">Engine:</span>\n" +
+              "    <span class=\"card-list__info\">DOHC 24-valve V-6</span>\n" +
+              "    </li>\n" +
+              "    <li class=\"card-list__row\">\n" +
+              "        <span class=\"card-list__title\">Mileage:</span>\n" +
+              "    <span class=\"card-list__info\">35,000 KM</span>\n" +
+              "    </li>\n" +
+              "    <li class=\"card-list__row\">\n" +
+              "        <span class=\"card-list__title\">Color:</span>\n" +
+              "    <span class=\"card-list__info\">White</span>\n" +
+              "        </li>\n" +
+              "        <li class=\"card-list__row\">\n" +
+              "        <span class=\"card-list__title\">Transmission:</span>\n" +
+              "    <span class=\"card-list__info\">6-Speed Auto</span>\n" +
+              "    </li>\n" +
+              "    <li class=\"card-list__row\">\n" +
+              "        <span class=\"card-list__title\">Specs</span>\n" +
+              "        <span class=\"card-list__info\">2-Passenger, 2-Door</span>\n" +
+              "    </li>\n" +
+              "    </ul>\n" +
+              "    <div class=\"card__price\">PRICE:<span class=\"card__price-number\">$33,905</span></div>\n" +
+              "    </div>\n" +
+              "    </article>"
+      }
+
+      function searchVehicle() {
+          let brand = document.getElementById("brandSel").value;
+          let model = document.getElementById("modelSel").value;
+
+          if (brand != -1)
+              document.location.href = "./search.html" +
+                  (brand != -1 ? "?brand=" + brand : "") +
+                  (model != -1 ? "&model=" + model : "");
+          else
+              alert("Selecione uma Marca para pesquisar");
+      }
+
+      function saveBrandsAndModels(map) {
+          for (let [brand, models] of map.entries()) {
+              map.set(brand, JSON.stringify([...models.entries()]));
+          }
+          map = JSON.stringify([...map.entries()]);
+          localStorage.setItem("brandsAndModels", map);
+      }
+
+      function getBrandsAndModels() {
+          let savedMap = JSON.parse(localStorage.getItem("brandsAndModels"));
+          let map = new Map();
+          savedMap.map(brandModel => {
+              map.set(brandModel[0], new Map(JSON.parse(brandModel[1])))
+          });
+          return map;
+      }
+
+      function saveXML(data) {
+          localStorage.setItem("xml", data);
+      }
+
+      function getXML() {
+          return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
+      }
+  </script>
 
 <div id="includedContent" class="main-header"></div>
 
@@ -362,342 +551,10 @@
             <div class="col-12 col-lg-6 pb-3">
                 <h3>Resultados de Pesquisa</h3>
             </div>
-            
-            
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    let searchBrand, searchModel;
-    let searchResults = [];
-    function fillFilter(){
-        let map = getBrandsAndModels();
-        let keys = [...map.keys()];
-        keys.sort();
-        let brandSelector = document.getElementById("brandSel");
-        let allOption = document.createElement("option");
-        allOption.textContent = "Selecionar Marca";
-        if (searchBrand == -1)
-            allOption.setAttribute("selected", "selected");
-        allOption.setAttribute("disabled", "disabled");
-        allOption.setAttribute("value", "-1");
-        brandSelector.appendChild(allOption);
-        for (let i =0; i< keys.length;i++) {
-            let brand = keys[i];
-            let option = document.createElement("option");
-            option.textContent = brand;
-            if (searchBrand == brand)
-                option.setAttribute("selected", "selected");
-            brandSelector.appendChild(option);
-            let modelsMap = map.get(keys[i]);
-        }
-
-        if (searchModel != -1)
-            changeModels();
-    }
-    
-    function changeModels() {
-        let map = getBrandsAndModels();
-        console.log(map);
-        let brand = document.getElementById("brandSel").value;
-        let modelsSelector = document.getElementById("modelSel");
-        modelsSelector.innerHTML = "";
-        console.log("Option selected: " + brand);
-        let models = map.get(brand);
-        let keys = [...models.keys()];
-        keys.sort();
-        console.log(keys);
-        let modelSelector = document.getElementById("modelSel");
-        let allOption = document.createElement("option");
-        allOption.textContent = "Todos";
-        if (searchModel == "Todos")
-            allOption.setAttribute("selected", "selected");
-        modelSelector.appendChild(allOption);
-        for (let i =0; i< keys.length;i++) {
-            let model = keys[i];
-            let option = document.createElement("option");
-            option.textContent = model + " (" + models.get(model) + ")";
-            if (searchModel == model + " (" + models.get(model) + ")")
-                option.setAttribute("selected", "selected");
-            modelSelector.appendChild(option);
-            let modelsMap = map.get(keys[i]);
-        }
-        
-    }
-
-    document.addEventListener('DOMContentLoaded', ()=>{
-        let searchParams = new URL(document.location).searchParams;
-        searchBrand = searchParams.get("brand");
-        if (searchBrand == null)
-            searchBrand = -1;
-        searchModel = searchParams.get("model");
-        if (searchModel == null)
-            searchModel = -1;
-        fillFilter();
-        if (searchBrand != -1)
-            getSearchResults();
-    });
-
-    function getSearchResults() {
-
-    }
-
-    function searchVehicle() {
-        let brand = document.getElementById("brandSel").value;
-        let model = document.getElementById("modelSel").value;
-
-        if (brand != -1)
-            document.location.href = "./search.html" +
-                (brand != -1 ? "?brand=" + brand : "") +
-                (model != -1 ? "&model=" + model : "");
-        else
-            alert("Selecione uma Marca para pesquisar");
-    }
-
-    function saveBrandsAndModels(map) {
-        for (let [brand, models] of map.entries()) {
-            map.set(brand, JSON.stringify([...models.entries()]));
-        }
-        map = JSON.stringify([...map.entries()]);
-        localStorage.setItem("brandsAndModels", map);
-    }
-
-    function getBrandsAndModels() {
-        let savedMap = JSON.parse(localStorage.getItem("brandsAndModels"));
-        let map = new Map();
-        savedMap.map(brandModel => {
-            map.set(brandModel[0], new Map(JSON.parse(brandModel[1])))
-        });
-        return map;
-    }
-
-    function saveXML(xml) {
-        localStorage.setItem("xml", xml);
-    }
-
-    function getXML() {
-        return localStorage.getItem("xml");
-    }
-</script>
-
-
-
-        </div>
-
-<script>
-
-    for (let car in searchResults) {
-        document.write("<article class=\"card clearfix\">\n" +
-            "        <div class=\"card__img\">\n" +
-            "        <img class=\"img-responsive\" src=\"assets/media/cards/1.jpg\" alt=\"foto\" width=\"235\" height=\"196\">\n" +
-            "        </div>\n" +
-            "        <div class=\"card__inner\">\n" +
-            "        <h2 class=\"card__title ui-title-inner\">" + car.brand + " " + car.model + " " + car.version + "</h2>\n" +
-            "    <div class=\"decor-1\"></div>\n" +
-            "        <div class=\"card__description\">\n" +
-            "        <p>In a pickup market gone fancy, the Silverado sticks to its basic-truck recipe. The steering is accurate and the Silverado ...</p>\n" +
-            "    </div>\n" +
-            "    <ul class=\"card__list list-unstyled\">\n" +
-            "        <li class=\"card-list__row\">\n" +
-            "        <span class=\"card-list__title\">Body Style:</span>\n" +
-            "    <span class=\"card-list__info\">Sedan</span>\n" +
-            "        </li>\n" +
-            "        <li class=\"card-list__row\">\n" +
-            "        <span class=\"card-list__title\">Engine:</span>\n" +
-            "    <span class=\"card-list__info\">DOHC 24-valve V-6</span>\n" +
-            "    </li>\n" +
-            "    <li class=\"card-list__row\">\n" +
-            "        <span class=\"card-list__title\">Mileage:</span>\n" +
-            "    <span class=\"card-list__info\">35,000 KM</span>\n" +
-            "    </li>\n" +
-            "    <li class=\"card-list__row\">\n" +
-            "        <span class=\"card-list__title\">Color:</span>\n" +
-            "    <span class=\"card-list__info\">White</span>\n" +
-            "        </li>\n" +
-            "        <li class=\"card-list__row\">\n" +
-            "        <span class=\"card-list__title\">Transmission:</span>\n" +
-            "    <span class=\"card-list__info\">6-Speed Auto</span>\n" +
-            "    </li>\n" +
-            "    <li class=\"card-list__row\">\n" +
-            "        <span class=\"card-list__title\">Specs</span>\n" +
-            "        <span class=\"card-list__info\">2-Passenger, 2-Door</span>\n" +
-            "    </li>\n" +
-            "    </ul>\n" +
-            "    <div class=\"card__price\">PRICE:<span class=\"card__price-number\">$33,905</span></div>\n" +
-            "    </div>\n" +
-            "    </article>");
-    }
-
-</script>
-            
-            
-        </div>
-    
-</section>
-
-<!-- End Car Deals-->
-
-<!-- Car Featured-->
-<!--
-
--->
-<!-- End Car Featured-->
-
-<!-- Brand-->
-<section>
-    <div class="container">
-        <div class="row d-flex justify-content-center text-center">
-            <div class="col-12 col-lg-6 pb-3">
-                <h3>Principais Marcas</h3>
-            </div>
-        </div>
-        <div id="owl-client" class="owl-carousel owl-theme">
-            <div class="item">
-                <div class="row">
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/bmw.png" alt="BMW" title="BMW" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/audi.png" alt="Audi" title="Audi" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/mercedes.png" alt="Mercedes" title="Mercedes" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/VW.png" alt="Volkswagen" title="Volkswagen" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/peugeot.png" alt="Peugeot" title="Peugeot" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/seat.png" alt="Seat" title="Seat" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/opel.png" alt="Opel" title="Opel" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/renault.png" alt="Renault" title="Renault" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/citroen.png" alt="Citroen" title="Citroen" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/ford.png" alt="Ford" title="Ford" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/mini.png" alt="Mini" title="Mini" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2">
-                        <a href="#">
-                            <div class="card c-brd-light rounded-0 text-center">
-                                <div class="card-body py-0">
-                                    <img src="dist/images/brands/fiat.png" alt="Fiat" title="Fiat" class="img-fluid" />
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div id="searchResults"></div>
+       </div>
     </div>
 </section>
-<!-- End Brand-->
-
-<!-- Comparison-->
-<!-- End Comparison-->
-
-<!-- Footer Top -->
-<section class="footer ">
-    <div class="container">
-        <div class="row d-flex justify-content-center text-center">
-            <div class="col-12 col-lg-6 pb-3">
-                <h3>Contactos</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-9">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3116.0343723848755!2d-9.168496684244191!3d38.648089979609836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd19356ac79754bf%3A0xb0f3e8861a5f95f1!2sSamucar!5e0!3m2!1spt-PT!2spt!4v1574689975415!5m2!1spt-PT!2spt" style="border:0;" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-
-            </div>
-            <div class="col-3">
-                <h6 class="text-white"></h6>
-                <p>Samucar.pt</p>
-                <ul class="list-unstyled footer-address mb-0">
-                    <li><a href="#"><i class="fa fa-map-marker pr-2"></i> Estrada da ALgazarra nº1D, 2810-014 Almada</a></li>
-                    <li><a href="tel:+1 212-725-5400"><i class="fa fa-phone pr-2"></i> 212345678</a></li>
-                    <li><a href="mailto:"><i class="fa fa-envelope pr-2"></i> auto.boost.samucar@gmail.com</a></li>
-                    <li><a href="#"><i class="fa fa-fax pr-2"></i> Terms & Conditions</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Footer Top-->
 
 <!-- Footer Bottom -->
 <section class="footer-bottom c-bg-dark py-3">
