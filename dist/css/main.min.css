@@ -1012,6 +1012,11 @@ header .nav-item .nav-link {
   border-color: #dadada;
   color: #757575; }
 
+.img-logo {
+    width: 30% !important;
+    height: 30% !important;
+}
+
 /*============================= Login / Register ===================== */
 /*============================= Login / Register ===================== */
 #lean_overlay {
