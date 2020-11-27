@@ -126,7 +126,10 @@
                                                             font-weight: bold;
                                                         }
                                                     </style>
-                                                    <a href="#" class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold">Procurar</a>
+                                                    <a href="javascript:;"
+                                                       class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold"
+                                                       onclick="search()"
+                                                    >Procurar</a>
                                                 </form>
                                             </div>
                                             <div class="tab-pane fade" id="id2" role="tabpanel" aria-expanded="false">
@@ -462,12 +465,13 @@
             }
         }
         */
-        
-        localStorage.setItem("brandsAndModels", map);
+
+        saveBrandsAndModels(map);
     }
     
     function changeModels() {
-        let map = localStorage.getItem("brandsAndModels");
+        let map = getBrandsAndModels();
+        console.log(map);
         let brand = document.getElementById("brandSel").value;
         let modelsSelector = document.getElementById("modelSel");
         modelsSelector.innerHTML = "";
@@ -502,7 +506,31 @@
             printCars(vehicles);
             fillFilter(vehicles);
         })
-    });   
+    });
+
+    function saveBrandsAndModels(map) {
+        for (let [brand, models] of map.entries()) {
+            map.set(brand, JSON.stringify([...models.entries()]));
+        }
+        map = JSON.stringify([...map.entries()]);
+        localStorage.setItem("brandsAndModels", map);
+    }
+
+    function getBrandsAndModels() {
+        let savedMap = JSON.parse(localStorage.getItem("brandsAndModels"));
+        let map = new Map();
+        savedMap.map(brandModel => {
+            map.set(brandModel[0], new Map(JSON.parse(brandModel[1])))
+        });
+        return map;
+    }
+
+    function search() {
+        let brand = document.getElementById("brandSel").value;
+        let model = document.getElementById("modelSel").value;
+
+        alert(brand + " ; " + model);
+    }
 </script>
 
 
