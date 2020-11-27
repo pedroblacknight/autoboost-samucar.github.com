@@ -22,10 +22,10 @@ ERROS:
 - no menu superior de navegação, o quadrado a volta de onde estamos deve ter cor diferente
 - colocar icon de lupa na pesquisa
 - mudar azul dos botões e rever o tamanho
-- arredondar caixas de texto dos filtros
+- DONE - arredondar caixas de texto dos filtros
 - acrescentar slider preço
-- em vez de "-", aparecer "Todos os modelos"
-- escolher entre preço fixo / negociável
+- DONE - em vez de "-", aparecer "Todos os modelos"
+- DONE - escolher entre preço fixo / negociável
 - "ver tudo" :vale a pena? se sim, usar a mesma página e descer para mostrar os carros todos em quadrados
     
     

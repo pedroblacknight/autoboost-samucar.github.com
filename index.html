@@ -65,18 +65,18 @@
                                             <div class="tab-pane fade active show" id="id1" role="tabpanel" aria-expanded="true">
                                                 <form>
                                                     <div class="form-group">
-                                                        <input class="form-control ml-sm-0 rounded-0" type="search" placeholder="Pesquisar">
+                                                        <input class="form-control ml-sm-0 rounded-1" type="search" placeholder="Pesquisar">
                                                             <div class="search position-absolute">
                                                                 <a href="#"></a>
                                                             </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1" id="brandSel" onchange="changeModels()">
+                                                        <select class="form-control ml-sm-0 rounded-1" id="brandSel" style="border-radius: .25rem;" onchange="changeModels()">
 
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1" id = "modelSel">
+                                                        <select class="form-control ml-sm-0 rounded-1" id = "modelSel" style= "border-radius: .25rem;">
                                                             <option disabled selected value="-1">Selecionar Modelo</option>
                                                         
                                                         </select>
@@ -381,7 +381,39 @@
             
             brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
             model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
-            version = vehicle.getElementsByTagName('Version')[0].firstChild.nodeValue;
+            version = vehicle.getElementsByTagName('Version')[0].textContent;
+            price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
+            km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
+            fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
+            cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
+            img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
+            
+            
+            
+            carID.innerHTML=brand +" "+ model + " " + version;
+            priceID.innerHTML=price;
+            kmID.innerHTML=km;
+            fuelID.innerHTML=fuel;
+            HPIP.innerHTML=cv;
+            imgID.src=img;
+            
+        }
+        
+        for (let i = 4; i<8; i++) {
+            
+            let carID = document.getElementById("car"+i);
+            let priceID = document.getElementById("price"+i);
+            let kmID = document.getElementById("km"+i);
+            let fuelID = document.getElementById("fuel"+i);
+            let HPIP = document.getElementById("hp"+i);
+            let imgID = document.getElementById("imgsrc"+i);
+            
+            let j = Math.floor(Math.random()*(vList.length-5)+4);
+            let vehicle = vList[j];
+            
+            brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
+            model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
+            version = vehicle.getElementsByTagName('Version')[0].textContent;
             price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
             km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
             fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
@@ -482,7 +514,7 @@
         console.log(keys);
         let modelSelector = document.getElementById("modelSel");
         let allOption = document.createElement("option");
-        allOption.textContent = "Todos";
+        allOption.textContent = "Ver Todos";
         allOption.setAttribute("selected", "selected");
         modelSelector.appendChild(allOption);
         for (let i =0; i< keys.length;i++) {
@@ -548,15 +580,13 @@
 
 
         </div>
-        
-           
-                <div class="slider multiple-items   ">
+                <div class="slider multiple-items">
                     <div>
                         <a href="#"><img id = "imgsrc0" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 class="mb-2"><a href="listing-details.html" id = "car0"></a></h6>
-                                <small><h6 class="c-primary d-inline-block mb-0" id = "price0"></h6> Preço fixo</small>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price0"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
                                 <li class="list-inline-item mr-3"><a class="c-light" id = "km0"></a></li>
@@ -570,7 +600,7 @@
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 class="mb-2"><a href="listing-details.html" id = "car1"></a></h6>
-                                <small><h6 class="c-primary d-inline-block mb-0" id = "price1"></h6> Preço fixo</small>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price1"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
                                 <li class="list-inline-item mr-3"><a class="c-light" id = "km1"></a></li>
@@ -583,8 +613,8 @@
                         <a href="#"><img id = "imgsrc2" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car2"></a></h6>
-                                <small><h6 class="c-primary d-inline-block mb-0" id = "price2"></h6> Preço fixo</small>
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car2" ></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price2"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
                                 <li class="list-inline-item mr-3"><a class="c-light" id = "km2"></a></li>
@@ -593,12 +623,13 @@
                             </ul>
                         </div>
                     </div>
+                    
                      <div>
                         <a href="#"><img id = "imgsrc3" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 class="mb-2"><a href="listing-details.html" id = "car3"></a></h6>
-                                <small><h6 class="c-primary d-inline-block mb-0" id = "price3"></h6> Preço fixo</small>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price3"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
                                 <li class="list-inline-item mr-3"><a class="c-light" id = "km3"></a></li>
@@ -607,14 +638,84 @@
                             </ul>
                         </div>
                     </div>
+                             
+                </div>
+        
+        
+            <div class="row d-flex justify-content-center text-center" style="margin-top: 35px">
+            <div class="col-12 col-lg-6 pb-3">
+                <h3>Os mais procurados</h3>
+            </div>
+                </div>
+         
+        
+                <div class="slider multiple-items">
+                    <div>
+                        <a href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" /></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car4"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price4"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "km4"></a></li>
+                                <li class="list-inline-item"><a class="c-light" id = "fuel4"></a></li>
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp4"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top" id=""/></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car5"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price5"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "km5"></a></li>
+                                <li class="list-inline-item"><a class="c-light" id = "fuel5"></a></li>
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp5"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div>
+                        <a href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" /></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car6"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price6"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "km6"></a></li>
+                                <li class="list-inline-item"><a class="c-light" id = "fuel6"></a></li>
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp6"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div>
+                        <a href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" /></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car7"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price7"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "km7"></a></li>
+                                <li class="list-inline-item"><a class="c-light" id = "fuel7"></a></li>
+                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp7"></a></li>
+                            </ul>
+                        </div>
+                    </div>
                     
                 </div>
             
             
         </div>
+    <!--
     <div class="container">
         <a href="#" class="btn btn-primary text-uppercase font-weight-bold" style = "margin: auto; margin-top:  20px; display: flex; display: grid; width: 30%">Ver tudo</a>
     </div>    
+    -->
     
 </section>
 
@@ -628,7 +729,7 @@
 
 <!-- Brand-->
 <section>
-    <div class="container">
+    <div class="container" style = "">
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 col-lg-6 pb-3">
                 <h3>Principais Marcas</h3>
@@ -639,7 +740,7 @@
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=BMW">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/bmw.png" alt="BMW" title="BMW" class="img-fluid" />
                                 </div>
@@ -648,7 +749,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
                         <a href="./search.html?brand=Audi">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/audi.png" alt="Audi" title="Audi" class="img-fluid" />
                                 </div>
@@ -657,7 +758,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Mercedes">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/mercedes.png" alt="Mercedes" title="Mercedes" class="img-fluid" />
                                 </div>
@@ -666,7 +767,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Volkswagen">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/VW.png" alt="Volkswagen" title="Volkswagen" class="img-fluid" />
                                 </div>
@@ -675,7 +776,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Peugeot">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/peugeot.png" alt="Peugeot" title="Peugeot" class="img-fluid" />
                                 </div>
@@ -684,7 +785,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
                         <a href="./search.html?brand=Seat">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/seat.png" alt="Seat" title="Seat" class="img-fluid" />
                                 </div>
@@ -693,7 +794,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Opel">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/opel.png" alt="Opel" title="Opel" class="img-fluid" />
                                 </div>
@@ -702,7 +803,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
                         <a href="./search.html?brand=Renault">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/renault.png" alt="Renault" title="Renault" class="img-fluid" />
                                 </div>
@@ -711,7 +812,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
                         <a href="./search.html?brand=Citroen">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/citroen.png" alt="Citroen" title="Citroen" class="img-fluid" />
                                 </div>
@@ -720,7 +821,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
                         <a href="./search.html?brand=Ford">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/ford.png" alt="Ford" title="Ford" class="img-fluid" />
                                 </div>
@@ -729,7 +830,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Mini">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/mini.png" alt="Mini" title="Mini" class="img-fluid" />
                                 </div>
@@ -738,7 +839,7 @@
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2">
                         <a href="./search.html?brand=Fiat">
-                            <div class="card c-brd-light rounded-0 text-center">
+                            <div class="card c-brd-light rounded-1 text-center">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/fiat.png" alt="Fiat" title="Fiat" class="img-fluid" />
                                 </div>
@@ -772,9 +873,9 @@
                 <h6 class="text-white"></h6>
                 <p>Samucar.pt</p>
                 <ul class="list-unstyled footer-address mb-0">
-                    <li><a href="#"><i class="fa fa-map-marker pr-2"></i> Estrada da ALgazarra nº1D, 2810-014 Almada</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker pr-2"></i> Estrada da Algazarra nº1D, 2810-014 Almada</a></li>
                     <li><a href="tel:+1 212-725-5400"><i class="fa fa-phone pr-2"></i> 212345678</a></li>
-                    <li><a href="mailto:"><i class="fa fa-envelope pr-2"></i> auto.boost.samucar@gmail.com</a></li>
+                    <li><a href="mailto:"><i class="fa fa-envelope pr-2"></i> automoveisamucar@gmail.com</a></li>
                     <li><a href="#"><i class="fa fa-fax pr-2"></i> Terms & Conditions</a></li>
                 </ul>
             </div>
