@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-  <script> 
-        $(function(){
-          $("#includedContent").load("menu.html"); 
-        });   
-  </script> 
+  <script>
+      $(function(){
+          $("#includedContent").load("https://samucar.pt/menu.html");
+      });
+  </script>
 
 <div id="includedContent" class="main-header"></div>
 
@@ -34,7 +34,7 @@
         <div class="item">
             <div class="background-image-maker gradient gradient-lr"></div>
             <div class="holder-image">
-                <img src="/Samucar_M3.jpg" alt="" class="img-fluid d-none" />
+                <img src="./Samucar_M3.jpg" alt="" class="img-fluid d-none" />
             </div>
         </div>
         <div class="item">
@@ -72,8 +72,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <select class="form-control ml-sm-0 rounded-1" id="brandSel" onchange="changeModels()">
-                                                            <option disabled selected>Selecionar Marca</option>
-                                                            
+
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
@@ -366,7 +365,6 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript">
-  var map;  
     function printCars(vList){
         var brand, model, price, km, fuel, cv, img, version;
         for (let i = 0; i<4; i++) {
@@ -401,7 +399,7 @@
     }
     
     function fillFilter(vehicles){
-        map = new Map();
+        let map = new Map();
         for(let i=0;i<vehicles.length;i++) {
             let vehicle = vehicles[i];
             let brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
@@ -429,6 +427,11 @@
         let keys = [...map.keys()];
         keys.sort();
         let brandSelector = document.getElementById("brandSel");
+        let allOption = document.createElement("option");
+        allOption.textContent = "Selecionar Marca";
+        allOption.setAttribute("selected", "selected");
+        allOption.setAttribute("disabled", "disabled");
+        brandSelector.appendChild(allOption);
         for (let i =0; i< keys.length;i++) {
             let brand = keys[i];
             let option = document.createElement("option");
@@ -460,10 +463,11 @@
         }
         */
         
-        
+        localStorage.setItem("brandsAndModels", map);
     }
     
     function changeModels() {
+        let map = localStorage.getItem("brandsAndModels");
         let brand = document.getElementById("brandSel").value;
         let modelsSelector = document.getElementById("modelSel");
         modelsSelector.innerHTML = "";
@@ -473,9 +477,10 @@
         keys.sort();
         console.log(keys);
         let modelSelector = document.getElementById("modelSel");
-        let defaultVal = document.createElement("option");
-        defaultVal.textContent=(" - ");
-        modelSelector.appendChild(defaultVal);
+        let allOption = document.createElement("option");
+        allOption.textContent = "Todos";
+        allOption.setAttribute("selected", "selected");
+        modelSelector.appendChild(allOption);
         for (let i =0; i< keys.length;i++) {
             let model = keys[i];
             let option = document.createElement("option");
