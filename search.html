@@ -121,6 +121,7 @@
           }
 
           document.getElementById("searchResults").innerHTML = searchResults;
+          document.getElementById("results").scrollIntoView();
       }
 
       function convertToDict(vehicle) {
@@ -546,7 +547,7 @@
 <!-- End Slider-->
 
 <!-- Car Deals-->
-<section>
+<section id="results">
     <div class="container">
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 col-lg-6 pb-3">

@@ -24,6 +24,7 @@
 
 * {
   --main-color: #3491ce;
+  scroll-behavior: smooth;
 }
 
 body {
