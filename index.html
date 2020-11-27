@@ -505,7 +505,7 @@
             let vehicles = xml.getElementsByTagName('Vehicle');
             printCars(vehicles);
             fillFilter(vehicles);
-            saveXML(xml);
+            saveXML(data);
         })
     });
 
@@ -538,12 +538,12 @@
         return map;
     }
 
-    function saveXML(xml) {
-        localStorage.setItem("xml", xml);
+    function saveXML(data) {
+        localStorage.setItem("xml", data);
     }
 
     function getXML() {
-        return localStorage.getItem("xml");
+        return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
     }
 </script>
 
