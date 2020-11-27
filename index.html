@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
   <script>
@@ -98,6 +99,129 @@
                                                         </div>
                                                     </div>-->
                                                     <!--                                                            </div>-->
+                                                    
+                                                    <div class="rangeslider">
+                                                    <input class="min" name="range_1" type="range" min="1" max="100" value="10" />
+                                                    <input class="max" name="range_1" type="range" min="1" max="100" value="90" />
+                                                    <span class="range_min light left">10.000 €</span>
+                                                    <span class="range_max light right">90.000 €</span>
+                                                    </div>
+                                                    <style>
+                                                        body{
+font-family: sans-serif;
+font-size:14px;
+}
+input[type='range'] {
+  width: 210px;
+  height: 30px;
+  overflow: hidden;
+  cursor: pointer;
+    outline: none;
+}
+input[type='range'],
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+    background: none;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  width: 200px;
+  height: 1px;
+  background: #003D7C;
+}
+
+input[type='range']:nth-child(2)::-webkit-slider-runnable-track{
+  background: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  margin-top: -7px;
+  background: #fff;
+  border: 1px solid #003D7C;
+  border-radius: 25px;
+  z-index: 1;
+}
+
+
+input[type='range']:nth-child(1)::-webkit-slider-thumb{
+  z-index: 2;
+}
+
+.rangeslider{
+    position: ;
+    height: 60px;
+    width: 80%;
+    display: inline-block;
+    margin-top: -5px;
+    margin-left: 10px;
+}
+.rangeslider input{
+    position: absolute;
+}
+.rangeslider{
+    position: absolute;
+}
+
+.rangeslider span{
+    position: absolute;
+    margin-top: 30px;
+    left: 0;
+}
+
+.rangeslider .right{
+   position: relative;
+   float: right;
+   margin-right: -5px;
+}
+                                                    </style>
+                                                    <script>
+                                                    
+                                                     (function() {
+
+        function addSeparator(nStr) {
+            nStr += '';
+            var x = nStr.split('.');
+            var x1 = x[0];
+            var x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
+            }
+            return x1 + x2;
+        }
+
+        function rangeInputChangeEventHandler(e){
+            var rangeGroup = $(this).attr('name'),
+                minBtn = $(this).parent().children('.min'),
+                maxBtn = $(this).parent().children('.max'),
+                range_min = $(this).parent().children('.range_min'),
+                range_max = $(this).parent().children('.range_max'),
+                minVal = parseInt($(minBtn).val()),
+                maxVal = parseInt($(maxBtn).val()),
+                origin = $(this).context.className;
+
+            if(origin === 'min' && minVal > maxVal-5){
+                $(minBtn).val(maxVal-5);
+            }
+            var minVal = parseInt($(minBtn).val());
+            $(range_min).html(addSeparator(minVal*1000) + ' €');
+
+
+            if(origin === 'max' && maxVal-5 < minVal){
+                $(maxBtn).val(5+ minVal);
+            }
+            var maxVal = parseInt($(maxBtn).val());
+            $(range_max).html(addSeparator(maxVal*1000) + ' €');
+        }
+
+     $('input[type="range"]').on( 'input', rangeInputChangeEventHandler);
+})();
+                                                    </script>
+                                                    
+<!--
                                                     <script>
                                                         $( function() {
                                                             $( "#slider-range" ).slider({
@@ -113,6 +237,7 @@
                                                                 " - $" + $( "#slider-range" ).slider( "values", 1 ) );
                                                         } );
                                                     </script>
+-->
                                                     <style>
                                                         input[type="range"] {
                                                             width: 100%;
@@ -127,52 +252,20 @@
                                                         }
                                                     </style>
                                                     <a href="javascript:;"
-                                                       class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold"
-                                                       onclick="searchVehicle()"
+                                                       class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold" style="margin-top: 70px"
+                                                       onclick="searchVehicle()" 
                                                     >Procurar</a>
                                             </div>
                                             <div class="tab-pane fade" id="id2" role="tabpanel" aria-expanded="false">
                                                 <form>
                                                     <div class="form-group">
                                                         <select class="form-control rounded">
-                                                            <option>--- Select Model ---</option>
-                                                            <option value="Ford Mustang">Mustang </option>
-                                                            <option value="Volvo XC90 Inscription">Volvo XC90 Inscription</option>
-                                                            <option value="BMW X6 M">BMW X6 M</option>
-                                                            <option value="Aston Martin DB5">Aston Martin DB5</option>
-                                                            <option value="Chevrolet Camaro">Chevrolet Camaro</option>
-                                                            <option value="Honda City i VTEC SV">Honda City i VTEC SV</option>
-                                                            <option value="Volkswagen Jetta">Volkswagen Jetta</option>
-                                                            <option value="Tata Aria Pure 4x2">Tata Aria Pure 4x2</option>.
-                                                            <option value="Skoda Octavia Ambition 1.4 TSI MT">Skoda Octavia Ambition 1.4 TSI MT</option>
-                                                            <option value="Audi A4 35 TDI Premium">Audi A4 35 TDI Premium</option>
-                                                            <option value="Renault Fluence E4 D">Renault Fluence E4 D</option>
-                                                            <option value="Nissan Micra AT">Nissan Micra AT</option>
-                                                            <option value="Mahindra Scorpio S10 AT 2WD">Mahindra Scorpio S10 AT 2WD</option>
-                                                            <option value="Toyota Etios G">Toyota Etios G</option>
-                                                            <option value="Maruti Swift ZXI">Maruti Swift ZXI</option>
-                                                            <option value="Hyundai I20">Hyundai I20</option>
+                                                            
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <select class="form-control rounded">
-                                                            <option value="">--- Select Brand ---</option>
-                                                            <option value="Ford">Ford </option>
-                                                            <option value="Volvo">Volvo</option>
-                                                            <option value="BMW">BMW</option>
-                                                            <option value="Aston">Aston</option>
-                                                            <option value="Chevrolet">Chevrolet</option>
-                                                            <option value="Honda">Honda City i VTEC SV</option>
-                                                            <option value="Volkswagen">Volkswagen</option>
-                                                            <option value="Tata">Tata</option>.
-                                                            <option value="Skoda">Skoda</option>
-                                                            <option value="Audi">Audi</option>
-                                                            <option value="Ranault">Ranault</option>
-                                                            <option value="Nissan">Nissan</option>
-                                                            <option value="Mahindra">Mahindra</option>
-                                                            <option value="Toyota">Toyota</option>
-                                                            <option value="Maruti">Maruti</option>
-                                                            <option value="Hyundai">Hyundai</option>
+                                                            
                                                         </select>
                                                     </div>
                                                     <a href="#" class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold">Find Car</a>
