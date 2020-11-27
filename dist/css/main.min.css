@@ -499,12 +499,15 @@ background-color: #fff
 .nav-tabs .nav-link {
   border-color: #dadada;
   padding: 6px 25px;
-  position: relative;}
-  .nav-tabs .nav-link:hover {
-    color: #757575; }
+  position: relative;
+}
 
 header .nav-item .nav-link {
     font-weight: bold;
+}
+
+header .nav-item:hover{
+    background-color: #404040;
 }
 
 .nav-tabs .nav-link.active {
