@@ -441,6 +441,18 @@
 
     }
 
+    function searchVehicle() {
+        let brand = document.getElementById("brandSel").value;
+        let model = document.getElementById("modelSel").value;
+
+        if (brand != -1)
+            document.location.href = "./search.html" +
+                (brand != -1 ? "?brand=" + brand : "") +
+                (model != -1 ? "&model=" + model : "");
+        else
+            alert("Selecione uma Marca para pesquisar");
+    }
+
     function saveBrandsAndModels(map) {
         for (let [brand, models] of map.entries()) {
             map.set(brand, JSON.stringify([...models.entries()]));
