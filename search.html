@@ -67,7 +67,7 @@
           let modelSelector = document.getElementById("modelSel");
           let allOption = document.createElement("option");
           allOption.textContent = "Ver Todos";
-          if (searchModel == "Todos")
+          if (searchModel == "Ver Todos")
               allOption.setAttribute("selected", "selected");
           modelSelector.appendChild(allOption);
           for (let i =0; i< keys.length;i++) {
@@ -96,7 +96,7 @@
                   searchModel = searchParams.get("model");
                   if (searchModel == null)
                       searchModel = -1;
-                  else
+                  else if (searchModel != "Ver Todos")
                       searchModel = searchModel.substring(0, searchModel.indexOf(" ("));
                   fillFilter();
                   saveXML(data);
@@ -111,6 +111,7 @@
           for (let idx = 0; idx < vehicles.length; idx++) {
               let vehicle = convertToDict(vehicles[idx]);
               let vehicleHTML = searchResultToHTML(vehicle);
+              console.log(searchModel)
               if (searchBrand == -1)
                   searchResults += vehicleHTML;
               else if (searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos"))
