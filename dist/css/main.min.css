@@ -24,6 +24,7 @@
 
 * {
   --main-color: #3491ce;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -499,12 +500,15 @@ background-color: #fff
 .nav-tabs .nav-link {
   border-color: #dadada;
   padding: 6px 25px;
-  position: relative;}
-  .nav-tabs .nav-link:hover {
-    color: #757575; }
+  position: relative;
+}
 
 header .nav-item .nav-link {
     font-weight: bold;
+}
+
+header .nav-item:hover{
+    background-color: #404040;
 }
 
 .nav-tabs .nav-link.active {
@@ -1011,6 +1015,11 @@ header .nav-item .nav-link {
 .pagination .page-item .page-link {
   border-color: #dadada;
   color: #757575; }
+
+.img-logo {
+    width: 30% !important;
+    height: 30% !important;
+}
 
 /*============================= Login / Register ===================== */
 /*============================= Login / Register ===================== */
