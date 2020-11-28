@@ -510,6 +510,9 @@ header .nav-item .nav-link {
 header .nav-item:hover{
     background-color: #404040;
 }
+header .nav-item{
+    transition: background-color 0.3s;
+}
 
 .nav-tabs .nav-link.active {
   border-color: #ee5624;
