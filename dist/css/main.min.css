@@ -219,6 +219,14 @@ blockquote {
   font-size: 0.875rem;
   margin-bottom: -2px;
 }
+input.form-control{
+    margin-top: 15px;
+}
+hr.hr-filter{
+    background: #B0B0B0 !important;
+    height: 0.5px;
+    border-radius: 10px;
+}
   .form-control:focus {
     box-shadow: none;
     border-color: #dadada; }
