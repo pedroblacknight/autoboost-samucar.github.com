@@ -46,7 +46,7 @@
             });
             function printCars(vList){
                 
-                var brand, model, price, km, fuel, cv, img, version;
+                var brand, model, price, km, fuel, cv, img, version, transmission, cc;
                 for (let i = 0; i<100; i++) {
                         if(i<4){
                             infoMore(i);
@@ -57,12 +57,14 @@
                         brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
                         model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
                         year = vehicle.getElementsByTagName('Year')[0].firstChild.nodeValue;
-                       version = vehicle.getElementsByTagName('Version')[0].textContent;
+                        version = vehicle.getElementsByTagName('Version')[0].textContent;
                         priceAmount = vehicle.getElementsByTagName('Price')[0].textContent;
                         price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt');
                         km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
                         fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
                         cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
+                        transmission = vehicle.getElementsByTagName('Transmission')[0].firstChild.nodeValue;
+                        cc = vehicle.getElementsByTagName('CC')[0].firstChild.nodeValue + " cc";
                         img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
                         img2 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[1].firstChild.nodeValue;
                         img3 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[2].firstChild.nodeValue;
@@ -79,7 +81,11 @@
                         document.getElementById("h4").innerHTML=brand +" "+ model + " " + version;
                         document.getElementById("priceEuro").innerHTML=price  + " €";
                         document.getElementById("tdYear").innerHTML=year;
-                        document.getElementById("tdGas").innerHTML=fuel;
+                        document.getElementById("tdGas").innerHTML=fuel.charAt(0).toUpperCase() + fuel.slice(1);
+                        document.getElementById("tdGear").innerHTML=transmission.charAt(0).toUpperCase() + transmission.slice(1);
+                        document.getElementById("tdKms").innerHTML=km;
+                        document.getElementById("tdCC").innerHTML=cc;
+                        document.getElementById("tdCV").innerHTML=cv;
                         document.getElementById("vecPrice").value=   priceAmount;
                         
                         
@@ -319,16 +325,20 @@
                                         <td id="tdGas">Diesel</td>
                                     </tr>
                                     <tr>
-                                        <td class="c-dark c-font-weight-600 b-r"><i class="flaticon-transport-2 pr-1"></i> Transmissão:</td>
-                                        <td>Automatic</td>
+                                        <td class="c-dark c-font-weight-600 b-r"><i class="fas fa-cog"></i> Transmissão:</td>
+                                        <td id="tdGear">Automatic</td>
                                     </tr>
                                      <tr>
                                         <td class="c-dark c-font-weight-600 b-r"><i class="fa fa-tachometer-alt" aria-hidden="true"></i> Kilometragem:</td>
-                                        <td>50,000 km</td>
+                                        <td id="tdKms">50,000 km</td>
                                     </tr>
                                      <tr>
                                         <td class="c-dark c-font-weight-600 b-r"><i class="fa fa-car" aria-hidden="true"></i> Cilindrada:</td>
-                                        <td>3500 cc</td>
+                                        <td id="tdCC">3500 cc</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="c-dark c-font-weight-600 b-r"><i class="fa fa-fire" aria-hidden="true"></i> Potência:</td>
+                                        <td id="tdCV">250 cv</td>
                                     </tr>
                                     <tr>
                                         <td class="c-dark c-font-weight-600 b-r"><i class="fas fa-file-contract"></i> Garantia:</td>
