@@ -22,16 +22,41 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
-<script>
+    <style>
+         #cookies{
+             text-align: center;
+             bottom:0px;
+             left:0px;
+             height:20px;
+             position:fixed;
+             padding:4px 8px 4px 8px;
+             width:100%;
+             background:black!important;
+             color:white;
+  
+             
+        }
+        .aCookies{
+            margin-left:6px;
+            cursor:pointer;
+            text-decoration: underline;
+        }
+        .closeCookies{
+          
+         
+            margin-left:18px;
+        }
+    </style>
+   <script>
         $("#cookieAprove").click(function(){
         $("#cookies").toggle();
         localStorage.setItem("cookie", 1);
       });
-      localStorage.setItem("cookie", 0);
-      
+        
+     
       if(localStorage.getItem("cookie")!=1){
          $(function(){
-          $("#cookies").load("cookie.html");
+         
       }); 
       }
        
@@ -40,8 +65,9 @@
       });
     
   </script>
-    <div id="cookies"></div>
+    <div id="cookies">Este website utiliza cookies para oferecer a melhor experiência para o utilizador. <a id="cookieAprove" class="aCookies">Fechar</a>    </div>
 <div id="includedContent" class="main-header"></div>
+
 
 <!-- Slider-->
 <section  class="py-0">

@@ -19,20 +19,40 @@
     $(document).ready(() => {
         let page = document.location.pathname.split("/");
         page = page[page.length - 1];
-        /*let timer = setInterval(
+        let timer = setInterval(
             () => {
-                console.log("checking " + page + " " + $("#menu-home").hasClass("active"))
-                if (page == "index.html") {
-                    $("#menu-home").addClass("active");
-                    if ($("#menu-home").hasClass("active"))
-                        clearInterval(timer);
+                let clearIntervalVar = false;
+                switch (page) {
+                    case "":
+                    case "index.html":
+                        clearIntervalVar = menuAddActiveClass("#menu-home");
+                        break;
+                    case "search.html":
+                        clearIntervalVar = menuAddActiveClass("#menu-vehicles");
+                        break;
+                    case "compare.html":
+                        clearIntervalVar = menuAddActiveClass("#menu-compare");
+                        break;
+                    case "about.html":
+                        clearIntervalVar = menuAddActiveClass("#menu-about");
+                        break;
+                    case "contacts.html":
+                        clearIntervalVar = menuAddActiveClass("#menu-contacts");
+                        break;
                 }
+                if (clearIntervalVar)
+                    clearInterval(timer);
             },
-            1000
-        );*/
-        if (page == "index.html")
-            $("#menu-home").addClass("active");
+            500
+        );
     });
+
+    function menuAddActiveClass(menuID) {
+        $(menuID).addClass("active");
+        if ($(menuID).hasClass("active"))
+            return true;
+        return false
+    }
     
     // Background Image Maker Js
     $('.background-image-maker').each(function () {
