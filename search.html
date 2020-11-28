@@ -131,6 +131,14 @@
           res.model = vehicle.getElementsByTagName("Model")[0].textContent;
           res.version = vehicle.getElementsByTagName("Version")[0].textContent;
           res.id = vehicle.getElementsByTagName("ID")[0].textContent;
+          res.fuel = vehicle.getElementsByTagName("Fuel")[0].textContent;
+          let monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
+                                "Outubro", "Novembro", "Dezembro"];
+          res.year = vehicle.getElementsByTagName("Year")[0].textContent;
+          res.month = monthNames[vehicle.getElementsByTagName("Month")[0].textContent - 1];
+          res.km = parseInt(vehicle.getElementsByTagName("Kms")[0].textContent).toLocaleString("pt") + " km";
+          res.hp = vehicle.getElementsByTagName("HP")[0].textContent + " cv";
+          res.price = parseInt(vehicle.getElementsByTagName("Price")[0].textContent).toLocaleString("pt");
           res.photos = [];
           let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
           for (let idx = 0; idx < photosList.length; idx++)
@@ -141,43 +149,14 @@
       function searchResultToHTML(vehicle) {
           return "<article class=\"card clearfix\">\n" +
               "        <div class=\"card__img\">\n" +
-              "        <a href=\"./details.html?id=" + vehicle.id + "\" target=\"_blank\"><img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\"></a>\n" +
+              "             <a href=\"./details.html?id=" + vehicle.id + "\"><img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\"></a>\n" +
               "        </div>\n" +
               "        <div class=\"card__inner\">\n" +
-              "        <h2 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h2>\n" +
-              "    <div class=\"decor-1\"></div>\n" +
-              "        <div class=\"card__description\">\n" +
-              "        <p>In a pickup market gone fancy, the Silverado sticks to its basic-truck recipe. The steering is accurate and the Silverado ...</p>\n" +
-              "    </div>\n" +
-              "    <ul class=\"card__list list-unstyled\">\n" +
-              "        <li class=\"card-list__row\">\n" +
-              "        <span class=\"card-list__title\">Body Style:</span>\n" +
-              "    <span class=\"card-list__info\">Sedan</span>\n" +
-              "        </li>\n" +
-              "        <li class=\"card-list__row\">\n" +
-              "        <span class=\"card-list__title\">Engine:</span>\n" +
-              "    <span class=\"card-list__info\">DOHC 24-valve V-6</span>\n" +
-              "    </li>\n" +
-              "    <li class=\"card-list__row\">\n" +
-              "        <span class=\"card-list__title\">Mileage:</span>\n" +
-              "    <span class=\"card-list__info\">35,000 KM</span>\n" +
-              "    </li>\n" +
-              "    <li class=\"card-list__row\">\n" +
-              "        <span class=\"card-list__title\">Color:</span>\n" +
-              "    <span class=\"card-list__info\">White</span>\n" +
-              "        </li>\n" +
-              "        <li class=\"card-list__row\">\n" +
-              "        <span class=\"card-list__title\">Transmission:</span>\n" +
-              "    <span class=\"card-list__info\">6-Speed Auto</span>\n" +
-              "    </li>\n" +
-              "    <li class=\"card-list__row\">\n" +
-              "        <span class=\"card-list__title\">Specs</span>\n" +
-              "        <span class=\"card-list__info\">2-Passenger, 2-Door</span>\n" +
-              "    </li>\n" +
-              "    </ul>\n" +
-              "    <div class=\"card__price\">PRICE:<span class=\"card__price-number\">$33,905</span></div>\n" +
-              "    </div>\n" +
-              "    </article>"
+              "             <h5 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h5>" +
+              "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km + "</span><span>" + vehicle.hp + "</span></p>" +
+              "             <span class=\"card__price\"><span class=\"price\">" + vehicle.price + "</span> EUR</span>" +
+              "         </div>\n" +
+              "</article>"
       }
 
       function searchVehicle() {
@@ -554,7 +533,59 @@
             <div class="col-12 col-lg-6 pb-3">
                 <h3>Resultados de Pesquisa</h3>
             </div>
-            <div id="searchResults"></div>
+            <div id="searchResults" class="col-12"></div>
+            <style>
+                #searchResults article {
+                    height: 180px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: stretch;
+                    border-radius: 10px;
+                    margin: 10px 0;
+                }
+
+                #searchResults article .card__img {
+                    width: 350px;
+                    display: flex;
+                    align-items: stretch;
+                }
+
+                #searchResults article .card__img img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 10px;
+                }
+
+                #searchResults article .card__inner {
+                    width: calc(100% - 40px);
+                    padding: 20px;
+                }
+
+                #searchResults article .card__inner h5 {
+                    text-align: left;
+                }
+
+                #searchResults article .card__inner .card__desc {
+                    text-align: left;
+                }
+
+                #searchResults article .card__inner .card__desc span {
+                    margin-right: 20px;
+                }
+
+                #searchResults article .card__inner .card__price {
+                    font-weight: bold;
+                    color: blue;
+                    position: absolute;
+                    top: 20px;
+                    right: 20px;
+                }
+
+                #searchResults article .card__inner .card__price .price {
+                    font-size: 25px;
+                }
+            </style>
        </div>
     </div>
 </section>
