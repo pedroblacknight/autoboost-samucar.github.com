@@ -26,235 +26,6 @@
           $("#includedContent").load("https://samucar.pt/menu.html");
       });
   </script>
-  <script type="text/javascript">
-      function printCars(vList){
-          var brand, model, price, km, fuel, cv, img, version, href;
-          for (let i = 0; i<4; i++) {
-
-              let carID = document.getElementById("car"+i);
-              let priceID = document.getElementById("price"+i);
-              let kmID = document.getElementById("km"+i);
-              let fuelID = document.getElementById("fuel"+i);
-              let HPIP = document.getElementById("hp"+i);
-              let imgID = document.getElementById("imgsrc"+i);
-              let hrefID = document.getElementById("href"+i);
-              let vehicle = vList[i];
-
-              brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
-              model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
-              version = vehicle.getElementsByTagName('Version')[0].textContent;
-              price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
-              km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
-              fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
-              cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
-              img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
-              href = "./details.html?id=" + vehicle.getElementsByTagName('ID')[0].textContent;
-
-
-
-              let carName = brand +" "+ model + " " + version;
-              carID.innerHTML=carName;
-              priceID.innerHTML=price;
-              kmID.innerHTML=" " + km;
-              fuelID.innerHTML=" " + fuel;
-              HPIP.innerHTML=" " + cv;
-              imgID.src=img;
-              hrefID.href=href;
-
-          }
-          let randoms = [];
-      }
-
-
-
-      let searchQuery, searchBrand, searchModel;
-      function fillFilter(){
-          document.getElementById("querySel").value = searchQuery;
-
-          let map = getBrandsAndModels();
-          let keys = [...map.keys()];
-          keys.sort();
-          let brandSelector = document.getElementById("brandSel");
-          let allOption = document.createElement("option");
-          allOption.textContent = "Selecionar Marca";
-          if (searchBrand == -1)
-              allOption.setAttribute("selected", "selected");
-          allOption.setAttribute("disabled", "disabled");
-          allOption.setAttribute("value", "-1");
-          brandSelector.appendChild(allOption);
-          for (let i =0; i< keys.length;i++) {
-              let brand = keys[i];
-              let option = document.createElement("option");
-              option.textContent = brand;
-              if (searchBrand == brand)
-                  option.setAttribute("selected", "selected");
-              brandSelector.appendChild(option);
-              let modelsMap = map.get(keys[i]);
-          }
-
-          if (searchModel != -1)
-              changeModels();
-      }
-
-      function changeModels() {
-          let map = getBrandsAndModels();
-          console.log(map);
-          let brand = document.getElementById("brandSel").value;
-          let modelsSelector = document.getElementById("modelSel");
-          modelsSelector.innerHTML = "";
-          console.log("Option selected: " + brand);
-          let models = map.get(brand);
-          let keys = [...models.keys()];
-          keys.sort();
-          console.log(keys);
-          let modelSelector = document.getElementById("modelSel");
-          let allOption = document.createElement("option");
-          allOption.textContent = "Ver Todos";
-          if (searchModel == "Ver Todos")
-              allOption.setAttribute("selected", "selected");
-          modelSelector.appendChild(allOption);
-          for (let i =0; i< keys.length;i++) {
-              let model = keys[i];
-              let option = document.createElement("option");
-              option.textContent = model + " (" + models.get(model) + ")";
-              if (searchModel == model)
-                  option.setAttribute("selected", "selected");
-              modelSelector.appendChild(option);
-              let modelsMap = map.get(keys[i]);
-          }
-
-      }
-
-      document.addEventListener('DOMContentLoaded', ()=>{
-          let url = "https://feeds.standvirtual.com/feeds-carspt/feed_user_business_43a2348027cdb8d216f4fb15fd9e1e4f.xml";
-          fetch(url)
-              .then(response=>response.text())
-              .then(data=>{
-                  let parser = new DOMParser();
-                  let xml = parser.parseFromString(data, "application/xml");
-                  let searchParams = new URL(document.location).searchParams;
-                  searchQuery = searchParams.get("query");
-                  if (searchQuery == null)
-                      searchQuery = "";
-                  searchBrand = searchParams.get("brand");
-                  if (searchBrand == null)
-                      searchBrand = -1;
-                  searchModel = searchParams.get("model");
-                  if (searchModel == null)
-                      searchModel = -1;
-                  else if (searchModel != "Ver Todos")
-                      searchModel = searchModel.substring(0, searchModel.indexOf(" ("));
-                  fillFilter();
-                  printCars(xml.getElementsByTagName('Vehicle'));
-                  saveXML(data);
-                  getSearchResults();
-              })
-      });
-
-      function getSearchResults() {
-          let xml = getXML();
-          let vehicles = xml.getElementsByTagName('Vehicle');
-          let searchResults = "";
-          for (let idx = 0; idx < vehicles.length; idx++) {
-              let vehicle = convertToDict(vehicles[idx]);
-              let vehicleHTML = searchResultToHTML(vehicle);
-              if (searchQuery != "" && (vehicle.brand + " " + vehicle.model + " " + vehicle.version).indexOf(searchQuery) >= 0)
-                  searchResults += vehicleHTML;
-              else if (searchQuery == "" && searchBrand == -1)
-                  searchResults += vehicleHTML;
-              else if (searchQuery == "" && searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos"))
-                  searchResults += vehicleHTML;
-              else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model)
-                  searchResults += vehicleHTML;
-          }
-
-          document.getElementById("searchResults").innerHTML = searchResults;
-          document.getElementById("results").scrollIntoView();
-      }
-
-      function convertToDict(vehicle) {
-          let res = {};
-          res.section = vehicle.getElementsByTagName("Section")[0].textContent;
-          res.brand = vehicle.getElementsByTagName("Brand")[0].textContent;
-          res.model = vehicle.getElementsByTagName("Model")[0].textContent;
-          res.version = vehicle.getElementsByTagName("Version")[0].textContent;
-          res.id = vehicle.getElementsByTagName("ID")[0].textContent;
-          res.fuel = vehicle.getElementsByTagName("Fuel")[0].textContent;
-          let monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
-                                "Outubro", "Novembro", "Dezembro"];
-          res.year = vehicle.getElementsByTagName("Year")[0].textContent;
-          res.month = monthNames[vehicle.getElementsByTagName("Month")[0].textContent - 1];
-          res.km = parseInt(vehicle.getElementsByTagName("Kms")[0].textContent).toLocaleString("pt") + " km";
-          res.hp = vehicle.getElementsByTagName("HP")[0].textContent + " cv";
-          res.price = parseInt(vehicle.getElementsByTagName("Price")[0].textContent).toLocaleString("pt");
-          res.photos = [];
-          let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
-          for (let idx = 0; idx < photosList.length; idx++)
-              res.photos.push(photosList[idx].textContent);
-          return res;
-      }
-
-      function searchResultToHTML(vehicle) {
-          return "<a href=\"./details.html?id=" + vehicle.id + "\">" +
-              "     <article class=\"card clearfix\">\n" +
-              "        <div class=\"card__img\">\n" +
-              "             <img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\">\n" +
-              "        </div>\n" +
-              "        <div class=\"card__inner\">\n" +
-              "             <h5 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h5>" +
-              "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km + "</span><span>" + vehicle.hp + "</span></p>" +
-              "             <span class=\"card__price\"><span class=\"price\">" + vehicle.price + "</span> EUR</span>" +
-              "         </div>" +
-              "     </article>" +
-              "</a>"
-      }
-
-      function searchVehicle() {
-          let query = document.getElementById("querySel").value;
-          let brand = document.getElementById("brandSel").value;
-          let model = document.getElementById("modelSel").value;
-
-          if (query != "" || brand != -1)
-              document.location.href = "./search.html" +
-                  (query != "" || brand != -1 || model != -1 ? "?" : "") +
-                  (query != "" ? "&query=" + query : "") +
-                  (brand != -1 ? "&brand=" + brand : "") +
-                  (model != -1 ? "&model=" + model : "");
-          else
-              alert("Pesquise ou Selecione uma Marca para pesquisar");
-      }
-
-      function saveBrandsAndModels(map) {
-          for (let [brand, models] of map.entries()) {
-              map.set(brand, JSON.stringify([...models.entries()]));
-          }
-          map = JSON.stringify([...map.entries()]);
-          localStorage.setItem("brandsAndModels", map);
-      }
-
-      function getBrandsAndModels() {
-          let savedMap = JSON.parse(localStorage.getItem("brandsAndModels"));
-          let map = new Map();
-          savedMap.map(brandModel => {
-              map.set(brandModel[0], new Map(JSON.parse(brandModel[1])))
-          });
-          return map;
-      }
-
-      function saveXML(data) {
-          localStorage.setItem("xml", data);
-      }
-
-      function getXML() {
-          return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
-      }
-
-      document.getElementById("querySel").addEventListener("keyup", event => {
-          if (event.keyCode === 13) {
-              searchVehicle();
-          }
-      });
-  </script>
 
 <div id="includedContent" class="main-header"></div>
 
@@ -814,6 +585,236 @@
     </div>
 </div>
 <!-- End Login /Register Form-->
+
+  <script type="text/javascript">
+      function printCars(vList){
+          var brand, model, price, km, fuel, cv, img, version, href;
+          for (let i = 0; i<4; i++) {
+
+              let carID = document.getElementById("car"+i);
+              let priceID = document.getElementById("price"+i);
+              let kmID = document.getElementById("km"+i);
+              let fuelID = document.getElementById("fuel"+i);
+              let HPIP = document.getElementById("hp"+i);
+              let imgID = document.getElementById("imgsrc"+i);
+              let hrefID = document.getElementById("href"+i);
+              let vehicle = vList[i];
+
+              brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
+              model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
+              version = vehicle.getElementsByTagName('Version')[0].textContent;
+              price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
+              km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
+              fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
+              cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
+              img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
+              href = "./details.html?id=" + vehicle.getElementsByTagName('ID')[0].textContent;
+
+
+
+              let carName = brand +" "+ model + " " + version;
+              carID.innerHTML=carName;
+              priceID.innerHTML=price;
+              kmID.innerHTML=" " + km;
+              fuelID.innerHTML=" " + fuel;
+              HPIP.innerHTML=" " + cv;
+              imgID.src=img;
+              hrefID.href=href;
+
+          }
+          let randoms = [];
+      }
+
+
+
+      let searchQuery, searchBrand, searchModel;
+      function fillFilter(){
+          document.getElementById("querySel").value = searchQuery;
+
+          let map = getBrandsAndModels();
+          let keys = [...map.keys()];
+          keys.sort();
+          let brandSelector = document.getElementById("brandSel");
+          let allOption = document.createElement("option");
+          allOption.textContent = "Selecionar Marca";
+          if (searchBrand == -1)
+              allOption.setAttribute("selected", "selected");
+          allOption.setAttribute("disabled", "disabled");
+          allOption.setAttribute("value", "-1");
+          brandSelector.appendChild(allOption);
+          for (let i =0; i< keys.length;i++) {
+              let brand = keys[i];
+              let option = document.createElement("option");
+              option.textContent = brand;
+              if (searchBrand == brand)
+                  option.setAttribute("selected", "selected");
+              brandSelector.appendChild(option);
+              let modelsMap = map.get(keys[i]);
+          }
+
+          if (searchModel != -1)
+              changeModels();
+      }
+
+      function changeModels() {
+          let map = getBrandsAndModels();
+          console.log(map);
+          let brand = document.getElementById("brandSel").value;
+          let modelsSelector = document.getElementById("modelSel");
+          modelsSelector.innerHTML = "";
+          console.log("Option selected: " + brand);
+          let models = map.get(brand);
+          let keys = [...models.keys()];
+          keys.sort();
+          console.log(keys);
+          let modelSelector = document.getElementById("modelSel");
+          let allOption = document.createElement("option");
+          allOption.textContent = "Ver Todos";
+          if (searchModel == "Ver Todos")
+              allOption.setAttribute("selected", "selected");
+          modelSelector.appendChild(allOption);
+          for (let i =0; i< keys.length;i++) {
+              let model = keys[i];
+              let option = document.createElement("option");
+              option.textContent = model + " (" + models.get(model) + ")";
+              if (searchModel == model)
+                  option.setAttribute("selected", "selected");
+              modelSelector.appendChild(option);
+              let modelsMap = map.get(keys[i]);
+          }
+
+      }
+
+      document.addEventListener('DOMContentLoaded', ()=>{
+          let url = "https://feeds.standvirtual.com/feeds-carspt/feed_user_business_43a2348027cdb8d216f4fb15fd9e1e4f.xml";
+          fetch(url)
+              .then(response=>response.text())
+              .then(data=>{
+                  let parser = new DOMParser();
+                  let xml = parser.parseFromString(data, "application/xml");
+                  let searchParams = new URL(document.location).searchParams;
+                  searchQuery = searchParams.get("query");
+                  if (searchQuery == null)
+                      searchQuery = "";
+                  searchBrand = searchParams.get("brand");
+                  if (searchBrand == null)
+                      searchBrand = -1;
+                  searchModel = searchParams.get("model");
+                  if (searchModel == null)
+                      searchModel = -1;
+                  else if (searchModel != "Ver Todos")
+                      searchModel = searchModel.substring(0, searchModel.indexOf(" ("));
+                  fillFilter();
+                  printCars(xml.getElementsByTagName('Vehicle'));
+                  saveXML(data);
+                  getSearchResults();
+              })
+      });
+
+      function getSearchResults() {
+          let xml = getXML();
+          let vehicles = xml.getElementsByTagName('Vehicle');
+          let searchResults = "";
+          for (let idx = 0; idx < vehicles.length; idx++) {
+              let vehicle = convertToDict(vehicles[idx]);
+              let vehicleHTML = searchResultToHTML(vehicle);
+              if (searchQuery != "" && (vehicle.brand + " " + vehicle.model + " " + vehicle.version).indexOf(searchQuery) >= 0)
+                  searchResults += vehicleHTML;
+              else if (searchQuery == "" && searchBrand == -1)
+                  searchResults += vehicleHTML;
+              else if (searchQuery == "" && searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos"))
+                  searchResults += vehicleHTML;
+              else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model)
+                  searchResults += vehicleHTML;
+          }
+
+          document.getElementById("searchResults").innerHTML = searchResults;
+          document.getElementById("results").scrollIntoView();
+      }
+
+      function convertToDict(vehicle) {
+          let res = {};
+          res.section = vehicle.getElementsByTagName("Section")[0].textContent;
+          res.brand = vehicle.getElementsByTagName("Brand")[0].textContent;
+          res.model = vehicle.getElementsByTagName("Model")[0].textContent;
+          res.version = vehicle.getElementsByTagName("Version")[0].textContent;
+          res.id = vehicle.getElementsByTagName("ID")[0].textContent;
+          res.fuel = vehicle.getElementsByTagName("Fuel")[0].textContent;
+          let monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro",
+              "Outubro", "Novembro", "Dezembro"];
+          res.year = vehicle.getElementsByTagName("Year")[0].textContent;
+          res.month = monthNames[vehicle.getElementsByTagName("Month")[0].textContent - 1];
+          res.km = parseInt(vehicle.getElementsByTagName("Kms")[0].textContent).toLocaleString("pt") + " km";
+          res.hp = vehicle.getElementsByTagName("HP")[0].textContent + " cv";
+          res.price = parseInt(vehicle.getElementsByTagName("Price")[0].textContent).toLocaleString("pt");
+          res.photos = [];
+          let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
+          for (let idx = 0; idx < photosList.length; idx++)
+              res.photos.push(photosList[idx].textContent);
+          return res;
+      }
+
+      function searchResultToHTML(vehicle) {
+          return "<a href=\"./details.html?id=" + vehicle.id + "\">" +
+              "     <article class=\"card clearfix\">\n" +
+              "        <div class=\"card__img\">\n" +
+              "             <img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\">\n" +
+              "        </div>\n" +
+              "        <div class=\"card__inner\">\n" +
+              "             <h5 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h5>" +
+              "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km + "</span><span>" + vehicle.hp + "</span></p>" +
+              "             <span class=\"card__price\"><span class=\"price\">" + vehicle.price + "</span> EUR</span>" +
+              "         </div>" +
+              "     </article>" +
+              "</a>"
+      }
+
+      function searchVehicle() {
+          let query = document.getElementById("querySel").value;
+          let brand = document.getElementById("brandSel").value;
+          let model = document.getElementById("modelSel").value;
+
+          if (query != "" || brand != -1)
+              document.location.href = "./search.html" +
+                  (query != "" || brand != -1 || model != -1 ? "?" : "") +
+                  (query != "" ? "&query=" + query : "") +
+                  (brand != -1 ? "&brand=" + brand : "") +
+                  (model != -1 ? "&model=" + model : "");
+          else
+              alert("Pesquise ou Selecione uma Marca para pesquisar");
+      }
+
+      function saveBrandsAndModels(map) {
+          for (let [brand, models] of map.entries()) {
+              map.set(brand, JSON.stringify([...models.entries()]));
+          }
+          map = JSON.stringify([...map.entries()]);
+          localStorage.setItem("brandsAndModels", map);
+      }
+
+      function getBrandsAndModels() {
+          let savedMap = JSON.parse(localStorage.getItem("brandsAndModels"));
+          let map = new Map();
+          savedMap.map(brandModel => {
+              map.set(brandModel[0], new Map(JSON.parse(brandModel[1])))
+          });
+          return map;
+      }
+
+      function saveXML(data) {
+          localStorage.setItem("xml", data);
+      }
+
+      function getXML() {
+          return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
+      }
+
+      document.getElementById("querySel").addEventListener("keyup", event => {
+          if (event.keyCode === 13) {
+              searchVehicle();
+          }
+      });
+  </script>
 
 <!-- jQuery -->
 <script src="dist/js/plugins.min.js"></script>
