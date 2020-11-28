@@ -19,7 +19,7 @@ SINGLE LISTING
 ERROS:
 
 
-- no menu superior de navegação, o quadrado a volta de onde estamos deve ter cor diferente
+
 - colocar icon de lupa na pesquisa
 - mudar azul dos botões e rever o tamanho
 - DONE - arredondar caixas de texto dos filtros
@@ -36,3 +36,4 @@ ERROS:
         Marcas - colocar as marcas certas
         Adicionar ponto no preço e km
         - diminuir logo
+        - no menu superior de navegação, o quadrado a volta de onde estamos deve ter cor diferente
