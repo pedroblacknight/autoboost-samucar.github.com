@@ -506,7 +506,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             
             
             let carName = brand +" "+ model + " " + version;
-            if(carName.length > 27){
+            if(carName.length > 25){
                 carName = carName.substr(0,27) + "..."
             } 
             carID.innerHTML=carName;
@@ -517,8 +517,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             imgID.src=img;
             
         }
-        
+        let randoms = [];
         for (let i = 4; i<8; i++) {
+            
             
             let carID = document.getElementById("car"+i);
             let priceID = document.getElementById("price"+i);
@@ -527,7 +528,11 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             let HPIP = document.getElementById("hp"+i);
             let imgID = document.getElementById("imgsrc"+i);
             
-            let j = Math.floor(Math.random()*(vList.length-5)+4);
+            var j;
+            do (j = Math.floor(Math.random()*(vList.length-5)+4))
+            while(randoms.includes(j)) 
+            
+            
             let vehicle = vList[j];
             
             brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
