@@ -506,7 +506,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
 <!-- End Slider-->
 
 <!-- Car Deals-->
-<section>
+<section class="top-results">
     <div class="container">
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 col-lg-6 pb-3">
@@ -543,9 +543,6 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             
             
             let carName = brand +" "+ model + " " + version;
-            if(carName.length > 25){
-                carName = carName.substr(0,27) + "..."
-            } 
             carID.innerHTML=carName;
             priceID.innerHTML=price;
             kmID.innerHTML=" " + km;
@@ -586,9 +583,6 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             
             
             let carName = brand +" "+ model + " " + version;
-            if(carName.length > 25){
-                carName = carName.substr(0,25) + "..."
-            } 
             carID.innerHTML=carName;
             priceID.innerHTML=price;
             kmID.innerHTML=" " + km;
@@ -755,7 +749,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href0" href="#"><img id = "imgsrc0" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car0"></a></h6>
+                                <h6 id = "car0" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price0"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -769,7 +763,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href1" href="#"><img id = "imgsrc1" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car1"></a></h6>
+                                <h6 id = "car1" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price1"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -783,7 +777,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href2" href="#"><img id = "imgsrc2" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car2" ></a></h6>
+                                <h6 id = "car2" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price2"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -798,7 +792,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href3" href="#"><img id = "imgsrc3" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car3"></a></h6>
+                                <h6 id = "car3" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price3"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -824,7 +818,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href4" href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car4"></a></h6>
+                                <h6 id = "car4" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price4"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -838,7 +832,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href5" href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top" id=""/></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car5"></a></h6>
+                                <h6 id = "car5" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price5"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -852,7 +846,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href6" href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car6"></a></h6>
+                                <h6 id = "car6" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price6"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
@@ -866,7 +860,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                         <a id="href7" href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" /></a>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
-                                <h6 class="mb-2"><a href="listing-details.html" id = "car7"></a></h6>
+                                <h6 id = "car7" class="mb-2"></h6>
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price7"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
