@@ -63,11 +63,17 @@
                         cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";*/
                         img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
                         img2 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[1].firstChild.nodeValue;
+                        img3 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[2].firstChild.nodeValue;
+                        img4 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[3].firstChild.nodeValue;
+                        img5 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[4].firstChild.nodeValue;
                         
                         
                         document.getElementById("imgFirst").src= img;
                         document.getElementById("imgS1").src= img;
                         document.getElementById("imgS2").src= img2;
+                        document.getElementById("imgS3").src= img3;
+                        document.getElementById("imgS4").src= img4;
+                        document.getElementById("imgS5").src= img5;
                         document.getElementById("h4").innerHTML=brand +" "+ model + " " + version;
                         document.getElementById("priceEuro").innerHTML=price  + " €";
                         document.getElementById("tdYear").innerHTML=year;
@@ -166,7 +172,7 @@
                                     </li>
                                     
                                     
-                                </ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li><li><img id="imgS2" src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#"><i class="fas fa-chevron-right"></i></a></li></ul></div>
+                                </ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li><li><img id="imgS2" src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li><li><img id="imgS3" src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li><li><img id="imgS4" src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li><li><img id="imgS5" src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#"><i class="fas fa-chevron-right"></i></a></li></ul></div>
                             <div class="c-bg-dark rounded-top">
                                 <ul class="nav nav-tabs border-0 flex-column flex-sm-row text-white" id="myTab" role="tablist">
                                     <li class="nav-item mb-0">
