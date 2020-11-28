@@ -1046,6 +1046,12 @@ header .nav-item{
   border-radius: 0 0 5px 5px;
 }
 
+@media (max-width: 400px) {
+  .multiple-items {
+    margin-top: 40px;
+  }
+}
+
 /*============================= Login / Register ===================== */
 /*============================= Login / Register ===================== */
 #lean_overlay {
