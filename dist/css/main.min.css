@@ -1041,6 +1041,11 @@ header .nav-item{
   text-overflow: ellipsis;
 }
 
+.slick-slide .card {
+  border: 1px solid gray;
+  border-radius: 0 0 5px 5px;
+}
+
 /*============================= Login / Register ===================== */
 /*============================= Login / Register ===================== */
 #lean_overlay {
