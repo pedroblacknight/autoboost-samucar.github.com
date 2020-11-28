@@ -114,7 +114,7 @@
                                         <h4 class="text-center">Procura uma viatura</h4>
                                         <div class="tab-content bg-white rounded-bottom rounded-right" id="myTabContent3">
                                             <div class="tab-pane fade active show" id="id1" role="tabpanel" aria-expanded="true">
-                                                <form>
+
                                                     <div class="form-group">
                                                         <input class="form-control ml-sm-0 rounded-1" id="querySel" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
                                                             <div class="search position-absolute">
@@ -743,6 +743,12 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
     function getXML() {
         return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
     }
+
+    document.getElementById("querySel").addEventListener("keyup", event => {
+        if (event.keyCode === 13) {
+            searchVehicle();
+        }
+    });
 </script>
 
 

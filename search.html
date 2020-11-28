@@ -69,6 +69,8 @@
 
       let searchQuery, searchBrand, searchModel;
       function fillFilter(){
+          document.getElementById("querySel").value = searchQuery;
+
           let map = getBrandsAndModels();
           let keys = [...map.keys()];
           keys.sort();
@@ -156,7 +158,7 @@
           for (let idx = 0; idx < vehicles.length; idx++) {
               let vehicle = convertToDict(vehicles[idx]);
               let vehicleHTML = searchResultToHTML(vehicle);
-              if (searchQuery != "" && (vehicle.brand + " " + vehicle.model + " " + vehicle.version).indexOf(searchQuery) > 0)
+              if (searchQuery != "" && (vehicle.brand + " " + vehicle.model + " " + vehicle.version).indexOf(searchQuery) >= 0)
                   searchResults += vehicleHTML;
               else if (searchQuery == "" && searchBrand == -1)
                   searchResults += vehicleHTML;
@@ -246,6 +248,12 @@
       function getXML() {
           return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
       }
+
+      document.getElementById("querySel").addEventListener("keyup", event => {
+          if (event.keyCode === 13) {
+              searchVehicle();
+          }
+      });
   </script>
 
 <div id="includedContent" class="main-header"></div>
@@ -285,7 +293,7 @@
                                         <h4 class="text-center">Procura uma viatura</h4>
                                         <div class="tab-content bg-white rounded-bottom rounded-right" id="myTabContent3">
                                             <div class="tab-pane fade active show" id="id1" role="tabpanel" aria-expanded="true">
-                                                <form>
+
                                                     <div class="form-group">
                                                         <input class="form-control ml-sm-0 rounded-1" id="querySel" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
                                                             <div class="search position-absolute">
