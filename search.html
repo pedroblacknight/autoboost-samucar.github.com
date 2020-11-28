@@ -152,7 +152,7 @@
               "             <a href=\"./details.html?id=" + vehicle.id + "\"><img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\"></a>\n" +
               "        </div>\n" +
               "        <div class=\"card__inner\">\n" +
-              "             <h5 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h5>" +
+              "             <h5 class=\"card__title ui-title-inner\"><a href=\"./details.html?id=" + vehicle.id + "\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</a></h5>" +
               "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km + "</span><span>" + vehicle.hp + "</span></p>" +
               "             <span class=\"card__price\"><span class=\"price\">" + vehicle.price + "</span> EUR</span>" +
               "         </div>\n" +
@@ -564,6 +564,12 @@
 
                 #searchResults article .card__inner h5 {
                     text-align: left;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0);
+                    transition: border-bottom 0.5s;
+                }
+
+                #searchResults article .card__inner h5 a:hover {
+                    border-bottom: 1px solid gray;
                 }
 
                 #searchResults article .card__inner .card__desc {
