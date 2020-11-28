@@ -395,6 +395,21 @@
 
                 #searchResults article .card__inner .card__desc span {
                     margin-right: 20px;
+                    text-transform: capitalize;
+                }
+
+                #searchResults article .card__inner .card__desc span:nth-child(n + 2)::before {
+                    background-color: #bab;
+                    border-radius: 50%;
+                    content: "";
+                    display: inline-block;
+                    font-size: 20px;
+                    height: 4px;
+                    opacity: 0.5;
+                    width: 4px;
+                    vertical-align: middle;
+                    margin-top: -2px;
+                    margin-right: 15px;
                 }
 
                 #searchResults article .card__inner .card__price {
@@ -412,11 +427,44 @@
                 @media (max-width: 400px) {
                     #searchResults article {
                         flex-direction: column;
+                        height: auto;
                     }
 
                     #searchResults article .card__img {
                         width: 100%;
                         height: 150px;
+                    }
+
+                    #searchResults article .card__inner {
+                        width: 100%;
+                    }
+
+                    #searchResults article .card__inner .card__desc {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+
+                    #searchResults article .card__inner .card__desc span {
+                        display: block;
+                        width: 50%;
+                        margin: 0;
+                        padding: 0 10px;
+                    }
+
+                    #searchResults article .card__inner .card__desc span:nth-child(2n + 1) {
+                        border-right: 1px solid gray;
+                    }
+
+                    #searchResults article .card__inner .card__desc span:nth-child(n + 2)::before {
+                        display: none;
+                    }
+
+                    #searchResults article .card__inner .card__price {
+                        top: calc(150px - 30px);
+                        padding: 5px 10px;
+                        background-color: #ddd;
+                        border-radius: 5px;
+                        box-shadow: 0 0 1px 1px gray;
                     }
                 }
             </style>
