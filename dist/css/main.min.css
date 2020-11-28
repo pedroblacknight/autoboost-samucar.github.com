@@ -1047,6 +1047,10 @@ header .nav-item{
 }
 
 @media (max-width: 400px) {
+  .navbar-brand {
+    max-width: 250px !important;
+  }
+
   .multiple-items {
     margin-top: 40px;
   }
