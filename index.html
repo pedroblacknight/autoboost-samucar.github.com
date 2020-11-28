@@ -49,13 +49,16 @@
     </style>
    <script>
         $("#cookieAprove").click(function(){
+            console.log('1');
         $("#cookies").toggle();
+            console.log('11');
         localStorage.setItem("cookie", 1);
       });
         
      
       if(localStorage.getItem("cookie")==1){
          $(function(){
+             console.log('12');
          $("#cookies").toggle();
       }); 
       }
