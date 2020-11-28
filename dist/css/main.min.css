@@ -40,10 +40,7 @@ body {
 a {
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s; 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  transition: all 0.3s;
 }
   a:hover, a:focus {
     text-decoration: none;
@@ -1031,6 +1028,13 @@ header .nav-item{
 .img-logo {
     width: 60% !important;
     height: 60% !important;
+}
+
+.top-results .card-body h6 {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*============================= Login / Register ===================== */
