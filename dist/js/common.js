@@ -15,6 +15,24 @@
             $("#includedContent").removeClass("active");
         }
     });
+
+    $(document).ready(() => {
+        let page = document.location.pathname.split("/");
+        page = page[page.length - 1];
+        /*let timer = setInterval(
+            () => {
+                console.log("checking " + page + " " + $("#menu-home").hasClass("active"))
+                if (page == "index.html") {
+                    $("#menu-home").addClass("active");
+                    if ($("#menu-home").hasClass("active"))
+                        clearInterval(timer);
+                }
+            },
+            1000
+        );*/
+        if (page == "index.html")
+            $("#menu-home").addClass("active");
+    });
     
     // Background Image Maker Js
     $('.background-image-maker').each(function () {

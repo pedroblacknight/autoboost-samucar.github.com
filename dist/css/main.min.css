@@ -515,7 +515,8 @@ header .nav-item .nav-link {
     font-weight: bold;
 }
 
-header .nav-item:hover{
+header .nav-item:hover,
+header .nav-item.active {
     background-color: #404040;
 }
 header .nav-item{
