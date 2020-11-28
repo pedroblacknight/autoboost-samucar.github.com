@@ -121,23 +121,7 @@
                                                         
                                                         </select>
                                                     </div>
-                                                    <!--                                                            <div class="form-group">-->
-                                                    <!--                                                                <div id="slider-range"></div>-->
-                                                    <!--<div class="row">
-                                                        <div class="col-3">
-                                                            <span id="search-min-price">0</span>Preço mínimo
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input type="range" value="0" min="0" max="500000" step="50" />
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input type="range" value="500" min="0" max="500000" step="50" />
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <span id="search-max-price">500</span>Preço máximo
-                                                        </div>
-                                                    </div>-->
-                                                    <!--                                                            </div>-->
+                                                    
                                                     
 <div class="rangeslider">
 <input class="min" name="range_1" type="range" min="1" max="100" value="10" />
@@ -260,43 +244,25 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
      $('input[type="range"]').on( 'input', rangeInputChangeEventHandler);
 })();
 </script>
-                                                    
-<!--
-                                                    <script>
-                                                        $( function() {
-                                                            $( "#slider-range" ).slider({
-                                                                range: true,
-                                                                min: 0,
-                                                                max: 500,
-                                                                values: [ 75, 300 ],
-                                                                slide: function( event, ui ) {
-                                                                    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-                                                                }
-                                                            });
-                                                            $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-                                                                " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-                                                        } );
-                                                    </script>
--->
-                                                    <style>
-                                                        input[type="range"] {
-                                                            width: 100%;
-                                                        }
+<style>
+    input[type="range"] {
+        width: 100%;
+    }
 
-                                                        #search-min-price,
-                                                        #search-max-price {
-                                                            width: 100%;
-                                                            display: block;
-                                                            text-align: center;
-                                                            font-weight: bold;
-                                                        }
-                                                    </style>
+    #search-min-price,
+    #search-max-price {
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
                                                     <a href="javascript:;"
                                                        class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold" style="margin-top: 70px"
                                                        onclick="searchVehicle()" 
                                                     >Procurar</a>
                                             </div>
-                                            <div class="tab-pane fade" id="id2" role="tabpanel" aria-expanded="false">
+                                            <!--<div class="tab-pane fade" id="id2" role="tabpanel" aria-expanded="false">
                                                 <form>
                                                     <div class="form-group">
                                                         <select class="form-control rounded">
@@ -310,7 +276,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                                     </div>
                                                     <a href="#" class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold">Find Car</a>
                                                 </form>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -320,170 +286,6 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                             
                                             }}
                                     </style>
-                                <div class="tab-pane fade" id="tab2" role="tabpanel" aria-expanded="false">
-                                    <div class="card-body p-4">
-                                        <ul class="nav nav-tabs border-0 justify-content-center mb-4  flex-column flex-sm-row text-center" id="myTab" role="tablist">
-                                            <li class="nav-item mr-sm-3 mb-3 mb-sm-0">
-                                                <a class="nav-link redial-light rounded active" data-toggle="tab" href="#id3" role="tab" aria-selected="true" aria-expanded="true">By Budget</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link redial-light rounded" data-toggle="tab" href="#id4" role="tab" aria-selected="false" aria-expanded="false">By Brand</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content bg-white rounded-bottom rounded-right" id="myTabContent3">
-                                            <div class="tab-pane fade active show" id="id3" role="tabpanel" aria-expanded="true">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <select class="form-control">
-                                                            <option>--- Select Budget ---</option>
-                                                            <option value="0">-Select Budget-</option>
-                                                            <option value="1-lakh-5-lakh">1 Lakh - 5 Lakh</option>
-                                                            <option value="5-lakh-10-lakh">5 Lakh - 10 Lakh</option>
-                                                            <option value="10-lakh-20-lakh">10 Lakh - 20 Lakh</option>
-                                                            <option value="20-lakh-50-lakh">20 Lakh - 50 Lakh</option>
-                                                            <option value="50-lakh-1-crore">50 Lakh - 1 Crore</option>
-                                                            <option value="above-1-crore">Above 1 Crore</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control">
-                                                            <option value="">--- Select City ---</option>
-                                                            <option value="New Delhi">New Delhi</option>
-                                                            <option value="Bangalore">Bangalore</option>
-                                                            <option value="Mumbai">Mumbai</option>
-                                                            <option value="Hyderabad">Hyderabad</option>
-                                                            <option value="Chennai">Chennai</option>
-                                                            <option value="Jaipur">Jaipur</option>
-                                                            <option value="Pune">Pune</option>
-                                                            <option value="Kolkata">Kolkata</option>
-                                                            <option value="Gurgaon">Gurgaon</option>
-                                                            <option value="Ahmedabad">Ahmedabad</option>
-                                                            <option value="Noida">Noida</option>
-                                                            <option value="Chandigarh">Chandigarh</option>
-                                                            <option value="Indore">Indore</option>
-                                                            <option value="Kochi">Kochi</option>
-                                                            <option value="" disabled="">--------------------</option>
-                                                            <option value="Agra">Agra</option>
-                                                            <option value="Ahmedabad">Ahmedabad</option>
-                                                            <option value="Ajmer">Ajmer</option>
-                                                            <option value="Akola">Akola</option>
-                                                            <option value="Alibag">Alibag</option>
-                                                            <option value="Aligarh">Aligarh</option>
-                                                            <option value="Allahabad">Allahabad</option>
-                                                            <option value="Alwar">Alwar</option>
-                                                            <option value="Amalapuram">Amalapuram</option>
-                                                            <option value="Ambala">Ambala</option>
-                                                            <option value="Ambernath">Ambernath</option>
-                                                            <option value="Ambikapur">Ambikapur</option>
-                                                            <option value="Amethi">Amethi</option>
-                                                            <option value="Amravati">Amravati</option>
-                                                            <option value="Amreli">Amreli</option>
-                                                            <option value="Amritsar">Amritsar</option>
-                                                            <option value="Amroha">Amroha</option>
-                                                            <option value="Anantapur">Anantapur</option>
-                                                            <option value="Aurangabad(bh)">Aurangabad(bh)</option>
-                                                            <option value="Avadi">Avadi</option>
-                                                            <option value="Azamgarh">Azamgarh</option>
-                                                            <option value="Baddi">Baddi</option>
-                                                            <option value="Badlapur">Badlapur</option>
-                                                            <option value="Baran">Baran</option>
-                                                            <option value="Barasat">Barasat</option>
-                                                            <option value="Baraut">Baraut</option>
-                                                            <option value="Bardhaman">Bardhaman</option>
-                                                            <option value="Bardoli">Bardoli</option>
-                                                            <option value="Bareilly">Bareilly</option>
-                                                            <option value="Bargarh">Bargarh</option>
-                                                            <option value="Baripada">Baripada</option>
-                                                            <option value="Barmer">Barmer</option>
-                                                            <option value="Barnala">Barnala</option>
-                                                            <option value="Barpeta">Barpeta</option>
-                                                            <option value="Barrackpore">Barrackpore</option>
-                                                            <option value="Barsar">Barsar</option>
-                                                            <option value="Barshi">Barshi</option>
-                                                            <option value="Baruipur">Baruipur</option>
-                                                        </select>
-                                                    </div>
-                                                    <a href="#" class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold">Find Car</a>
-                                                </form>
-                                            </div>
-                                            <div class="tab-pane fade" id="id4" role="tabpanel" aria-expanded="false">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <select class="form-control">
-                                                            <option>--- Select Budget ---</option>
-                                                            <option value="0">-Select Budget-</option>
-                                                            <option value="1-lakh-5-lakh">1 Lakh - 5 Lakh</option>
-                                                            <option value="5-lakh-10-lakh">5 Lakh - 10 Lakh</option>
-                                                            <option value="10-lakh-20-lakh">10 Lakh - 20 Lakh</option>
-                                                            <option value="20-lakh-50-lakh">20 Lakh - 50 Lakh</option>
-                                                            <option value="50-lakh-1-crore">50 Lakh - 1 Crore</option>
-                                                            <option value="above-1-crore">Above 1 Crore</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control">
-                                                            <option value="">--- Select City ---</option>
-                                                            <option value="New Delhi">New Delhi</option>
-                                                            <option value="Bangalore">Bangalore</option>
-                                                            <option value="Mumbai">Mumbai</option>
-                                                            <option value="Hyderabad">Hyderabad</option>
-                                                            <option value="Chennai">Chennai</option>
-                                                            <option value="Jaipur">Jaipur</option>
-                                                            <option value="Pune">Pune</option>
-                                                            <option value="Kolkata">Kolkata</option>
-                                                            <option value="Gurgaon">Gurgaon</option>
-                                                            <option value="Ahmedabad">Ahmedabad</option>
-                                                            <option value="Noida">Noida</option>
-                                                            <option value="Chandigarh">Chandigarh</option>
-                                                            <option value="Indore">Indore</option>
-                                                            <option value="Kochi">Kochi</option>
-                                                            <option value="" disabled="">--------------------</option>
-                                                            <option value="Agra">Agra</option>
-                                                            <option value="Ahmedabad">Ahmedabad</option>
-                                                            <option value="Ajmer">Ajmer</option>
-                                                            <option value="Akola">Akola</option>
-                                                            <option value="Alibag">Alibag</option>
-                                                            <option value="Aligarh">Aligarh</option>
-                                                            <option value="Allahabad">Allahabad</option>
-                                                            <option value="Alwar">Alwar</option>
-                                                            <option value="Amalapuram">Amalapuram</option>
-                                                            <option value="Ambala">Ambala</option>
-                                                            <option value="Ambernath">Ambernath</option>
-                                                            <option value="Ambikapur">Ambikapur</option>
-                                                            <option value="Amethi">Amethi</option>
-                                                            <option value="Amravati">Amravati</option>
-                                                            <option value="Amreli">Amreli</option>
-                                                            <option value="Amritsar">Amritsar</option>
-                                                            <option value="Amroha">Amroha</option>
-                                                            <option value="Anantapur">Anantapur</option>
-                                                            <option value="Aurangabad(bh)">Aurangabad(bh)</option>
-                                                            <option value="Avadi">Avadi</option>
-                                                            <option value="Azamgarh">Azamgarh</option>
-                                                            <option value="Baddi">Baddi</option>
-                                                            <option value="Badlapur">Badlapur</option>
-                                                            <option value="Baran">Baran</option>
-                                                            <option value="Barasat">Barasat</option>
-                                                            <option value="Baraut">Baraut</option>
-                                                            <option value="Bardhaman">Bardhaman</option>
-                                                            <option value="Bardoli">Bardoli</option>
-                                                            <option value="Bareilly">Bareilly</option>
-                                                            <option value="Bargarh">Bargarh</option>
-                                                            <option value="Baripada">Baripada</option>
-                                                            <option value="Barmer">Barmer</option>
-                                                            <option value="Barnala">Barnala</option>
-                                                            <option value="Barpeta">Barpeta</option>
-                                                            <option value="Barrackpore">Barrackpore</option>
-                                                            <option value="Barsar">Barsar</option>
-                                                            <option value="Barshi">Barshi</option>
-                                                            <option value="Baruipur">Baruipur</option>
-                                                        </select>
-                                                    </div>
-                                                    <a href="#" class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold">Find Car</a>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -868,26 +670,10 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </ul>
                         </div></a>
                     </div>
-                    
                 </div>
-            
-            
         </div>
-    <!--
-    <div class="container">
-        <a href="#" class="btn btn-primary text-uppercase font-weight-bold" style = "margin: auto; margin-top:  20px; display: flex; display: grid; width: 30%">Ver tudo</a>
-    </div>    
-    -->
-    
 </section>
-
 <!-- End Car Deals-->
-
-<!-- Car Featured-->
-<!--
-
--->
-<!-- End Car Featured-->
 
 <!-- Brand-->
 <section>
@@ -910,7 +696,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Audi">
                             <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
     margin-right: 5px;">
@@ -950,7 +736,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=SEAT">
                             <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
     margin-right: 5px;">
@@ -970,7 +756,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Renault">
                             <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
     margin-right: 5px;">
@@ -980,7 +766,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Citroën">
                             <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
     margin-right: 5px;">
@@ -990,7 +776,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Ford">
                             <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
     margin-right: 5px;">
@@ -1010,7 +796,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                             </div>
                         </a>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-2">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Fiat">
                             <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
     margin-right: 5px;">
@@ -1066,16 +852,6 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
         <div class="row">
             <div class="col-12 col-lg-8 text-lg-left text-center mb-3 mb-lg-0">
                 <span class="copyright">Copyright &copy; 2020-2021 Powered By <a href="https://autoboost.pt/">AutoBoost.pt</a>  Todos os direitos reservados.</span>
-            </div>
-            <div class="col-12 col-lg-4 text-lg-right text-center">
-                <ul class="list-inline footer-social mb-0">
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-youtube-play pr-3"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                    <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                </ul>
             </div>
         </div>
     </div>

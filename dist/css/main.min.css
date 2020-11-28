@@ -1110,7 +1110,7 @@ header .nav-item{
   .navbar .navbar-nav .nav-link {
     padding: 1.5rem 0.7rem !important; }
   .owl-text-overlay {
-    top: 20%; }
+    top: 10%; }
   .multiple-items3 .carvs {
     top: -68px;
     left: 50%; }
@@ -1184,3 +1184,8 @@ header .nav-item{
     width: 130px; }
   .service-list .list-one, .service-list .list-two, .service-list .list-three {
     padding: 0px; } }
+@media{
+    #owl-demo {
+        height: 100%;
+    }
+}
