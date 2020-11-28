@@ -128,8 +128,9 @@ input[type='range']::-webkit-slider-thumb {
 }
 input[type='range']::-webkit-slider-runnable-track {
   width: 200px;
-  height: 1px;
+  height: 3px;
   background: #003D7C;
+    
 }
 
 input[type='range']:nth-child(2)::-webkit-slider-runnable-track{
@@ -140,7 +141,7 @@ input[type='range']::-webkit-slider-thumb {
   position: relative;
   height: 15px;
   width: 15px;
-  margin-top: -7px;
+  margin-top: -6px;
   background: #fff;
   border: 1px solid #003D7C;
   border-radius: 25px;
@@ -178,10 +179,10 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
    float: right;
    margin-right: -5px;
 }
-                                                    </style>
-                                                    <script>
+</style>
+<script>
                                                     
-                                                     (function() {
+ (function() {
 
         function addSeparator(nStr) {
             nStr += '';
@@ -221,7 +222,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
 
      $('input[type="range"]').on( 'input', rangeInputChangeEventHandler);
 })();
-                                                    </script>
+</script>
                                                     
 <!--
                                                     <script>
