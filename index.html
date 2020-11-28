@@ -22,11 +22,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <script>
+ <script>
+        $("#cookieAprove").click(function(){
+        $("#cookies").toggle();
+        localStorage.setItem("cookie", 1);
+      });
+      
+      if(localStorage.getItem("cookie")=="1"){
+         $(function(){
+          $("#includedContent").load("https://samucar.pt/cookie.html");
+      }); 
+      }
+       
       $(function(){
           $("#includedContent").load("https://samucar.pt/menu.html");
       });
+    
   </script>
+
 
 <div id="includedContent" class="main-header"></div>
 
