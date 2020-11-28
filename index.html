@@ -115,7 +115,7 @@
                                             <div class="tab-pane fade active show" id="id1" role="tabpanel" aria-expanded="true">
                                                 <form>
                                                     <div class="form-group">
-                                                        <input class="form-control ml-sm-0 rounded-1" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
+                                                        <input class="form-control ml-sm-0 rounded-1" id="querySel" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
                                                             <div class="search position-absolute">
                                                                 <a href="#"></a>
                                                             </div>
@@ -704,15 +704,18 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
     });
 
     function searchVehicle() {
+        let query = document.getElementById("querySel").value;
         let brand = document.getElementById("brandSel").value;
         let model = document.getElementById("modelSel").value;
 
-        if (brand != -1)
+        if (query != "" || brand != -1)
             document.location.href = "./search.html" +
-                (brand != -1 ? "?brand=" + brand : "") +
+                (query != "" || brand != -1 || model != -1 ? "?" : "") +
+                (query != -1 ? "&query=" + brand : "") +
+                (brand != -1 ? "&brand=" + brand : "") +
                 (model != -1 ? "&model=" + model : "");
         else
-            alert("Selecione uma Marca para pesquisar");
+            alert("Pesquise ou Selecione uma Marca para pesquisar");
     }
 
     function saveBrandsAndModels(map) {
@@ -1070,7 +1073,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
     <div class="container">
         <div class="row">
             <div class="col-12 col-lg-8 text-lg-left text-center mb-3 mb-lg-0">
-                <span class="copyright">Copyright &copy; 2020-2021 Powered By <a href="#">AutoBoost</a>  Todos os direitos reservados.</span>
+                <span class="copyright">Copyright &copy; 2020-2021 Powered By <a href="https://autoboost.pt/">AutoBoost.pt</a>  Todos os direitos reservados.</span>
             </div>
             <div class="col-12 col-lg-4 text-lg-right text-center">
                 <ul class="list-inline footer-social mb-0">
@@ -1093,81 +1096,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
 </div>
 <!-- End Top To Bottom-->
 
-<!-- Login /Register Form-->
-<div id="signup" class="popupContainer bg-white">
-    <header class="popupHeader p-3 text-uppercase">
-        <span class="header_title font-weight-bold c-dark">Login</span>
-        <span class="modal_close float-right"><i class="fa fa-times"></i></span>
-    </header>
-    <div class="card-body">
-        <!-- Social Login -->
-        <!-- Username & Password Login form -->
-        <div class="user_login">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control rounded-0" placeholder="username or email address" />
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control rounded-0" placeholder="password" />
-                </div>
-                <div class="checkbox form-group">
-                    <input id="remember" type="checkbox" />
-                    <label for="remember">Remember me on this computer</label>
-                </div>
-                <div class="action_btns form-group">
-                    <a href="#" class="btn btn-primary btn-md btn-block">Login</a>
-                </div>
-                <div class="form-group mb-0 text-center">
-                    <p>Sign in with your social network</p>
-                    <ul class="list-inline footer-social mb-2">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                    <div class="border border-top-0 c-brd-light my-3"></div>
-                    Don't have an account <a href="#" class="register_form c-primary">Sign Up</a>
-                </div>
-            </form>
-        </div>
 
-        <!-- Register Form -->
-        <div class="user_register">
-            <form>
-                <div class="form-group">
-                    <input type="text" class="form-control rounded-0" placeholder="Username" />
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-control rounded-0" placeholder="Email Address" />
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control rounded-0" placeholder="Password" />
-                </div>
-                <div class="checkbox form-group">
-                    <input id="send_updates" type="checkbox" />
-                    <label for="send_updates">Send me occasional email updates</label>
-                </div>
-                <div class="action_btns form-group">
-                    <a href="#" class="btn btn-primary btn-md btn-block">Register</a>
-                </div>
-                <div class="form-group mb-0 text-center">
-                    <p>Register with your social network</p>
-                    <ul class="list-inline footer-social mb-2">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                    <div class="border border-top-0 c-brd-light my-3"></div>
-                    Already have an account <a href="#" class="login_form c-primary">Sign In</a>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Login /Register Form-->
 
 <!-- jQuery -->
 <script src="dist/js/plugins.min.js"></script>
