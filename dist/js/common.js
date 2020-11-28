@@ -44,6 +44,12 @@
         );
     });
 
+    document.getElementById("querySel").addEventListener("keyup", event => {
+        if (event.keyCode === 13) {
+            searchVehicle();
+        }
+    });
+
     function menuAddActiveClass(menuID) {
         $(menuID).addClass("active");
         if ($(menuID).hasClass("active"))
