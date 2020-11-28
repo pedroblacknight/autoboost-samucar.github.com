@@ -67,7 +67,7 @@
 
 
 
-      let searchBrand, searchModel;
+      let searchQuery, searchBrand, searchModel;
       function fillFilter(){
           let map = getBrandsAndModels();
           let keys = [...map.keys()];
@@ -131,6 +131,9 @@
                   let parser = new DOMParser();
                   let xml = parser.parseFromString(data, "application/xml");
                   let searchParams = new URL(document.location).searchParams;
+                  searchQuery = searchParams.get("query");
+                  if (searchQuery == null)
+                      searchQuery = "";
                   searchBrand = searchParams.get("brand");
                   if (searchBrand == null)
                       searchBrand = -1;
@@ -153,12 +156,13 @@
           for (let idx = 0; idx < vehicles.length; idx++) {
               let vehicle = convertToDict(vehicles[idx]);
               let vehicleHTML = searchResultToHTML(vehicle);
-              console.log(searchModel)
-              if (searchBrand == -1)
+              if (searchQuery != "" && (vehicle.brand + " " + vehicle.model + " " + vehicle.version).indexOf(searchQuery) > 0)
                   searchResults += vehicleHTML;
-              else if (searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos"))
+              else if (searchQuery == "" && searchBrand == -1)
                   searchResults += vehicleHTML;
-              else if (searchBrand == vehicle.brand && searchModel == vehicle.model)
+              else if (searchQuery == "" && searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos"))
+                  searchResults += vehicleHTML;
+              else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model)
                   searchResults += vehicleHTML;
           }
 
@@ -211,7 +215,7 @@
           if (query != "" || brand != -1)
               document.location.href = "./search.html" +
                   (query != "" || brand != -1 || model != -1 ? "?" : "") +
-                  (query != -1 ? "&query=" + brand : "") +
+                  (query != "" ? "&query=" + query : "") +
                   (brand != -1 ? "&brand=" + brand : "") +
                   (model != -1 ? "&model=" + model : "");
           else

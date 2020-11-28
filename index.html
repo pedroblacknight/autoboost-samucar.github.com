@@ -711,7 +711,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
         if (query != "" || brand != -1)
             document.location.href = "./search.html" +
                 (query != "" || brand != -1 || model != -1 ? "?" : "") +
-                (query != -1 ? "&query=" + brand : "") +
+                (query != "" ? "&query=" + query : "") +
                 (brand != -1 ? "&brand=" + brand : "") +
                 (model != -1 ? "&model=" + model : "");
         else
