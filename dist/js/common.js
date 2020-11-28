@@ -25,14 +25,19 @@
                 switch (page) {
                     case "index.html":
                         clearIntervalVar = menuAddActiveClass("#menu-home");
+                        break;
                     case "search.html":
                         clearIntervalVar = menuAddActiveClass("#menu-vehicles");
+                        break;
                     case "compare.html":
                         clearIntervalVar = menuAddActiveClass("#menu-compare");
+                        break;
                     case "about.html":
                         clearIntervalVar = menuAddActiveClass("#menu-about");
+                        break;
                     case "contacts.html":
                         clearIntervalVar = menuAddActiveClass("#menu-contacts");
+                        break;
                 }
                 if (clearIntervalVar)
                     clearInterval(timer);
