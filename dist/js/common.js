@@ -36,9 +36,6 @@
                     case "about.html":
                         clearIntervalVar = menuAddActiveClass("#menu-about");
                         break;
-                    case "contacts.html":
-                        clearIntervalVar = menuAddActiveClass("#menu-contacts");
-                        break;
                 }
                 if (clearIntervalVar)
                     clearInterval(timer);
