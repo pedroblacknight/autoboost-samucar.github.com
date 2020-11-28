@@ -23,7 +23,7 @@
 </head>
 <body>
     <style>
-        #cookies{
+         #cookies{
              text-align: center;
              bottom:0px;
              left:0px;
@@ -48,13 +48,7 @@
         }
     </style>
    <script>
-        $("#cookieAprove").click(function(){
-            console.log('1');
-        $("#cookies").toggle();
-            console.log('11');
-        localStorage.setItem("cookie", 1);
-      });
-        
+      
      
       if(localStorage.getItem("cookie")==1){
          $(function(){
@@ -70,6 +64,15 @@
   </script>
     <div id="cookies">Este website utiliza cookies para oferecer a melhor experiência para o utilizador. <a id="cookieAprove" class="aCookies">Fechar</a>    </div>
 <div id="includedContent" class="main-header"></div>
+<script>
+      $("#cookieAprove").click(function(){
+    
+        $("#cookies").toggle();
+         
+        localStorage.setItem("cookie", 1);
+      });
+        
+    </script>
 
 
 <!-- Slider-->
@@ -1027,7 +1030,7 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
 <!-- End Comparison-->
 
 <!-- Footer Top -->
-<section class="footer ">
+<section class="footer " id="contacts">
     <div class="container">
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 col-lg-6 pb-3">
