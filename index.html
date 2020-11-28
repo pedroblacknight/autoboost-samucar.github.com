@@ -72,7 +72,7 @@
                                                                 <a href="#"></a>
                                                             </div>
                                                     </div>
-                                                    <hr class="hr-filter">
+                                                    
                                                     <div class="form-group">
                                                         <select class="form-control ml-sm-0 rounded-1" id="brandSel" style="border-radius: .25rem;" onchange="changeModels()">
 
@@ -492,11 +492,15 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             
             
             
-            carID.innerHTML=brand +" "+ model + " " + version;
+            let carName = brand +" "+ model + " " + version;
+            if(carName.length > 27){
+                carName = carName.substr(0,27) + "..."
+            } 
+            carID.innerHTML=carName;
             priceID.innerHTML=price;
-            kmID.innerHTML=km;
-            fuelID.innerHTML=fuel;
-            HPIP.innerHTML=cv;
+            kmID.innerHTML=" " + km;
+            fuelID.innerHTML=" " + fuel;
+            HPIP.innerHTML=" " + cv;
             imgID.src=img;
             
         }
@@ -523,12 +527,15 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
             img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
             
             
-            
-            carID.innerHTML=brand +" "+ model + " " + version;
+            let carName = brand +" "+ model + " " + version;
+            if(carName.length > 25){
+                carName = carName.substr(0,25) + "..."
+            } 
+            carID.innerHTML=carName;
             priceID.innerHTML=price;
-            kmID.innerHTML=km;
-            fuelID.innerHTML=fuel;
-            HPIP.innerHTML=cv;
+            kmID.innerHTML=" " + km;
+            fuelID.innerHTML=" " + fuel;
+            HPIP.innerHTML=" " + cv;
             imgID.src=img;
             
         }
@@ -693,9 +700,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price0"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km0"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel0"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp0"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km0"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel0"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp0"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -707,9 +714,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price1"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km1"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel1"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp1"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km1"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel1"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp1"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -721,9 +728,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price2"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km2"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel2"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp2"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km2"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel2"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp2"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -736,9 +743,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price3"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km3"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel3"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp3"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km3"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel3"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp3"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -762,9 +769,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price4"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km4"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel4"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp4"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km4"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel4"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp4"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -776,9 +783,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price5"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km5"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel5"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp5"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km5"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel5"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp5"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -790,9 +797,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price6"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km6"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel6"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp6"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km6"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel6"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp6"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -804,9 +811,9 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                                 <small><h6 class="c-primary d-inline-block mb-0" id = "price7"></h6> Negociável</small>
                             </div>
                             <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "km7"></a></li>
-                                <li class="list-inline-item"><a class="c-light" id = "fuel7"></a></li>
-                                <li class="list-inline-item mr-3"><a class="c-light" id = "hp7"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km7"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel7"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp7"></a></li>
                             </ul>
                         </div>
                     </div>
@@ -844,7 +851,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                 <div class="row">
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=BMW">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/bmw.png" alt="BMW" title="BMW" class="img-fluid" />
                                 </div>
@@ -853,7 +861,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
                         <a href="./search.html?brand=Audi">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/audi.png" alt="Audi" title="Audi" class="img-fluid" />
                                 </div>
@@ -862,7 +871,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Mercedes-Benz">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/mercedes.png" alt="Mercedes" title="Mercedes" class="img-fluid" />
                                 </div>
@@ -871,7 +881,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=VW">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/VW.png" alt="Volkswagen" title="Volkswagen" class="img-fluid" />
                                 </div>
@@ -880,7 +891,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Peugeot">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/peugeot.png" alt="Peugeot" title="Peugeot" class="img-fluid" />
                                 </div>
@@ -889,7 +901,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
                         <a href="./search.html?brand=SEAT">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/seat.png" alt="Seat" title="Seat" class="img-fluid" />
                                 </div>
@@ -898,7 +911,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=Opel">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/opel.png" alt="Opel" title="Opel" class="img-fluid" />
                                 </div>
@@ -907,7 +921,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
                         <a href="./search.html?brand=Renault">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/renault.png" alt="Renault" title="Renault" class="img-fluid" />
                                 </div>
@@ -916,7 +931,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-xl-0">
                         <a href="./search.html?brand=Citroën">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/citroen.png" alt="Citroen" title="Citroen" class="img-fluid" />
                                 </div>
@@ -925,7 +941,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4 mb-sm-0">
                         <a href="./search.html?brand=Ford">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/ford.png" alt="Ford" title="Ford" class="img-fluid" />
                                 </div>
@@ -934,7 +951,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2 mb-4">
                         <a href="./search.html?brand=MINI">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/mini.png" alt="Mini" title="Mini" class="img-fluid" />
                                 </div>
@@ -943,7 +961,8 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
                     </div>
                     <div class="col-12 col-sm-6 col-md-4 col-xl-2">
                         <a href="./search.html?brand=Fiat">
-                            <div class="card c-brd-light rounded-1 text-center">
+                            <div class="card c-brd-light rounded-1 text-center" style="margin-left: -15px;
+    margin-right: 5px;">
                                 <div class="card-body py-0">
                                     <img src="dist/images/brands/fiat.png" alt="Fiat" title="Fiat" class="img-fluid" />
                                 </div>
