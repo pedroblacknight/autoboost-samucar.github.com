@@ -27,13 +27,13 @@
              text-align: center;
              bottom:0px;
              left:0px;
-             height:20px;
+             height:25px;
              position:fixed;
              padding:4px 8px 4px 8px;
              width:100%;
              background:black!important;
              color:white;
-       z-index:10000;
+                z-index:10000;
              
         }
         .aCookies{
@@ -48,15 +48,12 @@
         }
     </style>
    <script>
-        $("#cookieAprove").click(function(){
-        $("#cookies").toggle();
-        localStorage.setItem("cookie", 1);
-      });
-        
+      
      
-      if(localStorage.getItem("cookie")!=1){
+      if(localStorage.getItem("cookie")==1){
          $(function(){
-         
+             console.log('12');
+         $("#cookies").toggle();
       }); 
       }
        
@@ -67,6 +64,15 @@
   </script>
     <div id="cookies">Este website utiliza cookies para oferecer a melhor experiência para o utilizador. <a id="cookieAprove" class="aCookies">Fechar</a>    </div>
 <div id="includedContent" class="main-header"></div>
+<script>
+      $("#cookieAprove").click(function(){
+    
+        $("#cookies").toggle();
+         
+        localStorage.setItem("cookie", 1);
+      });
+        
+    </script>
 
 
 <!-- Slider-->
