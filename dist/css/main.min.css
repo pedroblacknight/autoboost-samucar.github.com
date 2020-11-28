@@ -127,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /*======================== Font Color Css ===============================*/
 .c-primary {
-  color: #3491ce; }
+  color: rgb(22, 82, 240); }
 
 .c-light {
   color: #757575; }
@@ -353,8 +353,8 @@ textarea.form-control {
     width: 22px;
     margin-top: 5px;
     height: 2px;
-    display: block;
-    background-color: #ee5624;
+    display: flex;
+    background-color: #1652F0;
     background-image: none; }
 
 .main-header .navbar .form-control {
@@ -549,9 +549,9 @@ header .nav-item{
 
 .multiple-items .slick-prev:hover, .multiple-items .slick-next:hover, .multiple-items2 .slick-prev:hover, .multiple-items2 .slick-next:hover {
   outline: none;
-  background: #ee5624;
-  color: #fff;
-  border-color: #ee5624; }
+  background: #1652F0;
+  color: #ffff;
+  border-color: #1652F0; }
 .car-compare{position:relative;}
 /*==== Brand Demo Css ====*/
 #owl-client .card:hover img {
@@ -1029,8 +1029,8 @@ header .nav-item{
   color: #757575; }
 
 .img-logo {
-    width: 30% !important;
-    height: 30% !important;
+    width: 60% !important;
+    height: 60% !important;
 }
 
 /*============================= Login / Register ===================== */
