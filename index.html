@@ -28,7 +28,7 @@
         localStorage.setItem("cookie", 1);
       });
       
-      if(localStorage.getItem("cookie")=="1"){
+      if(localStorage.getItem("cookie")!="1"){
          $(function(){
           $("#includedContent").load("https://samucar.pt/cookie.html");
       }); 
