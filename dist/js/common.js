@@ -23,6 +23,7 @@
             () => {
                 let clearIntervalVar = false;
                 switch (page) {
+                    case "":
                     case "index.html":
                         clearIntervalVar = menuAddActiveClass("#menu-home");
                         break;
