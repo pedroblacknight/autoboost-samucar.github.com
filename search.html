@@ -248,6 +248,12 @@
       function getXML() {
           return new DOMParser().parseFromString(localStorage.getItem("xml"), "application/xml");
       }
+
+      document.getElementById("querySel").addEventListener("keyup", event => {
+          if (event.keyCode === 13) {
+              searchVehicle();
+          }
+      });
   </script>
 
 <div id="includedContent" class="main-header"></div>
