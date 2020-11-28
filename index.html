@@ -116,7 +116,7 @@
                                             <div class="tab-pane fade active show" id="id1" role="tabpanel" aria-expanded="true">
                                                 <form>
                                                     <div class="form-group">
-                                                        <input class="form-control ml-sm-0 rounded-1" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
+                                                        <input class="form-control ml-sm-0 rounded-1" id="querySel" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
                                                             <div class="search position-absolute">
                                                                 <a href="#"></a>
                                                             </div>
@@ -705,15 +705,18 @@ input[type='range']:nth-child(1)::-webkit-slider-thumb{
     });
 
     function searchVehicle() {
+        let query = document.getElementById("querySel").value;
         let brand = document.getElementById("brandSel").value;
         let model = document.getElementById("modelSel").value;
 
-        if (brand != -1)
+        if (query != "" || brand != -1)
             document.location.href = "./search.html" +
-                (brand != -1 ? "?brand=" + brand : "") +
+                (query != "" || brand != -1 || model != -1 ? "?" : "") +
+                (query != "" ? "&query=" + query : "") +
+                (brand != -1 ? "&brand=" + brand : "") +
                 (model != -1 ? "&model=" + model : "");
         else
-            alert("Selecione uma Marca para pesquisar");
+            alert("Pesquise ou Selecione uma Marca para pesquisar");
     }
 
     function saveBrandsAndModels(map) {

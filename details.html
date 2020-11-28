@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <meta https-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Car Spot</title>
+        <title>Samucar - Stand Automóvel</title>
 
         <!-- Favicon -->
         <link rel="icon" type="image/png" href="./img/r.png">
@@ -48,8 +48,10 @@
                 
                 var brand, model, price, km, fuel, cv, img, version;
                 for (let i = 0; i<100; i++) {
-                    
-                      let vehicle = vList[i];
+                        if(i<4){
+                            infoMore(i);
+                        }
+                         let vehicle = vList[i];
                        
                     if(parseInt(vehicle.getElementsByTagName('ID')[0].firstChild.nodeValue) == data["id"] ){
                         brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
@@ -57,10 +59,10 @@
                         year = vehicle.getElementsByTagName('Year')[0].firstChild.nodeValue;
                        version = vehicle.getElementsByTagName('Version')[0].textContent;
                         priceAmount = vehicle.getElementsByTagName('Price')[0].textContent;
-                       price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt');
-                       /* km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
+                        price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt');
+                        km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
                         fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
-                        cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";*/
+                        cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
                         img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
                         img2 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[1].firstChild.nodeValue;
                         img3 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[2].firstChild.nodeValue;
@@ -77,13 +79,37 @@
                         document.getElementById("h4").innerHTML=brand +" "+ model + " " + version;
                         document.getElementById("priceEuro").innerHTML=price  + " €";
                         document.getElementById("tdYear").innerHTML=year;
+                        document.getElementById("tdGas").innerHTML=fuel;
                         document.getElementById("vecPrice").value=   priceAmount;
                         
                         
-                        i=100;
+                        if(i>=4){
+                            i=100;
+                        } 
                     }
                    
-                       
+                       function infoMore(i){
+                           var indice = i+4;
+                            let vehicle = vList[i];
+                            brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
+                            model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
+                            year = vehicle.getElementsByTagName('Year')[0].firstChild.nodeValue;
+                            version = vehicle.getElementsByTagName('Version')[0].textContent;
+                            img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
+                            price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt');
+                            km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
+                            fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
+                            cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
+                           
+                            document.getElementById("car"+indice).innerHTML=brand +" "+ model + " " + version;
+                            document.getElementById("price"+indice).innerHTML=price;
+                            document.getElementById("km"+indice).innerHTML=km;
+                            document.getElementById("fuel"+indice).innerHTML=fuel;
+                            document.getElementById("hp"+indice).innerHTML=cv;
+                            document.getElementById("imgsrc"+indice).src=img;
+                           
+                           
+                       }
                         /*
                 
                     let kmID = document.getElementById("km"+i);
@@ -161,7 +187,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-7 mb-4 mb-lg-0">
                         <div class="car-listing">
-                            <div class="flexslider c-bg-dark mb-4">
+                            <div class="flexslider1 c-bg-dark mb-4">
                                 
                             <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 100%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
                                     <li class="position-relative flex-active-slide" data-thumb="https://samucar.pt/dist/images/img1.jpg" data-thumb-alt="" style="margin-right: 0px; float: left; display: block; width: 100%;">
@@ -172,7 +198,17 @@
                                     </li>
                                     
                                     
-                                </ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li><li><img id="imgS2" src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li><li><img id="imgS3" src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li><li><img id="imgS4" src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li><li><img id="imgS5" src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#"><i class="fas fa-chevron-right"></i></a></li></ul></div>
+                                </ul>
+                                </div>
+                              
+                                <div>
+                                <ol class="flex-control-nav flex-control-thumbs">
+                                    <li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li>
+                                    <li><img id="imgS2" src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li>
+                                    <li><img id="imgS3" src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li>
+                                    <li><img id="imgS4" src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li>
+                                    <li><img id="imgS5" src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol> </div>
+                               </div>
                             <div class="c-bg-dark rounded-top">
                                 <ul class="nav nav-tabs border-0 flex-column flex-sm-row text-white" id="myTab" role="tablist">
                                     <li class="nav-item mb-0">
@@ -185,7 +221,7 @@
                                 <div class="tab-pane fade active show" id="overview" role="tabpanel" aria-expanded="true">
                                     <div class="border c-brd-light border-top-0">
                                         <div class="card-body pt-5">
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                                            <p>Possível credito. Possível retoma. Mais de 200 viaturas em stock. Anúncio inserido por rotina informática todos os dados a serem confirmados com a entidade vendedora.</p>
                                            
                                         </div>
                                     </div>
@@ -198,44 +234,24 @@
                                             <table class="table table-striped mb-0">
                                                 <tbody>
                                                     <tr>
-                                                        <td>Engine Type</td>
-                                                        <td>U2 CRDI Diesel Engine</td>
+                                                        <td>Faróis</td>
+                                                        <td>Farois de nevoeiro, Faróis direcionais, Faróis Diurnos, Faróis Xenon, Faróis Bi-Xenon, Faróis com Sensor Luminosidade, Faróis Dianteiros LED, Faróis Full LED</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Displacement</td>
-                                                        <td>1120</td>
+                                                        <td>Sensores</td>
+                                                        <td>Sensores de Chuva, Sensores de Estacionamento, Câmara de Marcha atrás</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Max Power</td>
-                                                        <td>71bhp @ 4000rpm</td>
+                                                        <td>Bancos</td>
+                                                        <td>Estofos de Pele Apoio de Braço, Bancos dianteiros aquecidos, Bancos Dianteiros c/ Regulação Electrica, Bancos Desportivos</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Max Torque</td>
-                                                        <td>180.4Nm @ 1750-2500rpm</td>
+                                                        <td>Volante</td>
+                                                        <td>Volante em Madeira, Volante em Pele, Volante com Comandos Rádio, Volante Multifunções, Volante Regulável em Altura, Volante Regulável em profundidade Alarme</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>No Of Cylinder</td>
-                                                        <td>3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Valves Per Cylinder</td>
-                                                        <td>4</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Valve Configuration</td>
-                                                        <td>DOHC</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Fuel Supply System</td>
-                                                        <td>CRDI</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Turbo Charger</td>
-                                                        <td>Yes</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Super Charger</td>
-                                                        <td>No</td>
+                                                        <td>Outros</td>
+                                                        <td>Fecho Central c/ Comando Entrada USB, Computador de Bordo, Cruise Control, Kit Mãos Livres, Porta Bagagens automática, Ecrã Tejadilho, Encosto de Cabeça com ecrã, Ecrã consola central, Bluetooth, Sistema de navegação / GPS, Rádio com Cassete, Rádio com CD / MP3 AC Automático</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -304,29 +320,31 @@
                                     </tr>
                                     <tr>
                                         <td class="c-dark c-font-weight-600 b-r"><i class="fas fa-gas-pump"></i> Combustivel:</td>
-                                        <td>Diesel</td>
+                                        <td id="tdGas">Diesel</td>
                                     </tr>
                                     <tr>
                                         <td class="c-dark c-font-weight-600 b-r"><i class="flaticon-transport-2 pr-1"></i> Transmissão:</td>
                                         <td>Automatic</td>
                                     </tr>
-                                    <tr>
-                                        <td class="c-dark c-font-weight-600 b-r"><i class="flaticon-ammunition pr-1"></i> Cor:</td>
-                                        <td>White</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="c-dark c-font-weight-600 b-r"><i class="flaticon-clock pr-1"></i> Kilometragem:</td>
+                                     <tr>
+                                        <td class="c-dark c-font-weight-600 b-r"><i class="fa fa-tachometer-alt" aria-hidden="true"></i> Kilometragem:</td>
                                         <td>50,000 km</td>
                                     </tr>
-                                    <tr>
-                                        <td class="c-dark c-font-weight-600 b-r"><i class="flaticon-engine pr-1"></i> Motor:</td>
+                                     <tr>
+                                        <td class="c-dark c-font-weight-600 b-r"><i class="fa fa-car" aria-hidden="true"></i> Cilindrada:</td>
                                         <td>3500 cc</td>
                                     </tr>
+                                    <tr>
+                                        <td class="c-dark c-font-weight-600 b-r"><i class="flaticon-ammunition pr-1"></i> Garantia:</td>
+                                        <td>12 Meses</td>
+                                    </tr>
+                                   
+                                   
                                 </tbody>
                             </table>
                             <div style="padding:25px;">
                                 <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:50px;margin-top:8px;font-weight:bold;cursor:pointer;">Comparar</button>
-                            <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:50px;margin-top:12px;font-weight:bold;cursor:pointer;">Comprar</button>
+                            <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:50px;margin-top:12px;font-weight:bold;cursor:pointer;"> Contactar para Comprar</button>
                             </div>
                           
                             
@@ -371,7 +389,9 @@
                                 
                                 <label class="c-dark mb-3">Periodo do Empréstimo (Meses) </label>
                                 <div class="form-group">
-                                    <div class="slider slider-horizontal" id=""><div class="slider-track"><div class="slider-track-left" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 71.4286%;"></div><div class="slider-track-right" style="right: 0px; width: 28.5714%;"></div><div class="slider-handle min-slider-handle round" tabindex="0" style="left: 71.4286%;"></div><div class="slider-handle max-slider-handle round hide" tabindex="0" style="left: 0%;"></div></div><div class="tooltip tooltip-main top" style="left: 71.4286%; margin-left: -15.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">36</div></div><div class="tooltip tooltip-min top"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div><div class="tooltip tooltip-max bottom" style="top: 18px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div></div><input data-ui-slider="" type="text" id="slytherAlex" value="36"  data-slider-orientation="horizontal" class="slider slider-horizontal" style="display: none;">
+                                    <div class="slider slider-horizontal" id="">
+                                        <div class="slider-track"><div class="slider-track-left" style="left: 0px; width: 0%;"></div><div class="slider-selection" style="left: 0%; width: 71.4286%;"></div><div class="slider-track-right" style="right: 0px; width: 28.5714%;"></div><div class="slider-handle min-slider-handle round" tabindex="0" style="left: 71.4286%;"></div><div class="slider-handle max-slider-handle round hide" tabindex="0" style="left: 0%;"></div></div>
+                                        <div class="tooltip tooltip-main top" style="left: 71.4286%; margin-left: -15.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">36</div></div><div class="tooltip tooltip-min top"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div><div class="tooltip tooltip-max bottom" style="top: 18px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div></div><input data-ui-slider="" type="text" id="slytherAlex" value="36"  data-slider-orientation="horizontal" class="slider slider-horizontal" style="display: none;">
                                 </div>
                                 <div class="form-group">
                                     <a onclick="calcLoan()" class="btn btn-primary btn-lg text-uppercase"> Calcular</a>
@@ -410,249 +430,83 @@
             
         </script>
         <!-- Car Featured-->
-        <section class="bg-light">
+        <section class="bg-light  top-results">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-7">
-                        <h3>Carros Semelhantes</h3>
-                        <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.</p>
+                        <h3>Os Carros Mais Procurados</h3>
+                        <p>Siga os conselhos do Alex! E analise os melhores carros do Samucar!</p>
                     </div>
                 </div>
-                <div class="slider multiple-items2 slick-initialized slick-slider"><button class="slick-prev slick-arrow" aria-label="Previous" type="button" style="display: block;">Previous</button>
+            
+         
+        
+                <div class="slider multiple-items">
+                    <div>
+                        <a href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" /></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car4"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price4"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km4"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel4"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp4"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top" id=""/></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car5"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price5"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km5"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel5"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp5"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div>
+                        <a href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" /></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car6"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price6"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km6"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel6"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp6"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                     <div>
+                        <a href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" /></a>
+                        <div class="card c-brd-light car-box">
+                            <div class="card-body">
+                                <h6 class="mb-2"><a href="listing-details.html" id = "car7"></a></h6>
+                                <small><h6 class="c-primary d-inline-block mb-0" id = "price7"></h6> Negociável</small>
+                            </div>
+                            <ul class="list-inline mb-0 text-center down-content py-2 c-brd-light border border-left-0 border-bottom-0 border-right-0">
+                                <li class="list-inline-item mr-3"><i class="fa fa-tachometer-alt" aria-hidden="true"></i><a class="c-light" id = "km7"></a></li>
+                                <li class="list-inline-item"><i class="fa fa-tint" aria-hidden="true"></i><a class="c-light" id = "fuel7"></a></li>
+                                <li class="list-inline-item mr-3"><i class="fa fa-car" aria-hidden="true"></i><a class="c-light" id = "hp7"></a></li>
+                            </ul>
+                        </div>
+                    </div>
                     
-                    
-                    
-                    
-                    
-                    
-                <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 8970px; transform: translate3d(-690px, 0px, 0px);"><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="-1" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img7.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Land Rover Discovery XXV</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Preço</small> $41,300 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-current slick-active" tabindex="0" style="width: 660px;" data-slick-index="0" aria-hidden="false">
-                        <a href="#" tabindex="0"><img src="https://samucar.pt/dist/images/img5.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="0">Aston Martin DB5</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $28,600 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="0"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="0"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="0"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="0"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide" tabindex="-1" style="width: 660px;" data-slick-index="1" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img6.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Chevrolet camaro SS</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $35,800 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide" tabindex="-1" style="width: 660px;" data-slick-index="2" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img7.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Land Rover Discovery XXV</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $41,300 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide" tabindex="-1" style="width: 660px;" data-slick-index="3" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img5.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Aston Martin DB5</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $28,600 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide" tabindex="-1" style="width: 660px;" data-slick-index="4" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img6.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Chevrolet camaro SS</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $35,800 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide" tabindex="-1" style="width: 660px;" data-slick-index="5" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img7.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Land Rover Discovery XXV</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $41,300 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="6" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img5.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Aston Martin DB5</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $28,600 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="7" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img6.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Chevrolet camaro SS</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $35,800 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="8" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img7.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Land Rover Discovery XXV</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $41,300 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="9" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img5.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Aston Martin DB5</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $28,600 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="10" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img6.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Chevrolet camaro SS</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $35,800 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div><div class="slick-slide slick-cloned" tabindex="-1" style="width: 660px;" data-slick-index="11" aria-hidden="true">
-                        <a href="#" tabindex="-1"><img src="https://samucar.pt/dist/images/img7.jpg" alt="" class="img-fluid rounded-top"></a>
-                        <div class="card c-brd-light car-box">
-                            <div class="card-body">
-                                <h6 class="mb-2"><a href="#" tabindex="-1">Land Rover Discovery XXV</a></h6>
-                                <ul class="list-unstyled mb-0 c-line-height-2_5">
-                                    <li><h6 class="c-primary mb-0"><small class="c-light">Price</small> $41,300 </h6></li>
-                                    <li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>
-                                </ul>
-                            </div>
-                            <ul class="list-inline mb-0 p-3 c-brd-light border border-left-0 border-bottom-0 border-right-0">
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-calendar pr-1"></i> 2015 </a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-clock pr-1"></i> 35,000</a></li>
-                                <li class="list-inline-item mr-3"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-fuel pr-1"></i>  Petrol </a></li>
-                                <li class="list-inline-item"><a href="#" class="c-light" tabindex="-1"><i class="flaticon-transport-2 pr-1"></i>  Auto </a></li>
-                            </ul>
-                        </div>
-                    </div></div></div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="display: block;"><i class="fas fa-chevron-right"></i></button></div>
-            </div>
+                </div>
+            
+            
+        </div>
         </section>
         <!-- End Car Featured-->
 
-       
-
+      
         <!-- Footer Top 
         <section class="footer c-bg-dark">
             <div class="container">
@@ -730,7 +584,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 text-lg-left text-center mb-3 mb-lg-0">
-                        <span class="copyright">Copyright © 2017-2018 Powered By <a href="#">psd2allconversion.</a>  All Rights Reserved.</span>
+                        <span class="copyright">Copyright © 2017-2018 Powered By <a href="#">AutoBoost.</a>  All Rights Reserved.</span>
                     </div>
                     <div class="col-12 col-lg-4 text-lg-right text-center">
                         <ul class="list-inline footer-social mb-0">
@@ -747,86 +601,7 @@
         </section>
         <!-- End Footer Bottom -->
 
-        <!-- Top To Bottom-->
-        <div class="scrollup" style="display: none;">
-            <img src="https://samucar.pt/dist/images/up-arrow.svg" class="img-fluid">
-        </div>
-        <!-- End Top To Bottom-->
-
-        <!-- Login /Register Form--> <div id="signup" class="popupContainer bg-white">
-            <header class="popupHeader p-3 text-uppercase">
-                <span class="header_title font-weight-bold c-dark">Login</span>
-                <span class="modal_close float-right"><i class="fa fa-times"></i></span>
-            </header>
-            <div class="card-body">
-                <!-- Social Login -->
-                <!-- Username & Password Login form -->
-                <div class="user_login">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control rounded-0" placeholder="username or email address">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control rounded-0" placeholder="password">
-                        </div>
-                        <div class="checkbox form-group">
-                            <input id="remember" type="checkbox">
-                            <label for="remember">Remember me on this computer</label>
-                        </div>
-                        <div class="action_btns form-group">
-                            <a href="#" class="btn btn-primary btn-md btn-block">Login</a>
-                        </div>
-                        <div class="form-group mb-0 text-center">
-                            <p>Sign in with your social network</p>
-                            <ul class="list-inline footer-social mb-2">
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                            <div class="border border-top-0 c-brd-light my-3"></div>
-                            Don't have an account <a href="#" class="register_form c-primary">Sign Up</a>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Register Form -->
-                <div class="user_register">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control rounded-0" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control rounded-0" placeholder="Email Address">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control rounded-0" placeholder="Password">
-                        </div>
-                        <div class="checkbox form-group">
-                            <input id="send_updates" type="checkbox">
-                            <label for="send_updates">Send me occasional email updates</label>
-                        </div>
-                        <div class="action_btns form-group">
-                            <a href="#" class="btn btn-primary btn-md btn-block">Register</a>
-                        </div>
-                        <div class="form-group mb-0 text-center">
-                            <p>Register with your social network</p>
-                            <ul class="list-inline footer-social mb-2">
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                                <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                            <div class="border border-top-0 c-brd-light my-3"></div>
-                            Already have an account <a href="#" class="login_form c-primary">Sign In</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- End Login /Register Form-->
+       
 
         <!-- jQuery -->
         <script src="https://samucar.pt/dist/js/plugins.min.js"></script>
