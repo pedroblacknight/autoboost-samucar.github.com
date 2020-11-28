@@ -109,9 +109,9 @@
                            
                             document.getElementById("car"+indice).innerHTML=brand +" "+ model + " " + version;
                             document.getElementById("price"+indice).innerHTML=price;
-                            document.getElementById("km"+indice).innerHTML=km;
-                            document.getElementById("fuel"+indice).innerHTML=fuel;
-                            document.getElementById("hp"+indice).innerHTML=cv;
+                            document.getElementById("km"+indice).innerHTML=" " + km;
+                            document.getElementById("fuel"+indice).innerHTML=" " + fuel;
+                            document.getElementById("hp"+indice).innerHTML=" " + cv;
                             document.getElementById("imgsrc"+indice).src=img;
                            
                            
@@ -211,26 +211,32 @@
                                     <li><img id="imgS4" src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li>
                                     <li><img id="imgS5" src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol> </div>
                                </div>
-                            <div class="c-bg-dark rounded-top">
-                                <ul class="nav nav-tabs border-0 flex-column flex-sm-row text-white" id="myTab" role="tablist">
-                                    <li class="nav-item mb-0">
-                                        <a class="nav-link redial-light border-0 py-3 active" data-toggle="tab" href="#overview" role="tab" aria-expanded="false">Descrição</a>
-                                    </li>
-                                  
-                                </ul>
-                            </div>
-                            <div class="tab-content" id="myTabContent2">
+                            
+                            <div class="tab-content" id="myTabContent1">
                                 <div class="tab-pane fade active show" id="overview" role="tabpanel" aria-expanded="true">
+                                  
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="card-body pt-5">
+                                        <div class="list-header p-0" >
+                                        </div>
+                                        <div class="list-header p-3">
+                                            <h6 > Descrição</h6>
+                                        </div>
+                                        
+                                        <div id="engine1" class="collapse show widget-content">
+                                            <div class="card-body pt-4">
                                             <p>Possível credito. Possível retoma. Mais de 200 viaturas em stock. Anúncio inserido por rotina informática todos os dados a serem confirmados com a entidade vendedora.</p>
                                            
                                         </div>
+                                        </div>
+                                        <div class="list-header p-3" style="margin-top: -45px">
+                                        </div>
+
+                                      
                                     </div>
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="pt-4"></div>
+                                        
                                         <div class="list-header p-3">
-                                            <a href="#" class="d-block text-btn c-montserrat c-dark c-font-weight-500" data-toggle="collapse" data-target="#engine"><i class="flaticon-engine pr-1"></i> Especificações</a>
+                                            <h6> Especificações</h6>
                                         </div>
                                         <div id="engine" class="collapse show widget-content">
                                             <table class="table table-striped mb-0">
@@ -267,38 +273,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="features" role="tabpanel" aria-expanded="false">
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="card-body pt-4">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6">
-                                                    <ul class="list-unstyled c-line-height-3 mb-0">
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Automatic Climate Control</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Floor Mats</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> ParkAssist</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Adaptive Cruise Control</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Rear Camera</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Seat Ventilation</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Tire Pressure Monitoring</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Brake Assist</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> 4-Wheel Disc Brakes</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Heated Rear Seats</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <ul class="list-unstyled c-line-height-3 mb-0">
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Aluminum Wheels</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Seat beal</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Child seat</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> GPS</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Power steering</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Low fuel warning light</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Vanity mirror</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Cup holders front</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Digital clock</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Navigation system</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -349,8 +324,8 @@
                                 </tbody>
                             </table>
                             <div style="padding:25px;">
-                                <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:50px;margin-top:8px;font-weight:bold;cursor:pointer;">Comparar</button>
-                            <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:50px;margin-top:12px;font-weight:bold;cursor:pointer;"> Contactar para Comprar</button>
+                                <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Comparar</button>
+                            <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:40px;margin-top:12px;font-weight:bold;cursor:pointer;"> Contactar para Comprar</button>
                             </div>
                           
                             
@@ -358,29 +333,29 @@
                         <div class="card c-brd-light mb-4">
                             <div class="c-bg-light">
                                 <div class="card-body p-3">
-                                    <h6 class="mb-0">Contactar Vendedor para Retoma</h6>
+                                    <h5 class="mb-0">Avaliar uma retoma</h5>
                                 </div>
                             </div>
                             <div class="card-body py-4 bg-white">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" placeholder="Nome">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone">
+                                    <input type="text" class="form-control" placeholder="Telefone">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" placeholder="Message"></textarea>
                                 </div>
-                                <a href="#" class="btn btn-primary btn-lg text-uppercase"> Enviar Mensagem</a>
+                                <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Enviar</button>
                             </div>
                         </div>
                         <div class="card c-brd-light mb-4 right-sidebar-widget">
                             <div class="c-bg-light">
                                 <div class="card-body p-3">
-                                    <h6 class="mb-0">Simulador de Crédito</h6>
+                                    <h5 class="mb-0">Simulador de Crédito</h5>
                                 </div>
                             </div>
                             <div class="card-body py-4 bg-white">
@@ -400,7 +375,8 @@
                                         <div class="tooltip tooltip-main top" style="left: 71.4286%; margin-left: -15.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">36</div></div><div class="tooltip tooltip-min top"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div><div class="tooltip tooltip-max bottom" style="top: 18px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div></div><input data-ui-slider="" type="text" id="slytherAlex" value="36"  data-slider-orientation="horizontal" class="slider slider-horizontal" style="display: none;">
                                 </div>
                                 <div class="form-group">
-                                    <a onclick="calcLoan()" class="btn btn-primary btn-lg text-uppercase"> Calcular</a>
+                                    
+                                    <button onclick="calcLoan()" style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Calcular</button>
                                 </div>
                                 <dl class="row mb-0">
                                     <dt class="col-sm-8 font-weight-normal">Montante do Empréstimo:</dt>
@@ -438,9 +414,9 @@
         <!-- Car Featured-->
         <section class="bg-light top-results">
             <div class="container">
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px">
                     <div class="col-12 col-sm-7">
-                        <h3>Os Carros Mais Procurados</h3>
+                        <h3>Ainda não escolheu? Veja outros modelos</h3>
                     </div>
                 </div>
             

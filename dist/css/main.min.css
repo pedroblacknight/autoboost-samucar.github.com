@@ -525,8 +525,8 @@ header .nav-item{
 }
 
 .nav-tabs .nav-link.active {
-  border-color: #ee5624;
-  background-color: #ee5624;
+  border-color: rgb(22, 82, 240) !important;
+  background-color: rgb(22, 82, 240) !important;
   color: #fff; }
   .nav-tabs .nav-link.active:after {
     content: "";
@@ -535,7 +535,7 @@ header .nav-item{
     right: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid #ee5624;
+    border-top: 8px solid rgb(22, 82, 240);
     width: 5px;
     margin: 0 auto;
     bottom: -8px; }
@@ -753,11 +753,9 @@ header .nav-item{
 .text-btn {
   font-size: 1rem; }
   .text-btn.collapsed:after {
-    content: "\f107";
     font-family: 'FontAwesome'; }
   .text-btn:after {
     font-family: 'FontAwesome';
-    content: "\f106";
     float: right;
     color: #757575; }
 
@@ -902,8 +900,8 @@ header .nav-item{
   border: solid 1px #dadada;
   background-color: #f6f6f6; }
   .listing-filter .nav-pills .nav-link.active, .listing-filter .nav-pills .nav-link:hover {
-    background-color: #ee5624;
-    border-color: #ee5624;
+    background-color: rgb(22, 82, 240);
+    border-color: rgb(22, 82, 240);
     color: #fff; }
 
 .selector .filter {
@@ -930,7 +928,7 @@ header .nav-item{
   border-top-right-radius: 0px !important; }
 
 .car-listing .list-header {
-  border-bottom: solid 2px #ee5624; }
+  border-bottom: solid 2px rgb(22, 82, 240) !important; }
   .car-listing .list-header .text-btn:after {
     color: #000000; }
 
