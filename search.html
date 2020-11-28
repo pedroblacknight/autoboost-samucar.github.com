@@ -130,6 +130,7 @@
           res.brand = vehicle.getElementsByTagName("Brand")[0].textContent;
           res.model = vehicle.getElementsByTagName("Model")[0].textContent;
           res.version = vehicle.getElementsByTagName("Version")[0].textContent;
+          res.id = vehicle.getElementsByTagName("ID")[0].textContent;
           res.photos = [];
           let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
           for (let idx = 0; idx < photosList.length; idx++)
@@ -140,7 +141,7 @@
       function searchResultToHTML(vehicle) {
           return "<article class=\"card clearfix\">\n" +
               "        <div class=\"card__img\">\n" +
-              "        <img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\">\n" +
+              "        <a href=\"./details.html?id=" + vehicle.id + "\" target=\"_blank\"><img class=\"img-responsive\" src=\"" + vehicle.photos[0] + "\" alt=\"foto\" width=\"235\" height=\"196\"></a>\n" +
               "        </div>\n" +
               "        <div class=\"card__inner\">\n" +
               "        <h2 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h2>\n" +
