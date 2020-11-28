@@ -52,21 +52,27 @@
                       let vehicle = vList[i];
                        
                     if(parseInt(vehicle.getElementsByTagName('ID')[0].firstChild.nodeValue) == data["id"] ){
-                      /*  brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
+                        brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
                         model = vehicle.getElementsByTagName('Model')[0].firstChild.nodeValue;
-                        version = vehicle.getElementsByTagName('Version')[0].textContent;
-                        price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
-                        km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
+                       version = vehicle.getElementsByTagName('Version')[0].textContent;
+                       price = parseInt(vehicle.getElementsByTagName('Price')[0].textContent).toLocaleString('pt') + " €";;
+                       /* km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
                         fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
                         cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";*/
                         img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
                         
+                        
                         document.getElementById("imgFirst").src= img;
+                        document.getElementById("imgS1").src= img;
+                        document.getElementById("h4").innerHTML=brand +" "+ model + " " + version;
+                        document.getElementById("priceEuro").innerHTML=price;
+                        
+                        i=100;
                     }
                    
                        
                         /*
-                    let priceID = document.getElementById("price"+i);
+                
                     let kmID = document.getElementById("km"+i);
                     let fuelID = document.getElementById("fuel"+i);
                     let HPIP = document.getElementById("hp"+i);
@@ -153,7 +159,7 @@
                                     </li>
                                     
                                     
-                                </ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#"><i class="fas fa-chevron-right"></i></a></li></ul></div>
+                                </ul></div><ol class="flex-control-nav flex-control-thumbs"><li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li><li><img src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol><ul class="flex-direction-nav"><li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li><li class="flex-nav-next"><a class="flex-next" href="#"><i class="fas fa-chevron-right"></i></a></li></ul></div>
                             <div class="c-bg-dark rounded-top">
                                 <ul class="nav nav-tabs border-0 flex-column flex-sm-row text-white" id="myTab" role="tablist">
                                     <li class="nav-item mb-0">
@@ -271,9 +277,9 @@
                     <div class="col-12 col-lg-5">
                         <div class="card c-brd-light mb-4">
                             <div class="card-body">
-                                <h4>Volvo xc90 inscription</h4>
+                                <h4 id="h4">Volvo xc90 inscription</h4>
                                 <ul class="list-unstyled c-line-height-2_5 mb-0">
-                                    <li><small class="c-light">Preço</small> <h4 class="d-inline-block c-primary mb-1">$43,600 </h4></li>
+                                    <li><small class="c-light">Preço</small> <h4 id="priceEuro" class="d-inline-block c-primary mb-1">$43,600 </h4></li>
                                     <!--<li><i class="fa fa-map-marker pr-1"></i> South City, New York</li>-->
                                 </ul>
                             </div>
