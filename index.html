@@ -422,13 +422,17 @@
         let query = document.getElementById("querySel").value;
         let brand = document.getElementById("brandSel").value;
         let model = document.getElementById("modelSel").value;
+        let minPrice = document.getElementById("priceMinSel").value;
+        let maxPrice = document.getElementById("priceMaxSel").value;
 
         if (query != "" || brand != -1)
             document.location.href = "./search.html" +
                 (query != "" || brand != -1 || model != -1 ? "?" : "") +
                 (query != "" ? "&query=" + query : "") +
                 (brand != -1 ? "&brand=" + brand : "") +
-                (model != -1 ? "&model=" + model : "");
+                (model != -1 ? "&model=" + model : "") +
+                (brand != -1 ? "&minPrice=" + minPrice : "") +
+                (brand != -1 ? "&maxPrice=" + maxPrice : "");
         else
             alert("Pesquise ou Selecione uma Marca para pesquisar");
     }
