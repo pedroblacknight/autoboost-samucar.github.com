@@ -46,7 +46,7 @@
             });
             function printCars(vList){
                 
-                var brand, model, price, km, fuel, cv, img, version, transmission, cc;
+                var brand, model, price, km, fuel, cv, img, version, transmission, cc, href;
                 for (let i = 0; i<100; i++) {
                         if(i<4){
                             infoMore(i);
@@ -65,6 +65,7 @@
                         cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
                         transmission = vehicle.getElementsByTagName('Transmission')[0].firstChild.nodeValue;
                         cc = vehicle.getElementsByTagName('CC')[0].firstChild.nodeValue + " cc";
+                        var nFotos = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo").length;
                         img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
                         img2 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[1].firstChild.nodeValue;
                         img3 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[2].firstChild.nodeValue;
@@ -93,8 +94,9 @@
                             i=100;
                         } 
                     }
-                   
+                    
                        function infoMore(i){
+                           
                            var indice = i+4;
                             let vehicle = vList[i];
                             brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
@@ -106,7 +108,12 @@
                             km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
                             fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
                             cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
+                            href = "./details.html?id=" + vehicle.getElementsByTagName('ID')[0].textContent;
                            
+                            console.log("href"+i);
+                            let hrefID = document.getElementById("href"+i);
+                            
+                            hrefID.href=href;
                             document.getElementById("car"+indice).innerHTML=brand +" "+ model + " " + version;
                             document.getElementById("price"+indice).innerHTML=price;
                             document.getElementById("km"+indice).innerHTML=" " + km;
@@ -193,10 +200,8 @@
                                 
                             <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 100%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
                                     <li class="position-relative flex-active-slide" data-thumb="https://samucar.pt/dist/images/img1.jpg" data-thumb-alt="" style="margin-right: 0px; float: left; display: block; width: 100%;">
-                                        <img id="imgFirst" src="https://samucar.pt/dist/images/img1.jpg" alt="" class="img-fluid" draggable="false">
-                                        <div class="fullscreen position-absolute text-center">
-                                            <a  class="btn-gallery c-primary"><i class="fa fa-arrows-alt"></i></a>
-                                        </div>
+                                        <img id="imgFirst"  alt="" class="img-fluid" draggable="false">
+                                        
                                     </li>
                                     
                                     
@@ -205,19 +210,18 @@
                               
                                 <div>
                                 <ol class="flex-control-nav flex-control-thumbs">
-                                    <li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li>
-                                    <li><img id="imgS2" src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li>
-                                    <li><img id="imgS3" src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li>
-                                    <li><img id="imgS4" src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li>
-                                    <li><img id="imgS5" src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol> </div>
+                                    <li><img id="imgS1"  class="flex-active" draggable="false"></li>
+                                    <li><img id="imgS2"  draggable="false"></li>
+                                    <li><img id="imgS3"  draggable="false"></li>
+                                    <li><img id="imgS4"  draggable="false"></li>
+                                    <li><img id="imgS5"  draggable="false"></li></ol> </div>
                                </div>
                             
                             <div class="tab-content" id="myTabContent1">
                                 <div class="tab-pane fade active show" id="overview" role="tabpanel" aria-expanded="true">
                                   
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="list-header p-0" >
-                                        </div>
+                                       
                                         <div class="list-header p-3">
                                             <h6 > Descrição</h6>
                                         </div>
@@ -228,8 +232,7 @@
                                            
                                         </div>
                                         </div>
-                                        <div class="list-header p-3" style="margin-top: -45px">
-                                        </div>
+                                        
 
                                       
                                     </div>
@@ -325,7 +328,11 @@
                             </table>
                             <div style="padding:25px;">
                                 <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Comparar</button>
-                            <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:40px;margin-top:12px;font-weight:bold;cursor:pointer;"> Contactar para Comprar</button>
+                                <table class="">
+                                <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:40px;margin-top:12px;font-weight:bold;cursor:pointer;"> <i class="fas fa-phone" style="margin-right: 10px"></i>       212345678</button>
+                                <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:40px;margin-top:12px;font-weight:bold;cursor:pointer;"> <i class="fas fa-envelope" style="margin-right: 10px"></i>   automoveisamucar@gmail.com</button>
+                                </table>
+                            
                             </div>
                           
                             
@@ -424,7 +431,7 @@
         
                 <div class="slider multiple-items">
                     <div>
-                        <a id="href4" href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" />
+                        <a id="href0" href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" />
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car4" class="mb-2"></h6>
@@ -438,7 +445,7 @@
                         </div></a>
                     </div>
                     <div>
-                        <a id="href5" href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top"/>
+                        <a id="href1" href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top"/>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car5" class="mb-2"></h6>
@@ -452,7 +459,7 @@
                         </div></a>
                     </div>
                      <div>
-                        <a id="href6" href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" />
+                        <a id="href2" href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" />
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car6" class="mb-2"></h6>
@@ -466,7 +473,7 @@
                         </div></a>
                     </div>
                      <div>
-                        <a id="href7" href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" />
+                        <a id="href3" href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" />
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car7" class="mb-2"></h6>
@@ -565,18 +572,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 text-lg-left text-center mb-3 mb-lg-0">
-                        <span class="copyright">Copyright © 2017-2018 Powered By <a href="#">AutoBoost.</a>  All Rights Reserved.</span>
+                        <span class="copyright">Copyright © 2020-2021 Powered By <a href="#">AutoBoost.pt</a>  Todos os direitos reservados.</span>
                     </div>
-                    <div class="col-12 col-lg-4 text-lg-right text-center">
-                        <ul class="list-inline footer-social mb-0">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-youtube-play pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </section>
