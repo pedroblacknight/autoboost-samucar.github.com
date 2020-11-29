@@ -756,7 +756,6 @@
                   searchQuery = searchParams.get("query");
                   if (searchQuery == null)
                       searchQuery = "";
-                  searchQuery = searchQuery.toLowerCase();
                   searchBrand = searchParams.get("brand");
                   if (searchBrand == null)
                       searchBrand = -1;
@@ -779,7 +778,7 @@
           for (let idx = 0; idx < vehicles.length; idx++) {
               let vehicle = convertToDict(vehicles[idx]);
               let vehicleHTML = searchResultToHTML(vehicle);
-              if (searchQuery != "" && (vehicle.brand.toLowerCase() + " " + vehicle.model.toLowerCase() + " " + vehicle.version.toLowerCase()).indexOf(searchQuery) >= 0)
+              if (searchQuery != "" && (vehicle.brand.toLowerCase() + " " + vehicle.model.toLowerCase() + " " + vehicle.version.toLowerCase()).indexOf(searchQuery.toLowerCase()) >= 0)
                   searchResults += vehicleHTML;
               else if (searchQuery == "" && searchBrand == -1)
                   searchResults += vehicleHTML;
