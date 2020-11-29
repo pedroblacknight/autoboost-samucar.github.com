@@ -1073,6 +1073,10 @@ header .nav-item{
   padding: 0 20px;
   margin-bottom: 10px;
 }
+.search #prices output #priceMinSel,
+.search #prices output #priceMaxSel {
+  display: none;
+}
 
 @media (max-width: 400px) {
   .navbar-brand {
