@@ -65,7 +65,7 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1" id = "modelSel">
+                                                        <select class="form-control ml-sm-0 rounded-1" id = "modelSel" style="border-radius: .25rem;">
                                                             <option disabled selected value="-1">Selecionar Modelo</option>
                                                         
                                                         </select>
@@ -350,6 +350,7 @@
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 col-lg-6 pb-3">
                 <h3>Resultados de Pesquisa</h3>
+                <h6 id="noResults">Sem resultados</h6>
             </div>
             <div id="searchResults" class="col-12"></div>
             <style>
@@ -476,7 +477,7 @@
       <div class="container">
           <div class="row d-flex justify-content-center text-center">
               <div class="col-12 col-lg-6 pb-3">
-                  <h3>Resultados semelhantes</h3>
+                  <h3>Poderá também estar interessado</h3>
               </div>
           </div>
           <div class="slider multiple-items">
@@ -787,6 +788,8 @@
               else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model)
                   searchResults += vehicleHTML;
           }
+          
+          if (searchResults != "") document.getElementById("noResults").innerHTML="";
 
           document.getElementById("searchResults").innerHTML = searchResults;
           document.getElementById("results").scrollIntoView();
