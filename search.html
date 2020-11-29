@@ -370,12 +370,28 @@
 <section id="results">
     <div class="container">
         <div class="row d-flex justify-content-center text-center">
-            <div class="col-12 col-lg-6 pb-3">
+            <div class="col-12 col-lg-6 pb-3 filters">
                 <h3>Resultados de Pesquisa</h3>
+                <p>
+                    Filtrar por:
+                    &nbsp;<span onclick="orderSearchResultsBy('price')">€ Preço</span> -
+                    &nbsp;<span onclick="orderSearchResultsBy('hp')"><i class="fa fa-car" aria-hidden="true"></i> Potência</span> -
+                    &nbsp;<span onclick="orderSearchResultsBy('km')"><i class="fa fa-tachometer-alt" aria-hidden="true"></i> Km</span>
+                </p>
                 <h6 id="noResults">Sem resultados</h6>
             </div>
             <div id="searchResults" class="col-12"></div>
             <style>
+                .filters p {
+                    width: 100%;
+                    text-align: center;
+                }
+
+                .filters span {
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
                 #searchResults article {
                     height: 180px;
                     display: flex;
@@ -849,6 +865,20 @@
           document.getElementById("results").scrollIntoView();
       }
 
+      function orderSearchResultsBy(filterName) {
+          searchResultsVehicles.sort((a, b) => {
+              return a[filterName] - b[filterName];
+          });
+          let searchResults = "";
+
+          for (let idx = 0; idx < searchResultsVehicles.length; idx++) {
+              searchResults += searchResultToHTML(searchResultsVehicles[idx]);
+          }
+
+          document.getElementById("searchResults").innerHTML = searchResults;
+          document.getElementById("results").scrollIntoView();
+      }
+
       function convertToDict(vehicle) {
           let res = {};
           res.section = vehicle.getElementsByTagName("Section")[0].textContent;
@@ -861,8 +891,8 @@
               "Outubro", "Novembro", "Dezembro"];
           res.year = vehicle.getElementsByTagName("Year")[0].textContent;
           res.month = monthNames[vehicle.getElementsByTagName("Month")[0].textContent - 1];
-          res.km = parseInt(vehicle.getElementsByTagName("Kms")[0].textContent).toLocaleString("pt") + " km";
-          res.hp = vehicle.getElementsByTagName("HP")[0].textContent + " cv";
+          res.km = parseInt(vehicle.getElementsByTagName("Kms")[0].textContent);
+          res.hp = parseInt(vehicle.getElementsByTagName("HP")[0].textContent);
           res.price = parseInt(vehicle.getElementsByTagName("Price")[0].textContent);
           res.photos = [];
           let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
@@ -882,7 +912,7 @@
               "                 <h5 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h5>" +
               "                 <span class=\"card__price\">" + vehicle.price.toLocaleString("pt") + "<span class=\"type\"> EUR</span></span>" +
               "             </div>" +
-              "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km + "</span><span>" + vehicle.hp + "</span></p>" +
+              "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km.toLocaleString("pt") + " km" + "</span><span>" + (vehicle.hp + " cv") + "</span></p>" +
               "         </div>" +
               "     </article>" +
               "</a>"
