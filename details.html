@@ -46,7 +46,7 @@
             });
             function printCars(vList){
                 
-                var brand, model, price, km, fuel, cv, img, version, transmission, cc;
+                var brand, model, price, km, fuel, cv, img, version, transmission, cc, href;
                 for (let i = 0; i<100; i++) {
                         if(i<4){
                             infoMore(i);
@@ -65,6 +65,7 @@
                         cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
                         transmission = vehicle.getElementsByTagName('Transmission')[0].firstChild.nodeValue;
                         cc = vehicle.getElementsByTagName('CC')[0].firstChild.nodeValue + " cc";
+                        var nFotos = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo").length;
                         img = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[0].firstChild.nodeValue;
                         img2 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[1].firstChild.nodeValue;
                         img3 = vehicle.getElementsByTagName('PhotoList')[0].getElementsByTagName("Photo")[2].firstChild.nodeValue;
@@ -93,8 +94,9 @@
                             i=100;
                         } 
                     }
-                   
+                    
                        function infoMore(i){
+                           
                            var indice = i+4;
                             let vehicle = vList[i];
                             brand = vehicle.getElementsByTagName('Brand')[0].firstChild.nodeValue;
@@ -106,12 +108,17 @@
                             km = parseInt(vehicle.getElementsByTagName('Kms')[0].textContent).toLocaleString("pt") + " km";
                             fuel = vehicle.getElementsByTagName('Fuel')[0].firstChild.nodeValue;
                             cv = vehicle.getElementsByTagName('HP')[0].firstChild.nodeValue + " cv";
+                            href = "./details.html?id=" + vehicle.getElementsByTagName('ID')[0].textContent;
                            
+                            console.log("href"+i);
+                            let hrefID = document.getElementById("href"+i);
+                            
+                            hrefID.href=href;
                             document.getElementById("car"+indice).innerHTML=brand +" "+ model + " " + version;
                             document.getElementById("price"+indice).innerHTML=price;
-                            document.getElementById("km"+indice).innerHTML=km;
-                            document.getElementById("fuel"+indice).innerHTML=fuel;
-                            document.getElementById("hp"+indice).innerHTML=cv;
+                            document.getElementById("km"+indice).innerHTML=" " + km;
+                            document.getElementById("fuel"+indice).innerHTML=" " + fuel;
+                            document.getElementById("hp"+indice).innerHTML=" " + cv;
                             document.getElementById("imgsrc"+indice).src=img;
                            
                            
@@ -193,10 +200,8 @@
                                 
                             <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 100%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
                                     <li class="position-relative flex-active-slide" data-thumb="https://samucar.pt/dist/images/img1.jpg" data-thumb-alt="" style="margin-right: 0px; float: left; display: block; width: 100%;">
-                                        <img id="imgFirst" src="https://samucar.pt/dist/images/img1.jpg" alt="" class="img-fluid" draggable="false">
-                                        <div class="fullscreen position-absolute text-center">
-                                            <a  class="btn-gallery c-primary"><i class="fa fa-arrows-alt"></i></a>
-                                        </div>
+                                        <img id="imgFirst"  alt="" class="img-fluid" draggable="false">
+                                        
                                     </li>
                                     
                                     
@@ -205,32 +210,36 @@
                               
                                 <div>
                                 <ol class="flex-control-nav flex-control-thumbs">
-                                    <li><img id="imgS1" src="https://samucar.pt/dist/images/img1.jpg" class="flex-active" draggable="false"></li>
-                                    <li><img id="imgS2" src="https://samucar.pt/dist/images/img2.jpg" draggable="false"></li>
-                                    <li><img id="imgS3" src="https://samucar.pt/dist/images/img3.jpg" draggable="false"></li>
-                                    <li><img id="imgS4" src="https://samucar.pt/dist/images/img4.jpg" draggable="false"></li>
-                                    <li><img id="imgS5" src="https://samucar.pt/dist/images/img5.jpg" draggable="false"></li></ol> </div>
+                                    <li><img id="imgS1"  class="flex-active" draggable="false"></li>
+                                    <li><img id="imgS2"  draggable="false"></li>
+                                    <li><img id="imgS3"  draggable="false"></li>
+                                    <li><img id="imgS4"  draggable="false"></li>
+                                    <li><img id="imgS5"  draggable="false"></li></ol> </div>
                                </div>
-                            <div class="c-bg-dark rounded-top">
-                                <ul class="nav nav-tabs border-0 flex-column flex-sm-row text-white" id="myTab" role="tablist">
-                                    <li class="nav-item mb-0">
-                                        <a class="nav-link redial-light border-0 py-3 active" data-toggle="tab" href="#overview" role="tab" aria-expanded="false">Descrição</a>
-                                    </li>
-                                  
-                                </ul>
-                            </div>
-                            <div class="tab-content" id="myTabContent2">
+                            
+                            <div class="tab-content" id="myTabContent1">
                                 <div class="tab-pane fade active show" id="overview" role="tabpanel" aria-expanded="true">
+                                  
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="card-body pt-5">
+                                       
+                                        <div class="list-header p-3">
+                                            <h6 > Descrição</h6>
+                                        </div>
+                                        
+                                        <div id="engine1" class="collapse show widget-content">
+                                            <div class="card-body pt-4">
                                             <p>Possível credito. Possível retoma. Mais de 200 viaturas em stock. Anúncio inserido por rotina informática todos os dados a serem confirmados com a entidade vendedora.</p>
                                            
                                         </div>
+                                        </div>
+                                        
+
+                                      
                                     </div>
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="pt-4"></div>
+                                        
                                         <div class="list-header p-3">
-                                            <a href="#" class="d-block text-btn c-montserrat c-dark c-font-weight-500" data-toggle="collapse" data-target="#engine"><i class="flaticon-engine pr-1"></i> Especificações</a>
+                                            <h6> Especificações</h6>
                                         </div>
                                         <div id="engine" class="collapse show widget-content">
                                             <table class="table table-striped mb-0">
@@ -267,38 +276,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="features" role="tabpanel" aria-expanded="false">
                                     <div class="border c-brd-light border-top-0">
-                                        <div class="card-body pt-4">
-                                            <div class="row">
-                                                <div class="col-12 col-sm-6">
-                                                    <ul class="list-unstyled c-line-height-3 mb-0">
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Automatic Climate Control</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Floor Mats</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> ParkAssist</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Adaptive Cruise Control</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Rear Camera</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Seat Ventilation</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Tire Pressure Monitoring</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Brake Assist</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> 4-Wheel Disc Brakes</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Heated Rear Seats</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-12 col-sm-6">
-                                                    <ul class="list-unstyled c-line-height-3 mb-0">
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Aluminum Wheels</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Seat beal</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Child seat</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> GPS</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Power steering</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Low fuel warning light</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Vanity mirror</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Cup holders front</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Digital clock</li>
-                                                        <li><i class="fa fa-check c-primary pr-2"></i> Navigation system</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -349,8 +327,12 @@
                                 </tbody>
                             </table>
                             <div style="padding:25px;">
-                                <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:50px;margin-top:8px;font-weight:bold;cursor:pointer;">Comparar</button>
-                            <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:50px;margin-top:12px;font-weight:bold;cursor:pointer;"> Contactar para Comprar</button>
+                                <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Comparar</button>
+                                <table class="">
+                                <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:40px;margin-top:12px;font-weight:bold;cursor:pointer;"> <i class="fas fa-phone" style="margin-right: 10px"></i>       212345678</button>
+                                <button style="width:100%;border:0;background:#000;color:white;border-radius:4px;min-height:40px;margin-top:12px;font-weight:bold;cursor:pointer;"> <i class="fas fa-envelope" style="margin-right: 10px"></i>   automoveisamucar@gmail.com</button>
+                                </table>
+                            
                             </div>
                           
                             
@@ -358,29 +340,29 @@
                         <div class="card c-brd-light mb-4">
                             <div class="c-bg-light">
                                 <div class="card-body p-3">
-                                    <h6 class="mb-0">Contactar Vendedor para Retoma</h6>
+                                    <h5 class="mb-0">Avaliar uma retoma</h5>
                                 </div>
                             </div>
                             <div class="card-body py-4 bg-white">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Name">
+                                    <input type="text" class="form-control" placeholder="Nome">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Phone">
+                                    <input type="text" class="form-control" placeholder="Telefone">
                                 </div>
                                 <div class="form-group">
                                     <textarea class="form-control" placeholder="Message"></textarea>
                                 </div>
-                                <a href="#" class="btn btn-primary btn-lg text-uppercase"> Enviar Mensagem</a>
+                                <button style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Enviar</button>
                             </div>
                         </div>
                         <div class="card c-brd-light mb-4 right-sidebar-widget">
                             <div class="c-bg-light">
                                 <div class="card-body p-3">
-                                    <h6 class="mb-0">Simulador de Crédito</h6>
+                                    <h5 class="mb-0">Simulador de Crédito</h5>
                                 </div>
                             </div>
                             <div class="card-body py-4 bg-white">
@@ -400,7 +382,8 @@
                                         <div class="tooltip tooltip-main top" style="left: 71.4286%; margin-left: -15.5px;"><div class="tooltip-arrow"></div><div class="tooltip-inner">36</div></div><div class="tooltip tooltip-min top"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div><div class="tooltip tooltip-max bottom" style="top: 18px;"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div></div><input data-ui-slider="" type="text" id="slytherAlex" value="36"  data-slider-orientation="horizontal" class="slider slider-horizontal" style="display: none;">
                                 </div>
                                 <div class="form-group">
-                                    <a onclick="calcLoan()" class="btn btn-primary btn-lg text-uppercase"> Calcular</a>
+                                    
+                                    <button onclick="calcLoan()" style="width:100%;border:0;background:rgb(22, 82, 240);color:white;border-radius:4px;min-height:40px;margin-top:8px;font-weight:bold;cursor:pointer;">Calcular</button>
                                 </div>
                                 <dl class="row mb-0">
                                     <dt class="col-sm-8 font-weight-normal">Montante do Empréstimo:</dt>
@@ -438,9 +421,9 @@
         <!-- Car Featured-->
         <section class="bg-light top-results">
             <div class="container">
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px">
                     <div class="col-12 col-sm-7">
-                        <h3>Os Carros Mais Procurados</h3>
+                        <h3>Ainda não escolheu? Veja outros modelos</h3>
                     </div>
                 </div>
             
@@ -448,7 +431,7 @@
         
                 <div class="slider multiple-items">
                     <div>
-                        <a id="href4" href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" />
+                        <a id="href0" href="#"><img id = "imgsrc4" src="" alt="" class="img-fluid1 rounded-top" />
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car4" class="mb-2"></h6>
@@ -462,7 +445,7 @@
                         </div></a>
                     </div>
                     <div>
-                        <a id="href5" href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top"/>
+                        <a id="href1" href="#"><img id = "imgsrc5" src="" alt="" class="img-fluid1 rounded-top"/>
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car5" class="mb-2"></h6>
@@ -476,7 +459,7 @@
                         </div></a>
                     </div>
                      <div>
-                        <a id="href6" href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" />
+                        <a id="href2" href="#"><img id = "imgsrc6" src="" alt="" class="img-fluid1 rounded-top" />
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car6" class="mb-2"></h6>
@@ -490,7 +473,7 @@
                         </div></a>
                     </div>
                      <div>
-                        <a id="href7" href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" />
+                        <a id="href3" href="#"><img id = "imgsrc7" src="" alt="" class="img-fluid1 rounded-top" />
                         <div class="card c-brd-light car-box">
                             <div class="card-body">
                                 <h6 id = "car7" class="mb-2"></h6>
@@ -589,18 +572,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-8 text-lg-left text-center mb-3 mb-lg-0">
-                        <span class="copyright">Copyright © 2017-2018 Powered By <a href="#">AutoBoost.</a>  All Rights Reserved.</span>
+                        <span class="copyright">Copyright © 2020-2021 Powered By <a href="#">AutoBoost.pt</a>  Todos os direitos reservados.</span>
                     </div>
-                    <div class="col-12 col-lg-4 text-lg-right text-center">
-                        <ul class="list-inline footer-social mb-0">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-youtube-play pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest-p pr-3"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>
         </section>

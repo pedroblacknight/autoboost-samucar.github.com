@@ -30,7 +30,7 @@
 <div id="includedContent" class="main-header"></div>
 
 <!-- Slider-->
-<section  class="py-0">
+<section class="py-0 search">
     <div id="owl-demo" class="owl-carousel owl-theme">
         <div class="item">
             <div class="background-image-maker gradient gradient-lr"></div>
@@ -52,73 +52,89 @@
                                         <h4 class="text-center">Procura uma viatura</h4>
                                         <div class="tab-content bg-white rounded-bottom rounded-right" id="myTabContent3">
                                             <div class="tab-pane fade active show" id="id1" role="tabpanel" aria-expanded="true">
-
-                                                    <div class="form-group">
-                                                        <input class="form-control ml-sm-0 rounded-1" id="querySel" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
-                                                            <div class="search position-absolute">
-                                                                <a href="#"></a>
-                                                            </div>
+                                                <div class="form-group">
+                                                    <input class="form-control ml-sm-0 rounded-1" id="querySel" type="search" placeholder="&#xF002; &nbsp; Pesquisa" style="font-family:FontAwesome, Arial;background-color: #e6e6e6">
+                                                    <div class="search position-absolute">
+                                                        <a href="#"></a>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1" id="brandSel" style="border-radius: .25rem;" onchange="changeModels()">
-
-                                                        </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <select class="form-control ml-sm-0 rounded-1" id="brandSel" style="border-radius: .25rem;" onchange="changeModels()"></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <select class="form-control ml-sm-0 rounded-1" id = "modelSel" style= "border-radius: .25rem;">
+                                                        <option disabled selected value="-1">Selecionar Modelo</option>
+                                                    </select>
+                                                </div>
+                                                <div id="prices">
+                                                    <div>
+                                                        <input id="a" type="range" min="1000" max="100000" value="10000"/>
+                                                        <input id="b" type="range" min="1000" max="100000" value="90000" />
                                                     </div>
-                                                    <div class="form-group">
-                                                        <select class="form-control ml-sm-0 rounded-1" id = "modelSel">
-                                                            <option disabled selected value="-1">Selecionar Modelo</option>
-                                                        
-                                                        </select>
-                                                    </div>
-                                                    <!--                                                            <div class="form-group">-->
-                                                    <!--                                                                <div id="slider-range"></div>-->
-                                                    <!--<div class="row">
-                                                        <div class="col-3">
-                                                            <span id="search-min-price">0</span>Preço mínimo
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input type="range" value="0" min="0" max="500000" step="50" />
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <input type="range" value="500" min="0" max="500000" step="50" />
-                                                        </div>
-                                                        <div class="col-3">
-                                                            <span id="search-max-price">500</span>Preço máximo
-                                                        </div>
-                                                    </div>-->
-                                                    <!--                                                            </div>-->
+                                                    <output>
+                                                        <span id="priceMinSel"></span>
+                                                        <span id="priceMaxSel"></span>
+                                                    </output>
                                                     <script>
-                                                        $( function() {
-                                                            $( "#slider-range" ).slider({
-                                                                range: true,
-                                                                min: 0,
-                                                                max: 500,
-                                                                values: [ 75, 300 ],
-                                                                slide: function( event, ui ) {
-                                                                    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                                                        // On an event of kind, for els, call fn
+                                                        const on = (...kinds) => (...els) => (fn) =>
+                                                            kinds.forEach(kind =>
+                                                                els.forEach(el => el.addEventListener(kind, fn))
+                                                            )
+
+                                                        const a = document.getElementById('a');
+                                                        const b = document.getElementById('b');
+                                                        const pMin = document.getElementById('priceMinSel');
+                                                        const pMax = document.getElementById('priceMaxSel');
+
+                                                        on('input', 'mousedown')(a, b)(update);
+                                                        // 'mousedown' because otherwise you can "lock" the other slider in place at min=max=value
+
+                                                        const max = 20;
+                                                        const min = 0;
+                                                        const range = max - min + 1; // +1 inclusive
+
+                                                        update(); // 1x
+
+                                                        // As the user drags on input, update the available range and visual space for both inputs
+                                                        function update({target} = {}) {
+                                                            let pivot; // unless otherwise acted on
+
+                                                            if (target === a) {
+                                                                if (a.valueAsNumber >= Number(a.max)) {
+                                                                    pivot = Math.min(max - 1, Number(a.max) + 1);
                                                                 }
-                                                            });
-                                                            $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-                                                                " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-                                                        } );
-                                                    </script>
-                                                    <style>
-                                                        input[type="range"] {
-                                                            width: 100%;
+                                                            }
+
+                                                            if (target === b) {
+                                                                if (b.valueAsNumber <= Number(b.min)) {
+                                                                    pivot = Math.max(min, Number(b.min) - 2);
+                                                                }
+                                                            }
+
+                                                            if (pivot != null) {
+                                                                a.max = pivot;
+                                                                b.min = pivot + 1;
+                                                            }
+
+                                                            a.style.flexGrow = stepsIn(a);
+                                                            b.style.flexGrow = stepsIn(b);
+
+                                                            // Print selected range
+                                                            pMin.innerText = `${parseInt(a.value).toLocaleString('pt')} €`;
+                                                            pMax.innerText = `${parseInt(b.value).toLocaleString('pt')} €`;
                                                         }
 
-                                                        #search-min-price,
-                                                        #search-max-price {
-                                                            width: 100%;
-                                                            display: block;
-                                                            text-align: center;
-                                                            font-weight: bold;
+                                                        // Number of discrete steps in an input range
+                                                        function stepsIn(el) {
+                                                            return Number(el.max) - Number(el.min) + 1;
                                                         }
-                                                    </style>
+                                                    </script>
                                                     <a href="javascript:;"
                                                        class="btn btn-primary btn-block btn-md text-uppercase font-weight-bold"
                                                        onclick="searchVehicle()"
                                                     >Procurar</a>
+                                                </div>
                                             </div>
                                             <div class="tab-pane fade" id="id2" role="tabpanel" aria-expanded="false">
                                                 <form>
@@ -350,6 +366,7 @@
         <div class="row d-flex justify-content-center text-center">
             <div class="col-12 col-lg-6 pb-3">
                 <h3>Resultados de Pesquisa</h3>
+                <h6 id="noResults">Sem resultados</h6>
             </div>
             <div id="searchResults" class="col-12"></div>
             <style>
@@ -395,6 +412,21 @@
 
                 #searchResults article .card__inner .card__desc span {
                     margin-right: 20px;
+                    text-transform: capitalize;
+                }
+
+                #searchResults article .card__inner .card__desc span:nth-child(n + 2)::before {
+                    background-color: #bab;
+                    border-radius: 50%;
+                    content: "";
+                    display: inline-block;
+                    font-size: 20px;
+                    height: 4px;
+                    opacity: 0.5;
+                    width: 4px;
+                    vertical-align: middle;
+                    margin-top: -2px;
+                    margin-right: 15px;
                 }
 
                 #searchResults article .card__inner .card__price {
@@ -408,6 +440,50 @@
                 #searchResults article .card__inner .card__price .price {
                     font-size: 25px;
                 }
+
+                @media (max-width: 400px) {
+                    #searchResults article {
+                        flex-direction: column;
+                        height: auto;
+                    }
+
+                    #searchResults article .card__img {
+                        width: 100%;
+                        height: 150px;
+                    }
+
+                    #searchResults article .card__inner {
+                        width: 100%;
+                    }
+
+                    #searchResults article .card__inner .card__desc {
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+
+                    #searchResults article .card__inner .card__desc span {
+                        display: block;
+                        width: 50%;
+                        margin: 0;
+                        padding: 0 10px;
+                    }
+
+                    #searchResults article .card__inner .card__desc span:nth-child(2n + 1) {
+                        border-right: 1px solid gray;
+                    }
+
+                    #searchResults article .card__inner .card__desc span:nth-child(n + 2)::before {
+                        display: none;
+                    }
+
+                    #searchResults article .card__inner .card__price {
+                        top: calc(150px - 30px);
+                        padding: 5px 10px;
+                        background-color: #ddd;
+                        border-radius: 5px;
+                        box-shadow: 0 0 1px 1px gray;
+                    }
+                }
             </style>
        </div>
     </div>
@@ -417,7 +493,7 @@
       <div class="container">
           <div class="row d-flex justify-content-center text-center">
               <div class="col-12 col-lg-6 pb-3">
-                  <h3>Resultados semelhantes</h3>
+                  <h3>Poderá também estar interessado</h3>
               </div>
           </div>
           <div class="slider multiple-items">
@@ -718,7 +794,7 @@
           for (let idx = 0; idx < vehicles.length; idx++) {
               let vehicle = convertToDict(vehicles[idx]);
               let vehicleHTML = searchResultToHTML(vehicle);
-              if (searchQuery != "" && (vehicle.brand + " " + vehicle.model + " " + vehicle.version).indexOf(searchQuery) >= 0)
+              if (searchQuery != "" && (vehicle.brand.toLowerCase() + " " + vehicle.model.toLowerCase() + " " + vehicle.version.toLowerCase()).indexOf(searchQuery.toLowerCase()) >= 0)
                   searchResults += vehicleHTML;
               else if (searchQuery == "" && searchBrand == -1)
                   searchResults += vehicleHTML;
@@ -727,6 +803,8 @@
               else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model)
                   searchResults += vehicleHTML;
           }
+          
+          if (searchResults != "") document.getElementById("noResults").innerHTML="";
 
           document.getElementById("searchResults").innerHTML = searchResults;
           document.getElementById("results").scrollIntoView();
@@ -773,13 +851,17 @@
           let query = document.getElementById("querySel").value;
           let brand = document.getElementById("brandSel").value;
           let model = document.getElementById("modelSel").value;
+          let minPrice = document.getElementById("priceMinSel").value;
+          let maxPrice = document.getElementById("priceMaxSel").value;
 
           if (query != "" || brand != -1)
               document.location.href = "./search.html" +
                   (query != "" || brand != -1 || model != -1 ? "?" : "") +
                   (query != "" ? "&query=" + query : "") +
                   (brand != -1 ? "&brand=" + brand : "") +
-                  (model != -1 ? "&model=" + model : "");
+                  (model != -1 ? "&model=" + model : "") +
+                  (brand != -1 ? "&minPrice=" + minPrice : "") +
+                  (brand != -1 ? "&maxPrice=" + maxPrice : "");
           else
               alert("Pesquise ou Selecione uma Marca para pesquisar");
       }
