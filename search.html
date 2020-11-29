@@ -713,9 +713,10 @@
 
 
 
-      let searchQuery, searchBrand, searchModel;
+      let searchResultsVehicles, searchQuery, searchBrand, searchModel, searchMinPrice, searchMaxPrice;
       function fillFilter(){
           document.getElementById("querySel").value = searchQuery;
+          setPriceRange(searchMinPrice, searchMaxPrice);
 
           let map = getBrandsAndModels();
           let keys = [...map.keys()];
@@ -740,6 +741,21 @@
 
           if (searchModel != -1)
               changeModels();
+      }
+
+      function setPriceRange(searchMinPrice, searchMaxPrice) {
+          document.getElementById('priceMin').textContent = searchMinPrice + " €";
+          document.getElementById('priceMax').textContent = searchMaxPrice + " €";
+          document.getElementById('priceMinSel').textContent = searchMinPrice;
+          document.getElementById('priceMaxSel').textContent = searchMaxPrice;
+          document.getElementById("a").min = 0;
+          document.getElementById("a").max = (searchMinPrice / 1000) ;
+          document.getElementById("b").min = (searchMinPrice / 1000) + 1;
+          document.getElementById("b").max = 100;
+          document.getElementById("a").value = searchMinPrice / 1000;
+          document.getElementById("b").value = searchMaxPrice / 1000;
+          document.getElementById("a").style.flexGrow = "" + (document.getElementById("a").max - document.getElementById("a").min + 1);
+          document.getElementById("b").style.flexGrow = "" + (document.getElementById("b").max - document.getElementById("b").min + 1);
       }
 
       function changeModels() {
@@ -790,6 +806,13 @@
                       searchModel = -1;
                   else if (searchModel != "Ver Todos")
                       searchModel = searchModel.substring(0, searchModel.indexOf(" ("));
+                  if (searchBrand != -1) {
+                      searchMinPrice = searchParams.get("minPrice");
+                      searchMaxPrice = searchParams.get("maxPrice");
+                  } else {
+                      searchMinPrice = 1000;
+                      searchMaxPrice = 100000;
+                  }
                   fillFilter();
                   printCars(xml.getElementsByTagName('Vehicle'));
                   saveXML(data);
@@ -801,17 +824,23 @@
           let xml = getXML();
           let vehicles = xml.getElementsByTagName('Vehicle');
           let searchResults = "";
+          searchResultsVehicles = [];
           for (let idx = 0; idx < vehicles.length; idx++) {
               let vehicle = convertToDict(vehicles[idx]);
               let vehicleHTML = searchResultToHTML(vehicle);
-              if (searchQuery != "" && (vehicle.brand.toLowerCase() + " " + vehicle.model.toLowerCase() + " " + vehicle.version.toLowerCase()).indexOf(searchQuery.toLowerCase()) >= 0)
+              if (searchQuery != "" && (vehicle.brand.toLowerCase() + " " + vehicle.model.toLowerCase() + " " + vehicle.version.toLowerCase()).indexOf(searchQuery.toLowerCase()) >= 0) {
                   searchResults += vehicleHTML;
-              else if (searchQuery == "" && searchBrand == -1)
+                  searchResultsVehicles.push(vehicle);
+              } else if (searchQuery == "" && searchBrand == -1) {
                   searchResults += vehicleHTML;
-              else if (searchQuery == "" && searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos"))
+                  searchResultsVehicles.push(vehicle);
+              } else if (searchQuery == "" && searchBrand == vehicle.brand && (searchModel == -1 || searchModel == "Ver Todos") && vehicle.price >= searchMinPrice && vehicle.price <= searchMaxPrice) {
                   searchResults += vehicleHTML;
-              else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model)
+                  searchResultsVehicles.push(vehicle);
+              } else if (searchQuery == "" && searchBrand == vehicle.brand && searchModel == vehicle.model && vehicle.price >= searchMinPrice && vehicle.price <= searchMaxPrice) {
                   searchResults += vehicleHTML;
+                  searchResultsVehicles.push(vehicle);
+              }
           }
           
           if (searchResults != "") document.getElementById("noResults").innerHTML="";
@@ -834,7 +863,7 @@
           res.month = monthNames[vehicle.getElementsByTagName("Month")[0].textContent - 1];
           res.km = parseInt(vehicle.getElementsByTagName("Kms")[0].textContent).toLocaleString("pt") + " km";
           res.hp = vehicle.getElementsByTagName("HP")[0].textContent + " cv";
-          res.price = parseInt(vehicle.getElementsByTagName("Price")[0].textContent).toLocaleString("pt");
+          res.price = parseInt(vehicle.getElementsByTagName("Price")[0].textContent);
           res.photos = [];
           let photosList = vehicle.getElementsByTagName("PhotoList")[0].getElementsByTagName("Photo");
           for (let idx = 0; idx < photosList.length; idx++)
@@ -851,7 +880,7 @@
               "        <div class=\"card__inner\">\n" +
               "             <div class=\"card__top_box\">" +
               "                 <h5 class=\"card__title ui-title-inner\">" + vehicle.brand + " " + vehicle.model + " " + vehicle.version + "</h5>" +
-              "                 <span class=\"card__price\">" + vehicle.price + "<span class=\"type\"> EUR</span></span>" +
+              "                 <span class=\"card__price\">" + vehicle.price.toLocaleString("pt") + "<span class=\"type\"> EUR</span></span>" +
               "             </div>" +
               "             <p class=\"card__desc\"><span>" + vehicle.fuel + "</span><span>" + vehicle.month + "</span><span>" + vehicle.year + "</span><span>" + vehicle.km + "</span><span>" + vehicle.hp + "</span></p>" +
               "         </div>" +
@@ -863,8 +892,8 @@
           let query = document.getElementById("querySel").value;
           let brand = document.getElementById("brandSel").value;
           let model = document.getElementById("modelSel").value;
-          let minPrice = document.getElementById("priceMinSel").value;
-          let maxPrice = document.getElementById("priceMaxSel").value;
+          let minPrice = document.getElementById("priceMinSel").textContent;
+          let maxPrice = document.getElementById("priceMaxSel").textContent;
 
           if (query != "" || brand != -1)
               document.location.href = "./search.html" +

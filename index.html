@@ -428,8 +428,8 @@
         let query = document.getElementById("querySel").value;
         let brand = document.getElementById("brandSel").value;
         let model = document.getElementById("modelSel").value;
-        let minPrice = document.getElementById("priceMinSel").value;
-        let maxPrice = document.getElementById("priceMaxSel").value;
+        let minPrice = document.getElementById("priceMinSel").textContent;
+        let maxPrice = document.getElementById("priceMaxSel").textContent;
 
         if (query != "" || brand != -1)
             document.location.href = "./search.html" +
