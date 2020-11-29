@@ -1044,6 +1044,36 @@ header .nav-item{
   border-radius: 0 0 5px 5px;
 }
 
+.search #prices {
+  margin-top: 30px;
+}
+.search #prices div {
+  display: flex;
+}
+.search #prices input {
+  flex: 1 0 0;
+  min-width: 0; // they can be 0 size
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  background-color: gray;
+  height: 2px;
+  outline: none;
+}
+.search #prices input::-webkit-slider-thumb {
+  margin: 0;
+  padding: 0;
+}
+.search #prices output {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 10px;
+  color: gray;
+  padding: 0 20px;
+  margin-bottom: 10px;
+}
+
 @media (max-width: 400px) {
   .navbar-brand {
     max-width: 250px !important;
