@@ -1060,9 +1060,21 @@ header .nav-item{
   height: 2px;
   outline: none;
 }
+.search #prices #a {
+  padding-left: 5px;
+}
+.search #prices #b {
+  padding-right: 5px;
+}
 .search #prices input::-webkit-slider-thumb {
   margin: 0;
   padding: 0;
+  -webkit-appearance: none;
+  background-color: gray;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  border: 1px solid gray;
 }
 .search #prices output {
   display: flex;
